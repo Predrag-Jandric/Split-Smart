@@ -6,9 +6,11 @@
 - border radius should be equal for ALL sections, inputs, btns etc, use tailwind custom class for testing and changing ALL of them from a single line
 - make modal look visually pretty
 
-<!-- OPTIONAL -->
+OPTIONAL
 
 - add a fun cube that when clicked will change primary color across whole app, liek a random theme switcher
+
+---
 
 ## GROUP PAGE
 
@@ -26,9 +28,11 @@
 - add a "add description" text that looks clickable under the group name so that users can add description that way instead of in group creation modal.
 - when description is added, make it so that it can be eddited as well
 
-<!-- OPTIONAL -->
+OPTIONAL
 
 - when an image is selected for a group member, ERASE that image from the map so that different member cannot have the same image
+
+---
 
 ## HOME PAGE
 
@@ -36,12 +40,20 @@
 - make sure everything is responsive
 - ensure all boxy elements have equal border radius
 - ensure all boxy elements have the same box shadow prop
-- when adding new group, simplify as much as possible, remove selecting budget and expense when CREATING new group
-- make search bar POP out visually more
 - "add group should have a nice infinite animation to guide users to creating new group"
-- make sure search bar will filter groups that ONLY contain the input letter, meaning you dont need to type in any kind of order to get specific group
+- make hovering on image have some sort of UX that lets the user know image is clickable
 - remove "description" from the group creation modal
+- add a nice modal for removing a group instead of just an alert
 
-<!-- OPTIONAL -->
+OPTIONAL
 
 - when an image is selected for a group, ERASE that image from the map so that different group cannot have the same image
+
+---
+
+## DONE
+
+- make search bar POP out visually more
+- make sure search bar will filter groups that ONLY contain the input letter, meaning you dont need to type in any kind of order to get specific group
+- when adding new group, simplify as much as possible, remove selecting budget and expense when CREATING new group
+- make clicking on group image also takes you to that group id page

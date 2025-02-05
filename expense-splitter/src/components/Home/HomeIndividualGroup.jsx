@@ -23,11 +23,13 @@ function HomeIndividualGroup({ group }) {
 
   return (
     <section className="p-4 bg-white dark:bg-dark-primary rounded-xl  w-custom-card h-custom-card-height flex flex-col items-center">
-      <img
-        className="w-20 h-20 mb-2 rounded-full object-cover flex justify-center"
-        src={group.image}
-        alt="group-logo"
-      />
+      <Link to={`/groups/${group.id}`}>
+        <img
+          className="w-20 border-red-500 border-2 h-20 mb-2 rounded-full object-cover flex justify-center"
+          src={group.image}
+          alt="group-logo"
+        />
+      </Link>
 
       <p className="text-body font-medium text-title dark:text-dark-text-secondary">
         {group.members.length} members
