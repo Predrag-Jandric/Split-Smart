@@ -1,9 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-
 // components
-import Sidebar from "./Sidebar";
-// import Header from "./Header";
+import Sidebar from "../components/Home/Sidebar";
+
 
 function Layout() {
   return (

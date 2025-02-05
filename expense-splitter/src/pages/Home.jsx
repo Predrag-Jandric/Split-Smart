@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroup } from "../features/groupsSlice";
 import HomeIndividualGroup from "../components/Home/HomeIndividualGroup";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/Home/SearchBar"
 import Modal from "../components/Utils/Modal";
 import useModal from "../components/Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";

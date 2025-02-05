@@ -27,6 +27,9 @@ OPTIONAL
 - make the maximum number of group members 10 or something like that
 - add a "add description" text that looks clickable under the group name so that users can add description that way instead of in group creation modal.
 - when description is added, make it so that it can be eddited as well
+- fix this in group chart legend "Mike - 15.129000000000001 $"
+- make edit contribution modal have sliders
+
 
 OPTIONAL
 

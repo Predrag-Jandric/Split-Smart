@@ -7,28 +7,17 @@ import { updateMemberContribution } from "../../features/groupsSlice";
 
 // chart
 const COLORS = [
-  "#F8AE1B",
-  "#8D73FD",
-  "#EEAAFF",
-  "#6AD2FF",
-  "#EBAF91",
-  "#F68D2B",
-  "#F9C84D",
-  "#00B1A0",
-  "#03B56D",
-  "#6EEDFF",
-  "#D4A5A5",
-  "#F4A79D",
-  "#F8A5FF",
-  "#B8B8B8",
-  "#FDE0B8",
-  "#F35353",
-  "#D3917B",
-  "#FFF597",
-  "#D2FBA4",
-  "#FABE7A",
-  "#9FFFD8",
-  "#4318FF",
+  "#63C7B2",
+  "#FF9F1C", 
+  "#A0E9FF",
+  "#EEAAC6", 
+  "#6EA5D8", 
+  "#FFD166", 
+  "#D08BB9",
+  "#B6E37A", 
+  "#C57B57",
+  "#e5f0d0",  
+
 ];
 
 // props of numbers inside chart position and radius related

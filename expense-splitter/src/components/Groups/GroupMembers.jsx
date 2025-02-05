@@ -134,6 +134,7 @@ function GroupMembers() {
                 </label>
 
                 <input
+                autoFocus
                   type="text"
                   name="name"
                   value={newMember.name}
