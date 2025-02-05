@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroup } from "../features/groupsSlice";
+import { motion } from "framer-motion";
+import { jumpyAnimation } from "../components/Utils/animations";
 import HomeIndividualGroup from "../components/Home/HomeIndividualGroup";
-import SearchBar from "../components/Home/SearchBar"
+import SearchBar from "../components/Home/SearchBar";
 import Modal from "../components/Utils/Modal";
 import useModal from "../components/Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";
@@ -95,12 +97,15 @@ function Home() {
 
       <article className="flex flex-wrap gap-10 mx-8">
         <div className="bg-white dark:bg-dark-primary rounded-2xl w-custom-card h-custom-card-height shadow flex items-center justify-center flex-col">
-          <button
+          <motion.button
+            variants={jumpyAnimation} // Apply the jumpyAnimation
+            initial="initial"
+            animate="animate"
             onClick={openModal} // Use openModal from the custom hook
-            className="hover:animate-ping rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white dark:text-dark-text hover:bg-primary"
+            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white dark:text-dark-text hover:bg-primary"
           >
             +
-          </button>
+          </motion.button>
           <p className="text-2xl mt-4 font-bold dark:text-dark-text">
             Add Group
           </p>
