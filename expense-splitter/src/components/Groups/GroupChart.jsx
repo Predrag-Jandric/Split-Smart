@@ -129,18 +129,18 @@ function GroupChart({ groupId }) {
     closeModal();
   };
 
-
   return (
-    <section className="flex flex-col items-center justify-center w-custom-wide-chart bg-white
-    dark:bg-dark-primary p-6 ml-8 rounded-lg shadow">
+    <section
+      className="flex flex-col items-center justify-center w-custom-wide-chart bg-white
+    dark:bg-dark-primary p-6 ml-8 rounded-lg shadow"
+    >
       <div className="w-full flex items-stretch justify-end">
         <p className="text-subheader mr-auto font-bold text-secondary ml-3 dark:text-dark-text ">
           Budget Split
         </p>
         {hasMembers && (
           <button
-            className="px-3 transition rounded-md text-primary bg-blizzard-blue dark:bg-dark-primary dark:border hover:bg-primary
-            hover:text-white text-primary dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium"
+            className="px-3 transition rounded-md text-primary bg-blizzard-blue dark:bg-dark-primary dark:border hover:bg-primary hover:text-white dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium"
             onClick={openModal}
           >
             Edit Contributions
@@ -153,20 +153,25 @@ function GroupChart({ groupId }) {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               {group.members.map((member) => (
-                <div key={member.id} className="grid grid-cols-[152px_auto] items-center"  >
-                  <label className="text-body dark:text-dark-text">{member.name} Contribution</label>
+                <div
+                  key={member.id}
+                  className="grid grid-cols-[152px_auto] items-center"
+                >
+                  <label className="text-body dark:text-dark-text">
+                    {member.name} Contribution
+                  </label>
                   <div className="flex items-center">
-                  <input
-                    type="number"
-                    value={customContributions[member.id]}
-                    onChange={(e) =>
-                      handleContributionChange(member.id, e.target.value)
-                    }
-                    className="border mr-3 p-2 w-[10rem] dark:bg-dark-input"
-                    required
-                  />
-                 <span className="text-body dark:text-dark-text"> % </span>
-                 </div>
+                    <input
+                      type="number"
+                      value={customContributions[member.id]}
+                      onChange={(e) =>
+                        handleContributionChange(member.id, e.target.value)
+                      }
+                      className="border mr-3 p-2 w-[10rem] dark:bg-dark-input"
+                      required
+                    />
+                    <span className="text-body dark:text-dark-text"> % </span>
+                  </div>
                 </div>
               ))}
               <p className="text-md dark:text-dark-text">
@@ -216,19 +221,20 @@ function GroupChart({ groupId }) {
 
           <article className="p-3 w-full flex rounded-lg dark:border shadow-custom flex-wrap justify-start gap-2">
             {group.members.map((member, index) => (
-              <div
-                key={index}
-                className="flex my-2 items-center mx-2  p-1"
-              >
+              <div key={index} className="flex my-2 items-center mx-2  p-1">
                 <span
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-bold text-legend">{member.name}</span>
+                <span className="ml-2 font-bold text-legend">
+                  {member.name}
+                </span>
                 {/* <span className="text-sm ml-1 text-secondary"> - {((entry.contribution / 100) * group.totalExpense).toFixed(1)}$
                 </span> */}
-                 <span className="text-sm ml-1 text-secondary"> - {(group.totalExpense / 100) * member.contribution} $
-                 </span>
+                <span className="text-sm ml-1 text-secondary">
+                  {" "}
+                  - {(group.totalExpense / 100) * member.contribution} $
+                </span>
               </div>
             ))}
           </article>
