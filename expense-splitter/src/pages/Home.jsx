@@ -24,12 +24,15 @@ function Home() {
     const lowerCaseQuery = query.toLowerCase();
     setFilteredGroups(
       groups.filter((group) =>
-        lowerCaseQuery.split("").every((char) => group.name.toLowerCase().includes(char))
+        lowerCaseQuery
+          .split("")
+          .every((char) => group.name.toLowerCase().includes(char))
       )
     );
   };
 
-  const { isOpen, openModal, closeModal, handleClickOutside } = useModal(resetNewGroupState);
+  const { isOpen, openModal, closeModal, handleClickOutside } =
+    useModal(resetNewGroupState);
 
   const dispatch = useDispatch();
 
@@ -121,6 +124,7 @@ function Home() {
                   Group Name
                 </label>
                 <input
+                  autoFocus
                   type="text"
                   name="name"
                   value={newGroup.name}
@@ -140,8 +144,8 @@ function Home() {
               </button>
             </form>
           }
-          onClose={closeModal} // Pass onClose handler to close modal
-          handleClickOutside={handleClickOutside} // Pass click outside handler
+          onClose={closeModal}
+          handleClickOutside={handleClickOutside}
         />
       )}
 

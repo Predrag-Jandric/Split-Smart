@@ -42,8 +42,7 @@ OPTIONAL
 - ensure all boxy elements have the same box shadow prop
 - "add group should have a nice infinite animation to guide users to creating new group"
 - make hovering on image have some sort of UX that lets the user know image is clickable
-- remove "description" from the group creation modal
-- add a nice modal for removing a group instead of just an alert
+- make all input fields autoFocus when modal is opened
 
 OPTIONAL
 
@@ -55,5 +54,8 @@ OPTIONAL
 
 - make search bar POP out visually more
 - make sure search bar will filter groups that ONLY contain the input letter, meaning you dont need to type in any kind of order to get specific group
+- remove "description" from the group creation modal
 - when adding new group, simplify as much as possible, remove selecting budget and expense when CREATING new group
 - make clicking on group image also takes you to that group id page
+- add a nice modal for removing a group instead of just an alert
+- when creating a group, when modal is opened make the input field at focus state immediately
