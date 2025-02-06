@@ -1,11 +1,10 @@
-// react
 import { useEffect, useState } from "react";
-// redux
 import { useDispatch, useSelector } from "react-redux";
 import { addGroup } from "../features/groupsSlice";
-// components
+import { motion } from "framer-motion";
+import { jumpyAnimation } from "../components/Utils/animations";
 import HomeIndividualGroup from "../components/Home/HomeIndividualGroup";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/Home/SearchBar";
 import Modal from "../components/Utils/Modal";
 import useModal from "../components/Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";
@@ -18,20 +17,18 @@ function Home() {
   const resetNewGroupState = () => {
     setNewGroup({
       name: "",
-      description: "",
-      totalBudget: "",
-      totalExpense: "",
     });
   };
 
-  // Search bar functionality
   const [filteredGroups, setFilteredGroups] = useState(groups);
 
   const handleSearch = (query) => {
     const lowerCaseQuery = query.toLowerCase();
     setFilteredGroups(
       groups.filter((group) =>
-        group.name.toLowerCase().includes(lowerCaseQuery)
+        lowerCaseQuery
+          .split("")
+          .every((char) => group.name.toLowerCase().includes(char))
       )
     );
   };
@@ -43,9 +40,6 @@ function Home() {
 
   const [newGroup, setNewGroup] = useState({
     name: "",
-    description: "",
-    totalBudget: "",
-    totalExpense: "",
   });
 
   const handleInputChange = (e) => {
@@ -64,18 +58,15 @@ function Home() {
         id: Date.now(),
         name: newGroup.name,
         image: getRandomImage(),
-        description: newGroup.description,
-        totalBudget: newGroup.totalBudget,
-        totalExpense: newGroup.totalExpense,
+        description: "",
+        totalBudget: 0,
+        totalExpense: 0,
         members: [], // empty for now
       })
     );
 
     setNewGroup({
       name: "",
-      description: "",
-      totalBudget: "",
-      totalExpense: "",
     });
     toast.success(`Group added`, {
       position: "top-right",
@@ -106,12 +97,15 @@ function Home() {
 
       <article className="flex flex-wrap gap-10 mx-8">
         <div className="bg-white dark:bg-dark-primary rounded-2xl w-custom-card h-custom-card-height shadow flex items-center justify-center flex-col">
-          <button
+          <motion.button
+            variants={jumpyAnimation} // Apply the jumpyAnimation
+            initial="initial"
+            animate="animate"
             onClick={openModal} // Use openModal from the custom hook
-            className="hover:animate-ping rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white dark:text-dark-text hover:bg-primary"
+            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white dark:text-dark-text hover:bg-primary"
           >
             +
-          </button>
+          </motion.button>
           <p className="text-2xl mt-4 font-bold dark:text-dark-text">
             Add Group
           </p>
@@ -135,59 +129,13 @@ function Home() {
                   Group Name
                 </label>
                 <input
+                  autoFocus
                   type="text"
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
                   className="border p-2 w-full dark:bg-dark-input"
                   placeholder="Enter group name"
-                  required
-                  style={{ fontSize: "14px" }}
-                />
-              </div>
-
-              <div>
-                <label className="text-body font-semibold dark:text-dark-text">
-                  Description
-                </label>
-                <input
-                  name="description"
-                  value={newGroup.description}
-                  onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
-                  placeholder="Enter group description"
-                  maxLength={70}
-                  style={{ fontSize: "14px" }}
-                />
-              </div>
-
-              <div>
-                <label className="text-body font-semibold dark:text-dark-text">
-                  Total Budget
-                </label>
-                <input
-                  type="number"
-                  name="totalBudget"
-                  value={newGroup.totalBudget}
-                  onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
-                  placeholder="Enter total budget"
-                  required
-                  style={{ fontSize: "14px" }}
-                />
-              </div>
-
-              <div>
-                <label className="text-body font-semibold dark:text-dark-text">
-                  Total Expense
-                </label>
-                <input
-                  type="number"
-                  name="totalExpense"
-                  value={newGroup.totalExpense}
-                  onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
-                  placeholder="Enter total expense"
                   required
                   style={{ fontSize: "14px" }}
                 />
@@ -201,8 +149,8 @@ function Home() {
               </button>
             </form>
           }
-          onClose={closeModal} // Pass onClose handler to close modal
-          handleClickOutside={handleClickOutside} // Pass click outside handler
+          onClose={closeModal}
+          handleClickOutside={handleClickOutside}
         />
       )}
 

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { special } from "./Utils/images";
+import { special } from "../Utils/images";
 
 function Sidebar() {
   const [expanded, setExpanded] = useState(false); // State to control expansion

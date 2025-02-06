@@ -82,7 +82,7 @@ export default {
         "custom-hover":"0 4px 15px rgba(0, 0, 0, 0.2)",//for primary buttons, light mode
       },
       borderRadius: {
-        'global': "16px",
+        'global': "0px",
         // use rounded-global for example instead of rounded-xl
       },
     },

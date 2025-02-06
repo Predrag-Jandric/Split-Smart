@@ -11,6 +11,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imagesPeople } from "../Utils/images";
 import unknownPerson from "../../assets/unknownPerson.jpg"
+import { motion } from "framer-motion";
+import { jumpyAnimation } from "../Utils/animations";
 
 
 function GroupMembers() {
@@ -91,12 +93,15 @@ function GroupMembers() {
       <article className="flex flex-wrap justify-start">
 
       <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
-        <button
+        <motion.button
+        variants={jumpyAnimation} // Apply the jumpyAnimation
+        initial="initial"
+        animate="animate"
           onClick={openModal}
           className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
         >
           +
-        </button>
+        </motion.button>
         <p className="font-bold text-legend dark:text-dark-text">Add</p>
       </div>
         {group.members.map((member) => (
@@ -134,6 +139,7 @@ function GroupMembers() {
                 </label>
 
                 <input
+                autoFocus
                   type="text"
                   name="name"
                   value={newMember.name}

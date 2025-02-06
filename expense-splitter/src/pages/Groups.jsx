@@ -9,7 +9,6 @@ import Modal from "../components/Utils/Modal";
 // components
 import GroupChart from "../components/Groups/GroupChart";
 import ExpenseBar from "../components/Groups/GroupExpenseBar";
-import GroupExpenseTable from "../components/Groups/GroupExpenseTable";
 import GroupMembers from "../components/Groups/GroupMembers";
 import GroupName from "../components/Groups/GroupName";
 import GroupSmallExpenseCard from "../components/Groups/GroupSmallExpenseCard";
@@ -19,7 +18,6 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import GroupBarChart from "../components/Groups/GroupBarChart";
 
 function Groups() {
   const { groupId } = useParams();
@@ -110,14 +108,12 @@ function Groups() {
         />
       </div>
 
-      
-
       {/* Flex container for ExpenseBar and GroupChart styling */}
       <div className="flex flex-col lg:flex-row w-full gap-6 ">
         {/* Left column container */}
         <div className="flex flex-col gap-6 lg:w-1/2 min-w-0">
-          <ExpenseBar expense={totalExpense} budget={totalBudget} />
           <GroupMembers members={group.members} />
+          <ExpenseBar expense={totalExpense} budget={totalBudget} />
         </div>
         <div className="lg:w-1/2 min-w-0">
           {" "}
@@ -125,9 +121,6 @@ function Groups() {
           <GroupChart groupId={groupId} />
         </div>
       </div>
-
-      <GroupExpenseTable />
-      <GroupBarChart group={group} />
 
       {isOpen && (
         <Modal
