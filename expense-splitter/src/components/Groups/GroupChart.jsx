@@ -66,7 +66,7 @@ function GroupChart({ groupId }) {
     if (hasMembers) {
       // Initialize contributions as empty fields
       const initialContributions = group.members.reduce((acc, member) => {
-        acc[member.id] = "";
+        acc[member.id] = 0;
         return acc;
       }, {});
       setCustomContributions(initialContributions);
@@ -80,7 +80,7 @@ function GroupChart({ groupId }) {
     setCustomContributions((prevContributions) => {
       const updatedContributions = {
         ...prevContributions,
-        [memberId]: newValue || "",
+        [memberId]: newValue || 0,
       };
 
       // Calculate remaining percentage
@@ -109,11 +109,6 @@ function GroupChart({ groupId }) {
       alert("Total contributions must equal 100%");
       return;
     }
-
-    // const updatedMembers = group.members.map((member) => ({
-    //   ...member,
-    //   contribution: customContributions[member.id],
-    // }));
 
     dispatch(
       updateMemberContribution({
@@ -157,15 +152,20 @@ function GroupChart({ groupId }) {
                   </label>
                   <div className="flex items-center">
                     <input
-                      type="number"
+                      type="range"
+                      min="0"
+                      max={remainingPercentage + customContributions[member.id]}
+                      step="1"
                       value={customContributions[member.id]}
                       onChange={(e) =>
                         handleContributionChange(member.id, e.target.value)
                       }
-                      className="border mr-3 p-2 w-[10rem] dark:bg-dark-input"
+                      className="mr-3 w-[10rem]"
                       required
                     />
-                    <span className="text-body dark:text-dark-text"> % </span>
+                    <span className="text-body dark:text-dark-text">
+                      {customContributions[member.id]} %
+                    </span>
                   </div>
                 </div>
               ))}
@@ -193,7 +193,7 @@ function GroupChart({ groupId }) {
             <Pie
               data={group.members.map((member) => ({
                 name: member.name,
-                value: member.contribution || 1,
+                value: member.contribution > 0 ? member.contribution : 0, // Ensure minimum 1% for display
               }))}
               cx={120}
               cy={120}
