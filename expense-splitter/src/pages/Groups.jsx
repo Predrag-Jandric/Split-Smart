@@ -92,19 +92,19 @@ function Groups() {
         <GroupSmallExpenseCard
           icon={GiMoneyStack}
           label="Total budget"
-          value={`${totalBudget}`}
+          value={totalBudget}
           button="Edit"
           onClick={handleEditClick}
         />
         <GroupSmallExpenseCard
           icon={MdOutlineShoppingCart}
           label="Total expense"
-          value={`${totalExpense}`}
+          value={totalExpense}
         />
         <GroupSmallExpenseCard
           icon={LiaMoneyBillWaveAltSolid}
           label="Remaining budget"
-          value={`${remainingBudget}`}
+          value={remainingBudget}
         />
       </div>
 

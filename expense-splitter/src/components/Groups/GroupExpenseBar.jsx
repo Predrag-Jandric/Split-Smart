@@ -2,8 +2,10 @@ const ExpenseBar = ({ expense, budget }) => {
   const expensePercentage = (expense / budget) * 100;
 
   return (
-    <section className="flex flex-col justify-between w-full  min-w-0 h-auto rounded-global ml-8 lg:ml-8 p-4 md:p-6 pt-4
-     bg-white dark:bg-dark-primary shadow-md overflow-hidden">
+    <section
+      className="flex flex-col justify-between w-full  min-w-0 h-auto rounded-global ml-8 lg:ml-8 p-4 md:p-6 pt-4
+     bg-white dark:bg-dark-primary shadow-md overflow-hidden"
+    >
       <p className="text-subheader font-bold text-secondary dark:text-dark-text">
         Expense vs budget
       </p>
@@ -50,7 +52,8 @@ const ExpenseBar = ({ expense, budget }) => {
           </div>
           <div className="flex items-center">
             <span className="w-3 h-3 rounded-full bg-gray-300 mr-2"></span>
-            <span className="text-legend font-bold ">Remaining budget</span>
+
+            <span className="text-legend font-bold">Remaining budget</span>
           </div>
         </article>
       </div>

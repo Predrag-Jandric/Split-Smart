@@ -10,21 +10,22 @@ import useModal from "../Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imagesPeople } from "../Utils/images";
-import unknownPerson from "../../assets/unknownPerson.jpg"
+import unknownPerson from "../../assets/unknownPerson.jpg";
 import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
-
 
 function GroupMembers() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
+
+  const MAX_MEMBERS = 10;
 
   const group = useSelector((state) =>
     state.groups.groups.find((group) => group.id === parseInt(groupId))
   );
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
-  const [newMember, setNewMember] = useState({ name: "", image: ""});
+  const [newMember, setNewMember] = useState({ name: "", image: "" });
   const [selectedImage, setSelectedImage] = useState("");
 
   if (!group) {
@@ -63,7 +64,7 @@ function GroupMembers() {
         groupId: parseInt(groupId),
         member: {
           name: newMember.name,
-          image: selectedImage || unknownPerson
+          image: selectedImage || unknownPerson,
         },
       })
     );
@@ -73,8 +74,8 @@ function GroupMembers() {
       autoClose: 2000,
     });
 
-    setNewMember({ name: "", image: ""});
-    setSelectedImage("")
+    setNewMember({ name: "", image: "" });
+    setSelectedImage("");
     closeModal();
   };
 
@@ -83,34 +84,40 @@ function GroupMembers() {
   };
 
   return (
-    <section className="bg-white dark:bg-dark-primary p-4 ml-8 lg:ml-8 rounded-lg shadow
-      w-full gap-y-1 mb-6">
+    <section
+      className="bg-white dark:bg-dark-primary p-4 ml-8 lg:ml-8 rounded-lg shadow
+      w-full gap-y-1 mb-6"
+    >
       <p className="ml-3 mb-6 text-subheader font-bold text-secondary dark:text-dark-text">
         Members
       </p>
 
       {/* note to self, add bg-red-500 to line under to better checking for aligments */}
       <article className="flex flex-wrap justify-start">
-
-      <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
-        <motion.button
-        variants={jumpyAnimation} // Apply the jumpyAnimation
-        initial="initial"
-        animate="animate"
-          onClick={openModal}
-          className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
-        >
-          +
-        </motion.button>
-        <p className="font-bold text-legend dark:text-dark-text">Add</p>
-      </div>
+        {group.members.length < MAX_MEMBERS && (
+          <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
+            <motion.button
+              variants={jumpyAnimation} // Apply the jumpyAnimation
+              initial="initial"
+              animate="animate"
+              onClick={openModal}
+              className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
+            >
+              +
+            </motion.button>
+            <p className="font-bold text-legend dark:text-dark-text">Add</p>
+          </div>
+        )}
         {group.members.map((member) => (
           <div
             key={member.id}
             // note to self, add bg-red-200 to line under to better checking for aligments
             className="hover:bg-dark-bg flex flex-col items-center m-1 rounded-md"
           >
-            <Link to={`/friends/${member.name}`} className="hover:bg-dark-bg transition-colors rounded-xl">
+            <Link
+              to={`/friends/${member.name}`}
+              className="hover:bg-dark-bg transition-colors rounded-xl"
+            >
               <GroupsEachMember
                 member={{
                   name: member.name,
@@ -139,7 +146,7 @@ function GroupMembers() {
                 </label>
 
                 <input
-                autoFocus
+                  autoFocus
                   type="text"
                   name="name"
                   value={newMember.name}

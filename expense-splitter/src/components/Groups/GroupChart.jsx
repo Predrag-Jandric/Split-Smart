@@ -8,16 +8,15 @@ import { updateMemberContribution } from "../../features/groupsSlice";
 // chart
 const COLORS = [
   "#63C7B2",
-  "#FF9F1C", 
+  "#FF9F1C",
   "#A0E9FF",
-  "#EEAAC6", 
-  "#6EA5D8", 
-  "#FFD166", 
+  "#EEAAC6",
+  "#6EA5D8",
+  "#FFD166",
   "#D08BB9",
-  "#B6E37A", 
+  "#B6E37A",
   "#C57B57",
-  "#e5f0d0",  
-
+  "#e5f0d0",
 ];
 
 // props of numbers inside chart position and radius related
@@ -89,7 +88,9 @@ function GroupChart({ groupId }) {
         (acc, val) => acc + (parseFloat(val) || 0),
         0
       );
-      setRemainingPercentage(100 - totalContributions);
+      setRemainingPercentage(
+        Math.round((100 - totalContributions) * 100) / 100
+      );
 
       return updatedContributions;
     });
@@ -108,6 +109,11 @@ function GroupChart({ groupId }) {
       alert("Total contributions must equal 100%");
       return;
     }
+
+    // const updatedMembers = group.members.map((member) => ({
+    //   ...member,
+    //   contribution: customContributions[member.id],
+    // }));
 
     dispatch(
       updateMemberContribution({
@@ -218,11 +224,13 @@ function GroupChart({ groupId }) {
                 <span className="ml-2 font-bold text-legend">
                   {member.name}
                 </span>
-                {/* <span className="text-sm ml-1 text-secondary"> - {((entry.contribution / 100) * group.totalExpense).toFixed(1)}$
-                </span> */}
                 <span className="text-sm ml-1 text-secondary">
                   {" "}
-                  - {(group.totalExpense / 100) * member.contribution} $
+                  -{" "}
+                  {(group.totalExpense * (member.contribution / 100)).toFixed(
+                    0
+                  )}{" "}
+                  $
                 </span>
               </div>
             ))}
