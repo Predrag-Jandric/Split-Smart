@@ -3,12 +3,10 @@ import { Outlet } from "react-router-dom";
 // components
 import Sidebar from "../components/Home/Sidebar";
 
-
 function Layout() {
   return (
     <section className="flex bg-blizzard-blue dark:bg-dark-bg overflow-auto">
       <Sidebar />
-
       <div className="w-full ml-16 mr-8 md:ml-56">
         <Outlet />
       </div>

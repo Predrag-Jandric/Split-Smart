@@ -1,6 +1,5 @@
 import { MdGroups } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
-import { IoWalletSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
@@ -12,7 +11,6 @@ function Sidebar() {
   const SIDEBAR_LINKS = [
     { id: 124534, path: "/", name: "Home", icon: MdGroups },
     { id: 262546, path: "/groups", name: "Groups", icon: IoMdPerson },
-    { id: 3254657, path: "/friends", name: "Friends", icon: IoWalletSharp },
   ];
 
   // Fetching groups from the Redux store
@@ -48,8 +46,8 @@ function Sidebar() {
 
                 {/* Listing the created groups directly below the "Groups" link */}
                 <div>
-                  {/*display the first 2 groups in sidebar*/}
-                  {groups.slice(0, 2).map((group) => (
+                  {/*display the first 4 groups in sidebar*/}
+                  {groups.slice(0, 4).map((group) => (
                     <NavLink
                       key={group.id}
                       to={`/groups/${group.id}`} //Hooking from routes for each group
@@ -65,9 +63,9 @@ function Sidebar() {
                     </NavLink>
                   ))}
 
-                  {/* Expansion Logic, I set this to slice at 2 groups for now */}
+                  {/* Expansion Logic, I set this to slice at 4 groups for now */}
                   {expanded &&
-                    groups.slice(2).map(
+                    groups.slice(4).map(
                       (
                         group // Here we will additional groups if expanded
                       ) => (
@@ -87,8 +85,8 @@ function Sidebar() {
                       )
                     )}
 
-                  {/* Toggle Button for more groups to be shown if more than 2*/}
-                  {groups.length > 2 && (
+                  {/* Toggle Button for more groups to be shown if more than 4*/}
+                  {groups.length > 4 && (
                     <button
                       onClick={() => setExpanded(!expanded)}
                       className="text-sm truncate mt-2 px-8 text-primary focus:outline-none"

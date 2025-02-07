@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
-import Friends from "./pages/Friends";
 
 function App() {
   return (
@@ -12,9 +11,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="groups" element={<Groups />} />
-          <Route path="groups/:groupId" element={<Groups/>} />
-          <Route path="friends" element={<Friends />} />
-          <Route path="friends/:friendName" element={<Friends />} />
+          <Route path="groups/:groupId" element={<Groups />} />
+          {/* Remove any references to the /friends route */}
         </Route>
       </Routes>
     </BrowserRouter>
