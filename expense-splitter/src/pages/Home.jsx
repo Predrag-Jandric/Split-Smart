@@ -88,10 +88,10 @@ function Home() {
     <section className="text-xl text-secondary p-5 space-y-5 h-screen ">
       <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div>
-          <h1 className="text-header font-bold text-secondary dark:text-dark-text">
+          <h1 className="text-header font-bold text-secondary">
             Welcome to SplitSmart!
           </h1>
-          <p className="text-sm my-5 font-normal text-secondary dark:text-dark-text ">
+          <p className="text-sm my-5 font-normal text-secondary">
             Tracks expenses, calculates costs, and settles debts with friends
             &#128522;
           </p>
@@ -100,17 +100,17 @@ function Home() {
       </article>
 
       <article className="flex flex-wrap gap-10 mx-8">
-        <div className="bg-white dark:bg-dark-primary rounded-2xl w-custom-card h-custom-card-height shadow flex items-center justify-center flex-col">
+        <div className="bg-white rounded-2xl w-custom-card h-custom-card-height shadow flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
             animate="animate"
             onClick={openModal} // Use openModal from the custom hook
-            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white dark:text-dark-text hover:bg-primary"
+            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white hover:bg-primary"
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold dark:text-dark-text">
+          <p className="text-2xl mt-4 font-bold">
             Add Group
           </p>
         </div>
@@ -129,7 +129,7 @@ function Home() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold dark:text-dark-text">
+                <label className="text-body font-semibold">
                   Group Name
                 </label>
                 <input
@@ -138,7 +138,7 @@ function Home() {
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
+                  className="border p-2 w-full"
                   placeholder="Enter group name"
                   required
                   style={{ fontSize: "14px" }}
@@ -147,7 +147,7 @@ function Home() {
 
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary text-white rounded-xl dark:bg-dark-primary"
+                className="px-4 py-2 bg-primary text-white rounded-xl"
               >
                 Add Group
               </button>

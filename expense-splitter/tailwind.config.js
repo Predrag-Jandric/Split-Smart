@@ -76,10 +76,8 @@ export default {
       },
       // If you need custom shadows for your components:
       boxShadow: {
-        "custom-light": "0 4px 6px rgba(0, 0, 0, 0.1)",
-        "custom-dark": "0 10px 15px rgba(0, 0, 0, 0.5)",
-        "custom": "0 18px 40px 0 rgba(112, 144, 176, 0.12)",
-        "custom-hover":"0 4px 15px rgba(0, 0, 0, 0.2)",//for primary buttons, light mode
+        "custom-light": "0 4px 6px rgba(0, 0, 0, 0.1)", // Custom light mode shadow
+        "custom-dark": "0 10px 15px rgba(0, 0, 0, 0.5)", // Custom dark mode shadow
       },
       borderRadius: {
         'global': "0px",

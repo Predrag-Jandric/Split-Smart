@@ -13,25 +13,20 @@ function GroupSmallExpenseCard({
 }) {
   return (
     <section
-      className="bg-white dark:bg-dark-primary border p-8 mt-8 ml-8 space-x-6  rounded-global
+      className="bg-white border p-8 mt-8 ml-8 space-x-6  rounded-global
       flex items-start w-custom-card"
     >
       <div className="flex items-start space-x-4 flex-grow">
-        <Icon className="bg-blizzard-blue dark:bg-dark-icon-bg rounded-full w-14 h-14 p-3 text-primary dark:text-primary-dark-mode" />
+        <Icon className="bg-blizzard-blue rounded-full w-14 h-14 p-3 text-primary" />
         <span>
-          <p className="text-body font-medium text-title dark:text-dark-text-secondary">
-            {label}
-          </p>
-          <p className="text-2xl font-bold text-secondary dark:text-dark-text">
-            {value}
-          </p>
+          <p className="text-body font-medium text-title">{label}</p>
+          <p className="text-2xl font-bold text-secondary">{value}</p>
         </span>
       </div>
       {button && (
         <motion.button
           onClick={onClick}
-          className={`w-[67px] h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary
-       dark:bg-dark-primary dark:border dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium rounded-lg text-base ml-auto `}
+          className={`w-[67px] h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary font-medium rounded-lg text-base ml-auto `}
           animate={totalBudget === 0 ? "animate" : "initial"}
           variants={jumpyAnimation}
         >

@@ -21,7 +21,7 @@ function GroupName({ group }) {
 
       <div className="flex flex-col">
         <span className="flex items-center gap-6">
-          <h1 className="text-header font-bold text-secondary dark:text-dark-text">
+          <h1 className="text-header font-bold text-secondary">
             {group.name}
           </h1>
           <button
@@ -33,7 +33,7 @@ function GroupName({ group }) {
           </button>
         </span>
 
-        <p className="text-body dark:text-dark-text">
+        <p className="text-body">
           {group.description}
           <span className="cursor-pointer" onClick={openModal}>
             {group.description ? "" : "Add description"}

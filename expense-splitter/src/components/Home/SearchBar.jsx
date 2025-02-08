@@ -18,8 +18,7 @@ function SearchBar({ onSearch }) {
         value={searchQuery}
         onChange={handleSearch}
         placeholder="Search groups"
-        className="pl-12 pr-4 py-2 border-2 shadow-lg rounded-global w-full focus:outline-none focus:ring-2 focus:ring-primary
-        dark:bg-black dark:placeholder:text-dark-text"
+        className="pl-12 pr-4 py-2 border-2 shadow-lg rounded-global w-full focus:outline-none focus:ring-2 focus:ring-primary"
       />
     </div>
   );

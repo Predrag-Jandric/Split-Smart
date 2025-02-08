@@ -28,6 +28,3 @@
 ---
 
 ## DONE
-
-- add a "add description" text that looks clickable under the group name so that users can add description that way instead of in group creation modal.
-- when description is added, make it so that it can be eddited as well

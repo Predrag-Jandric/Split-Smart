@@ -17,7 +17,7 @@ function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="bg-gray-200 dark:bg-gray-800 p-2 rounded-full text-sm dark:text-white
+      className="bg-gray-200 p-2 rounded-full text-sm
       flex items-center space-x-2 w-full md:w-auto"
     >
       {darkMode ? "🌙" : "☀️"}

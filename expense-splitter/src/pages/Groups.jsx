@@ -34,7 +34,7 @@ function Groups() {
 
   if (!group) {
     return (
-      <div className="text-header font-bold text-secondary dark:text-dark-text">
+      <div className="text-header font-bold text-secondary">
         Group not found
       </div>
     );
@@ -128,7 +128,7 @@ function Groups() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold dark:text-dark-text">
+                <label className="text-body font-semibold">
                   Budget
                 </label>
 
@@ -137,14 +137,14 @@ function Groups() {
                   name="totalBudget"
                   value={formData.totalBudget}
                   onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
+                  className="border p-2 w-full"
                   placeholder="Enter new budget"
                   required
                 />
               </div>
 
               <div>
-                <label className="text-body font-semibold dark:text-dark-text">
+                <label className="text-body font-semibold ">
                   Expense
                 </label>
 
@@ -153,7 +153,7 @@ function Groups() {
                   name="totalExpense"
                   value={formData.totalExpense}
                   onChange={handleInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
+                  className="border p-2 w-full "
                   placeholder="Enter new expense"
                   required
                 />
@@ -161,8 +161,8 @@ function Groups() {
 
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-blizzard-blue dark:bg-dark-primary dark:border hover:bg-primary
-                    hover:text-white text-primary dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium"
+                className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary
+                    hover:text-white text-primary font-medium"
               >
                 Update
               </button>

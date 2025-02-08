@@ -84,10 +84,10 @@ function GroupMembers() {
 
   return (
     <section
-      className="bg-white dark:bg-dark-primary p-4 ml-8 lg:ml-8 rounded-lg shadow
+      className="bg-white p-4 ml-8 lg:ml-8 rounded-lg shadow
       w-full gap-y-1 mb-6"
     >
-      <p className="ml-3 mb-6 text-subheader font-bold text-secondary dark:text-dark-text">
+      <p className="ml-3 mb-6 text-subheader font-bold text-secondary">
         Members
       </p>
 
@@ -103,11 +103,11 @@ function GroupMembers() {
               }
               variants={jumpyAnimation}
               onClick={openModal}
-              className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
+              className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white  hover:bg-primary"
             >
               +
             </motion.button>
-            <p className="font-bold text-legend dark:text-dark-text">Add</p>
+            <p className="font-bold text-legend">Add</p>
           </div>
         )}
         {group.members.map((member) => (
@@ -139,7 +139,7 @@ function GroupMembers() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold dark:text-dark-text">
+                <label className="text-body font-semibold">
                   Name
                 </label>
 
@@ -149,7 +149,7 @@ function GroupMembers() {
                   name="name"
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
-                  className="border p-2 w-full dark:bg-dark-input"
+                  className="border p-2 w-full"
                   placeholder="Enter member name"
                   required
                   style={{ fontSize: "14px" }}
@@ -174,7 +174,7 @@ function GroupMembers() {
               <button
                 type="submit"
                 className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary hover:text-white text-primary
-                dark:bg-dark-primary dark:border dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary"
+              "
               >
                 Add Member
               </button>
