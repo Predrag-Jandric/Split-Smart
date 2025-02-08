@@ -97,9 +97,7 @@ function GroupMembers() {
         {group.members.length < MAX_MEMBERS && (
           <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
             <motion.button
-              variants={jumpyAnimation} // Apply the jumpyAnimation
-              initial="initial"
-              animate="animate"
+              {...(group.members.length === 0 && group.totalBudget != 0 ? jumpyAnimation : {})} 
               onClick={openModal}
               className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
             >

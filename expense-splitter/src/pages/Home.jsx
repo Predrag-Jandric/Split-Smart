@@ -44,9 +44,13 @@ function Home() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    let newValue = value;
+    if (newValue.length > 20) {
+      newValue = newValue.slice(0, 20);
+    }
     setNewGroup({
       ...newGroup,
-      [name]: value,
+      [name]: newValue.charAt(0).toUpperCase() + newValue.slice(1),
     });
   };
 
@@ -81,13 +85,13 @@ function Home() {
   }, [groups]);
 
   return (
-    <section className="text-xl text-secondary  p-5 space-y-5 h-screen ">
-      <article className="flex items-center justify-between ">
+    <section className="text-xl text-secondary p-5 space-y-5 h-screen ">
+      <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div>
-          <h1 className="text-header font-bold text-secondary dark:text-dark-text ml-8 mt-8">
+          <h1 className="text-header font-bold text-secondary dark:text-dark-text">
             Welcome to SplitSmart!
           </h1>
-          <p className="text-sm font-normal text-secondary dark:text-dark-text ml-8 mb-8 pt-6">
+          <p className="text-sm my-5 font-normal text-secondary dark:text-dark-text ">
             Tracks expenses, calculates costs, and settles debts with friends
             &#128522;
           </p>

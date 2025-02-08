@@ -43,13 +43,12 @@ function GroupName({ group }) {
 
   return (
     <section className="flex items-center space-x-10">
-      <button className="relative" onClick={openModal}>
-        <img
-          className="w-69 h-69 ml-10 rounded-full object-cover"
-          src={group.image}
-          alt="group-logo"
-        />
-      </button>
+      <img
+        className="w-69 h-69 ml-10 rounded-full object-cover"
+        src={group.image}
+        alt="group-logo"
+      />
+
       <div className="flex flex-col">
         <h1 className="text-header font-bold text-secondary dark:text-dark-text">
           {groupName}

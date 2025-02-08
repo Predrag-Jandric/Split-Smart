@@ -93,8 +93,9 @@ function Groups() {
           icon={GiMoneyStack}
           label="Total budget"
           value={totalBudget}
-          button="Edit"
+          button={totalBudget === 0 ? "Add" : "Edit"} 
           onClick={handleEditClick}
+          totalBudget={totalBudget}
         />
         <GroupSmallExpenseCard
           icon={MdOutlineShoppingCart}

@@ -11,7 +11,7 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className=" relative w-full max-w-xs ">
+    <div className="mx-auto relative w-full max-w-xs ">
       <IoIosSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 size-7 text-primary" />
       <input
         type="text"
