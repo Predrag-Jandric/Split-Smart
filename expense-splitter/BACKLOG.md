@@ -16,11 +16,6 @@
 - ensure all boxy elements have equal border radius
 - ensure all boxy elements have the same box shadow prop
 
-LATER
-
-- add a "add description" text that looks clickable under the group name so that users can add description that way instead of in group creation modal.
-- when description is added, make it so that it can be eddited as well
-
 ---
 
 ## HOME PAGE
@@ -33,3 +28,6 @@ LATER
 ---
 
 ## DONE
+
+- add a "add description" text that looks clickable under the group name so that users can add description that way instead of in group creation modal.
+- when description is added, make it so that it can be eddited as well

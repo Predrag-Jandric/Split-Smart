@@ -81,6 +81,13 @@ const groupsSlice = createSlice({
         group.name = newName;
       }
     },
+    updateGroupDescription: (state, action) => {
+      const { groupId, newDescription } = action.payload;
+      const group = state.groups.find((group) => group.id === groupId);
+      if (group) {
+        group.description = newDescription;
+      }
+    },
     updateGroupImage: (state, action) => {
       const { groupId, newImage } = action.payload;
       const group = state.groups.find((group) => group.id === groupId);
@@ -101,5 +108,6 @@ export const {
   updateMemberContribution,
   updateGroupName,
   updateGroupImage,
+  updateGroupDescription,
 } = groupsSlice.actions;
 export default groupsSlice.reducer;
