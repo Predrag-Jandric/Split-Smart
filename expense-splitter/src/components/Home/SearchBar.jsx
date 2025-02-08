@@ -11,14 +11,14 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="mx-auto relative w-full max-w-xs ">
+    <div className="mx-auto relative w-full max-w-xs">
       <IoIosSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 size-7 text-primary" />
       <input
         type="text"
         value={searchQuery}
         onChange={handleSearch}
         placeholder="Search groups"
-        className="pl-12 pr-4 py-2 border-2 shadow-lg rounded-global w-full focus:outline-none focus:ring-2 focus:ring-primary"
+        className="pl-12 pr-4 py-2 border-2 shadow-custom-dark rounded-global w-full focus:outline-none focus:ring-2 focus:ring-primary"
       />
     </div>
   );

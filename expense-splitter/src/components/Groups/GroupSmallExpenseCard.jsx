@@ -13,8 +13,8 @@ function GroupSmallExpenseCard({
 }) {
   return (
     <section
-      className="bg-white border p-8 mt-8 ml-8 space-x-6  rounded-global
-      flex items-start w-custom-card"
+      className="bg-white border p-8 mt-8 ml-8 space-x-6 rounded-global
+      flex items-start shadow-custom-dark w-custom-card"
     >
       <div className="flex items-start space-x-4 flex-grow">
         <Icon className="bg-blizzard-blue rounded-full w-14 h-14 p-3 text-primary" />
@@ -26,7 +26,7 @@ function GroupSmallExpenseCard({
       {button && (
         <motion.button
           onClick={onClick}
-          className={`w-[67px] h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary font-medium rounded-lg text-base ml-auto `}
+          className={`w-[67px] shadow-custom-dark h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary font-medium rounded-global text-base ml-auto `}
           animate={totalBudget === 0 ? "animate" : "initial"}
           variants={jumpyAnimation}
         >

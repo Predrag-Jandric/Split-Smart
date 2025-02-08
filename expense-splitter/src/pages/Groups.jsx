@@ -93,7 +93,7 @@ function Groups() {
           icon={GiMoneyStack}
           label="Total budget"
           value={totalBudget}
-          button={totalBudget === 0 ? "Add" : "Edit"} 
+          button={totalBudget === 0 ? "Add" : "Edit"}
           onClick={handleEditClick}
           totalBudget={totalBudget}
         />
@@ -128,32 +128,28 @@ function Groups() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold">
-                  Budget
-                </label>
+                <label className="text-body font-semibold">Budget</label>
 
                 <input
                   type="number"
                   name="totalBudget"
                   value={formData.totalBudget}
                   onChange={handleInputChange}
-                  className="border p-2 w-full"
+                  className="border shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new budget"
                   required
                 />
               </div>
 
               <div>
-                <label className="text-body font-semibold ">
-                  Expense
-                </label>
+                <label className="text-body font-semibold ">Expense</label>
 
                 <input
                   type="number"
                   name="totalExpense"
                   value={formData.totalExpense}
                   onChange={handleInputChange}
-                  className="border p-2 w-full "
+                  className="border shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new expense"
                   required
                 />
@@ -161,7 +157,7 @@ function Groups() {
 
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary
+                className="px-4 py-2 shadow-custom-dark rounded-global bg-blizzard-blue hover:bg-primary
                     hover:text-white text-primary font-medium"
               >
                 Update

@@ -63,7 +63,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
           type="text"
           value={groupName}
           onChange={handleInputChange}
-          className="border p-2 w-full"
+          className="border shadow-custom-dark p-2 w-full rounded-global"
           placeholder="Enter new group name (max 15 characters)"
           maxLength="15"
           required
@@ -76,7 +76,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
-          className="border p-2 w-full"
+          className="border shadow-custom-dark p-2 w-full rounded-global"
           placeholder="Enter group description (max 45 characters)"
           maxLength="45"
         />
@@ -88,7 +88,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
             key={index}
             src={image}
             alt={`image-${index}`}
-            className={`w-[4.3rem] h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+            className={`w-[4.3rem] shadow-custom-dark h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
               selectedImage === image ? "ring-[3px] ring-primary" : ""
             }`}
             onClick={() => handleImageSelect(image)}
@@ -97,7 +97,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
       </div>
       <button
         type="submit"
-        className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary hover:text-white text-primary"
+        className="px-4 py-2 shadow-custom-dark rounded-global bg-blizzard-blue hover:bg-primary hover:text-white text-primary"
       >
         Update
       </button>

@@ -22,10 +22,10 @@ function HomeIndividualGroup({ group }) {
   };
 
   return (
-    <section className="p-4 bg-white shadow-custom-dark rounded-xl  w-custom-card h-custom-card-height flex flex-col items-center">
-      <Link to={`/groups/${group.id}`} className="relative w-20 h-20 mb-2">
+    <section className="p-4 bg-white shadow-custom-dark rounded-global  w-custom-card h-custom-card-height flex flex-col items-center">
+      <Link to={`/groups/${group.id}`} className="relative w-20 h-20 mb-2 ">
         <img
-          className="w-20 h-20 rounded-full object-cover"
+          className="w-20 h-20 rounded-full object-cover shadow-custom-dark"
           src={group.image}
           alt="group-logo"
         />
@@ -42,14 +42,14 @@ function HomeIndividualGroup({ group }) {
 
       <div className="flex justify-between w-full mt-auto">
         <Link
-          className=" w-32 h-10 flex items-center justify-center ml-4"
+          className=" w-32 h-10 flex items-center shadow-custom-dark rounded-global justify-center ml-4"
           to={`/groups/${group.id}`}
         >
           Details
         </Link>
         <button
           onClick={openModal}
-          className="w-32 h-10 flex items-center justify-center ml-4"
+          className="w-32 h-10 shadow-custom-dark rounded-global flex items-center justify-center ml-4"
         >
           Remove
         </button>
@@ -64,7 +64,7 @@ function HomeIndividualGroup({ group }) {
               <p>Are you sure?</p>
               <button
                 onClick={handleRemove}
-                className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary
+                className="px-4 py-2 rounded-global shadow-custom-dark bg-blizzard-blue hover:bg-primary
                     hover:text-white text-primary font-medium"
               >
                 Yes

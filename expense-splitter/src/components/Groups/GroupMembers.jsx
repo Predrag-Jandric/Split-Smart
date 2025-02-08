@@ -17,7 +17,7 @@ function GroupMembers() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
 
-  const MAX_MEMBERS = 10;
+  const maxMembers = 10;
 
   const group = useSelector((state) =>
     state.groups.groups.find((group) => group.id === parseInt(groupId))
@@ -84,7 +84,7 @@ function GroupMembers() {
 
   return (
     <section
-      className="bg-white p-4 ml-8 lg:ml-8 rounded-lg shadow
+      className="bg-white p-4 ml-8 lg:ml-8 rounded-global shadow-custom-dark
       w-full gap-y-1 mb-6"
     >
       <p className="ml-3 mb-6 text-subheader font-bold text-secondary">
@@ -93,8 +93,8 @@ function GroupMembers() {
 
       {/* note to self, add bg-red-500 to line under to better checking for aligments */}
       <article className="flex flex-wrap justify-start">
-        {group.members.length < MAX_MEMBERS && (
-          <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
+        {group.members.length < maxMembers && (
+          <div className="rounded-global flex items-center flex-col pl-3 pr-3">
             <motion.button
               animate={
                 group.members.length === 0 && group.totalBudget !== 0
@@ -103,7 +103,7 @@ function GroupMembers() {
               }
               variants={jumpyAnimation}
               onClick={openModal}
-              className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white  hover:bg-primary"
+              className="w-[3.5rem] h-[3.5rem] shadow-custom-dark rounded-full bg-primary primary-dark-mode text-4xl text-white hover:bg-primary"
             >
               +
             </motion.button>
@@ -114,7 +114,7 @@ function GroupMembers() {
           <div
             key={member.id}
             // note to self, add bg-red-200 to line under to better checking for aligments
-            className="flex flex-col items-center m-1 rounded-md"
+            className="flex flex-col items-center m-1"
           >
             <GroupsEachMember
               member={{
@@ -149,10 +149,9 @@ function GroupMembers() {
                   name="name"
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
-                  className="border p-2 w-full"
+                  className="border p-2 w-full rounded-global shadow-custom-dark"
                   placeholder="Enter member name"
                   required
-                  style={{ fontSize: "14px" }}
                 />
               </div>
 
@@ -163,7 +162,7 @@ function GroupMembers() {
                     key={index}
                     src={image}
                     alt={`image-${index}`}
-                    className={`w-[4.3rem] h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+                    className={`w-[4.3rem] shadow-custom-dark h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
                       selectedImage === image ? "ring-[3px] ring-primary" : ""
                     }`}
                     onClick={() => handleImageSelect(image)}
@@ -173,7 +172,7 @@ function GroupMembers() {
 
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-blizzard-blue hover:bg-primary hover:text-white text-primary
+                className="px-4 shadow-custom-dark py-2 rounded-global bg-blizzard-blue hover:bg-primary hover:text-white text-primary
               "
               >
                 Add Member

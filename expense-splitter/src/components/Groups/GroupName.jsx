@@ -10,7 +10,7 @@ function GroupName({ group }) {
     <section className="flex items-center space-x-10">
       <button onClick={openModal} className="relative w-20 h-20 mb-2">
         <img
-          className="w-20 h-20 rounded-full object-cover"
+          className="w-20 h-20 shadow-custom-dark rounded-full object-cover"
           src={group.image}
           alt="group-logo"
         />
@@ -26,8 +26,8 @@ function GroupName({ group }) {
           </h1>
           <button
             onClick={openModal}
-            className="w-[67px] h-8 py-1 px-3 bg-primary hover:bg-black hover:text-white text-white
-       font-medium rounded-lg text-base ml-auto "
+            className="w-[67px] shadow-custom-dark h-8 py-1 px-3 bg-primary hover:bg-black hover:text-white text-white
+       font-medium rounded-global text-base ml-auto "
           >
             Edit
           </button>

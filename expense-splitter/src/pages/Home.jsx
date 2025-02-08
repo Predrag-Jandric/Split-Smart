@@ -85,32 +85,31 @@ function Home() {
   }, [groups]);
 
   return (
-    <section className="text-xl text-secondary p-5 space-y-5 h-screen ">
+    <section className="text-xl text-secondary p-5 space-y-5">
       <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div>
           <h1 className="text-header font-bold text-secondary">
             Welcome to SplitSmart!
           </h1>
-          <p className="text-sm my-5 font-normal text-secondary">
+          <p className="my-5 font-normal text-secondary">
             Tracks expenses, calculates costs, and settles debts with friends
-            &#128522;
           </p>
         </div>
         <SearchBar onSearch={handleSearch} />
       </article>
 
       <article className="flex flex-wrap gap-10 mx-8">
-        <div className="bg-white rounded-2xl w-custom-card h-custom-card-height shadow flex items-center justify-center flex-col">
+        <div className="bg-white shadow-custom-dark rounded-global w-custom-card h-custom-card-height flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
             animate="animate"
             onClick={openModal} // Use openModal from the custom hook
-            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white hover:bg-primary"
+            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white shadow-custom-dark hover:bg-primary"
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold">
+          <p className="text-2xl mt-4 font-bold ">
             Add Group
           </p>
         </div>
@@ -138,7 +137,7 @@ function Home() {
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
-                  className="border p-2 w-full"
+                  className="border p-2 w-full rounded-global shadow-custom-dark"
                   placeholder="Enter group name"
                   required
                   style={{ fontSize: "14px" }}
@@ -147,7 +146,7 @@ function Home() {
 
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary text-white rounded-xl"
+                className="px-4 py-2 shadow-custom-dark bg-primary text-white rounded-global"
               >
                 Add Group
               </button>

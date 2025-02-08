@@ -122,7 +122,7 @@ function GroupChart({ groupId }) {
   return (
     <section
       className="flex flex-col items-center justify-center w-custom-wide-chart bg-white
-     p-6 ml-8 rounded-lg shadow"
+     p-6 ml-8 rounded-global shadow-custom-dark"
     >
       <div className="w-full flex items-stretch justify-end">
         <p className="text-subheader mr-auto font-bold text-secondary ml-3">
@@ -130,7 +130,7 @@ function GroupChart({ groupId }) {
         </p>
         {hasMembers && (
           <button
-            className="px-3 transition rounded-md text-primary bg-blizzard-blue hover:bg-primary hover:text-white  font-medium"
+            className="px-3 shadow-custom-dark transition rounded-global text-primary bg-blizzard-blue hover:bg-primary hover:text-white  font-medium"
             onClick={openModal}
           >
             Edit Contributions
@@ -174,7 +174,7 @@ function GroupChart({ groupId }) {
               </p>
               <button
                 type="submit"
-                className="rounded-xl px-4 py-2 bg-blizzard-blue
+                className="rounded-global shadow-custom-dark px-4 py-2 bg-blizzard-blue
                  hover:bg-primary hover:text-white text-primary"
                 disabled={remainingPercentage !== 0}
               >
@@ -214,7 +214,7 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-3 w-full flex rounded-lg shadow-custom flex-wrap justify-start gap-2">
+          <article className="p-3 w-full flex rounded-global shadow-custom-dark flex-wrap justify-start gap-2">
             {group.members.map((member, index) => (
               <div key={index} className="flex my-2 items-center mx-2  p-1">
                 <span
