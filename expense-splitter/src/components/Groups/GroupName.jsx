@@ -6,6 +6,8 @@ import Modal from "../Utils/Modal";
 import { images } from "../Utils/images";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RiImageEditFill } from "react-icons/ri";
+
 
 function GroupName({ group }) {
   const dispatch = useDispatch();
@@ -43,11 +45,16 @@ function GroupName({ group }) {
 
   return (
     <section className="flex items-center space-x-10">
-      <img
-        className="w-69 h-69 ml-10 rounded-full object-cover"
-        src={group.image}
-        alt="group-logo"
-      />
+      <button onClick={openModal} className="relative w-20 h-20 mb-2">
+        <img
+          className="w-20 h-20 rounded-full object-cover"
+          src={group.image}
+          alt="group-logo"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
+          <RiImageEditFill className="text-white text-3xl" />
+        </div>
+      </button>
 
       <div className="flex flex-col">
         <h1 className="text-header font-bold text-secondary dark:text-dark-text">

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useModal from "../Utils/useModal";
 import Modal from "../Utils/Modal";
+import { IoEnter } from "react-icons/io5";
 
 function HomeIndividualGroup({ group }) {
   const dispatch = useDispatch();
@@ -22,12 +23,15 @@ function HomeIndividualGroup({ group }) {
 
   return (
     <section className="p-4 bg-white dark:bg-dark-primary rounded-xl  w-custom-card h-custom-card-height flex flex-col items-center">
-      <Link to={`/groups/${group.id}`}>
+      <Link to={`/groups/${group.id}`} className="relative w-20 h-20 mb-2">
         <img
-          className="w-20 border-red-500 border-2 h-20 mb-2 rounded-full object-cover flex justify-center"
+          className="w-20 h-20 rounded-full object-cover"
           src={group.image}
           alt="group-logo"
         />
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
+          <IoEnter className="text-white text-3xl" />
+        </div>
       </Link>
 
       <p className="text-body font-medium text-title dark:text-dark-text-secondary">

@@ -31,10 +31,9 @@ function GroupSmallExpenseCard({
         <motion.button
           onClick={onClick}
           className={`w-[67px] h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary
-       dark:bg-dark-primary dark:border dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium rounded-lg text-base ml-auto ${
-         totalBudget === 0 ? "bg-red-600 border-red-500" : ""
-       }`}
-          {...(totalBudget === 0 ? jumpyAnimation : {})} 
+       dark:bg-dark-primary dark:border dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium rounded-lg text-base ml-auto `}
+          animate={totalBudget === 0 ? "animate" : "initial"}
+          variants={jumpyAnimation}
         >
           {button}
         </motion.button>

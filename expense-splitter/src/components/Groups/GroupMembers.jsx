@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addMember, removeMember } from "../../features/groupsSlice";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 // modal
 import Modal from "../Utils/Modal";
 import useModal from "../Utils/useModal";
@@ -97,7 +96,12 @@ function GroupMembers() {
         {group.members.length < MAX_MEMBERS && (
           <div className="rounded-2xl flex items-center flex-col pl-3 pr-3">
             <motion.button
-              {...(group.members.length === 0 && group.totalBudget != 0 ? jumpyAnimation : {})} 
+              animate={
+                group.members.length === 0 && group.totalBudget !== 0
+                  ? "animate"
+                  : "initial"
+              }
+              variants={jumpyAnimation}
               onClick={openModal}
               className="w-[3.5rem] h-[3.5rem] rounded-full shadow-lg  bg-primary primary-dark-mode text-4xl text-white dark:text-dark-text hover:bg-primary"
             >
@@ -110,19 +114,15 @@ function GroupMembers() {
           <div
             key={member.id}
             // note to self, add bg-red-200 to line under to better checking for aligments
-            className="hover:bg-dark-bg flex flex-col items-center m-1 rounded-md"
+            className="flex flex-col items-center m-1 rounded-md"
           >
-            <Link
-              to={`/friends/${member.name}`}
-              className="hover:bg-dark-bg transition-colors rounded-xl"
-            >
-              <GroupsEachMember
-                member={{
-                  name: member.name,
-                  img: member.image,
-                }}
-              />
-            </Link>
+            <GroupsEachMember
+              member={{
+                name: member.name,
+                img: member.image,
+              }}
+            />
+
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
               className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 pb-1 relative bottom-20 left-5"
