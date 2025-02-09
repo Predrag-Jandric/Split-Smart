@@ -5,9 +5,9 @@ import Sidebar from "../components/Home/Sidebar";
 
 function Layout() {
   return (
-    <section className="flex bg-blizzard-blue overflow-auto">
+    <section className="flex h-screen">
       <Sidebar />
-      <div className="w-full ml-16 mr-8 md:ml-56">
+      <div className="overflow-auto w-screen p-5">
         <Outlet />
       </div>
     </section>

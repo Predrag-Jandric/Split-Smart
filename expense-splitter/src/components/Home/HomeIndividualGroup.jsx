@@ -22,7 +22,7 @@ function HomeIndividualGroup({ group }) {
   };
 
   return (
-    <section className="p-4 bg-white shadow-custom-dark rounded-global  w-custom-card h-custom-card-height flex flex-col items-center">
+    <section className="p-4 bg-white shadow-custom-dark rounded-global flex flex-col items-center">
       <Link to={`/groups/${group.id}`} className="relative w-20 h-20 mb-2 ">
         <img
           className="w-20 h-20 rounded-full object-cover shadow-custom-dark"

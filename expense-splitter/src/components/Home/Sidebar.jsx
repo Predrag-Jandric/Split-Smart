@@ -17,7 +17,7 @@ function Sidebar() {
   const groups = useSelector((state) => state.groups.groups);
 
   return (
-    <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen pt-8 px-4 shadow-custom-dark bg-white">
+    <div className="flex flex-col h-full w-16 md:w-56 bg-white shadow-custom-dark z-10 pt-8 px-4">
       <div className="mb-8 flex justify-center">
         <NavLink to="/" className="flex cursor-pointer">
           <img src={special} alt="logo" className="mr-1 flex" />
@@ -25,7 +25,7 @@ function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <nav>
+      <nav className="flex-1">
         {SIDEBAR_LINKS.map((link, index) => {
           if (link.name === "Groups") {
             return (
@@ -120,7 +120,7 @@ function Sidebar() {
         })}
       </nav>
 
-      <div className="w-full absolute bottom-5 left-0 px-4 py-2 cursor-pointer text-center">
+      <div className="w-full py-2 cursor-pointer text-center">
         {/* Dark Mode Toggle  */}
         <div className="mt-4 md:mt-2 flex items-center justify-center">
           <DarkModeToggle /> {/* This is our dark mode toggle button */}

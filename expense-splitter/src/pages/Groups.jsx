@@ -85,10 +85,10 @@ function Groups() {
   const remainingBudget = totalBudget - totalExpense;
 
   return (
-    <section className="flex flex-col gap-8 m-6">
+    <section className="flex flex-col m-6">
       <GroupName group={group} />
 
-      <div className="flex gap-6 flex-col xl:flex-row">
+      <div className="flex flex-col xl:flex-row">
         <GroupSmallExpenseCard
           icon={GiMoneyStack}
           label="Total budget"
@@ -110,9 +110,9 @@ function Groups() {
       </div>
 
       {/* Flex container for ExpenseBar and GroupChart styling */}
-      <div className="flex flex-col lg:flex-row w-full gap-6 ">
+      <div className="flex flex-col lg:flex-row w-full">
         {/* Left column container */}
-        <div className="flex flex-col gap-6 lg:w-1/2 min-w-0">
+        <div className="flex flex-col lg:w-1/2 min-w-0">
           <GroupMembers members={group.members} />
           <ExpenseBar expense={totalExpense} budget={totalBudget} />
         </div>

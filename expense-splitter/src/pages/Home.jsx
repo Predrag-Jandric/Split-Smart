@@ -99,7 +99,7 @@ function Home() {
       </article>
 
       <article className="flex flex-wrap gap-10 mx-8">
-        <div className="bg-white shadow-custom-dark rounded-global w-custom-card h-custom-card-height flex items-center justify-center flex-col">
+        <div className="bg-white shadow-custom-dark rounded-global flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"

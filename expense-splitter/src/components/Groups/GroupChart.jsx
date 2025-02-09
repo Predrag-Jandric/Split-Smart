@@ -121,11 +121,11 @@ function GroupChart({ groupId }) {
 
   return (
     <section
-      className="flex flex-col items-center justify-center w-custom-wide-chart bg-white
-     p-6 ml-8 rounded-global shadow-custom-dark"
+      className="flex flex-col items-center justify-center bg-white
+     p-6 rounded-global shadow-custom-dark"
     >
       <div className="w-full flex items-stretch justify-end">
-        <p className="text-subheader mr-auto font-bold text-secondary ml-3">
+        <p className="text-subheader mr-auto font-bold text-secondary">
           Budget Split
         </p>
         {hasMembers && (

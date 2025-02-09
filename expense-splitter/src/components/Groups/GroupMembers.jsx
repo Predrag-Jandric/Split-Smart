@@ -84,17 +84,17 @@ function GroupMembers() {
 
   return (
     <section
-      className="bg-white p-4 ml-8 lg:ml-8 rounded-global shadow-custom-dark
-      w-full gap-y-1 mb-6"
+      className="p-8 rounded-global shadow-custom-dark
+      w-full"
     >
-      <p className="ml-3 mb-6 text-subheader font-bold text-secondary">
+      <p className="text-subheader font-bold text-secondary">
         Members
       </p>
 
       {/* note to self, add bg-red-500 to line under to better checking for aligments */}
       <article className="flex flex-wrap justify-start">
         {group.members.length < maxMembers && (
-          <div className="rounded-global flex items-center flex-col pl-3 pr-3">
+          <div className="rounded-global  flex items-center flex-col">
             <motion.button
               animate={
                 group.members.length === 0 && group.totalBudget !== 0
@@ -103,18 +103,18 @@ function GroupMembers() {
               }
               variants={jumpyAnimation}
               onClick={openModal}
-              className="w-[3.5rem] h-[3.5rem] shadow-custom-dark rounded-full bg-primary primary-dark-mode text-4xl text-white hover:bg-primary"
+              className="w-[4rem] h-[4rem] shadow-custom-dark rounded-full bg-primary primary-dark-mode text-4xl text-white hover:bg-primary"
             >
               +
             </motion.button>
-            <p className="font-bold text-legend">Add</p>
+            <p className="font-bold text-base">Add</p>
           </div>
         )}
         {group.members.map((member) => (
           <div
             key={member.id}
             // note to self, add bg-red-200 to line under to better checking for aligments
-            className="flex flex-col items-center m-1"
+            className="h-20 flex flex-col items-center"
           >
             <GroupsEachMember
               member={{
@@ -125,7 +125,7 @@ function GroupMembers() {
 
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 pb-1 relative bottom-20 left-5"
+              className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 relative bottom-24 left-6"
             >
               x
             </button>
