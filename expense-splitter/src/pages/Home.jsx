@@ -98,8 +98,8 @@ function Home() {
         <SearchBar onSearch={handleSearch} />
       </article>
 
-      <article className="flex flex-wrap gap-10 mx-8">
-        <div className="bg-white shadow-custom-dark rounded-global flex items-center justify-center flex-col">
+      <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-10">
+        <div className="bg-white w-80 h-60 shadow-custom-dark rounded-global flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
@@ -109,7 +109,7 @@ function Home() {
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold ">
+          <p className="text-2xl mt-4 font-bold">
             Add Group
           </p>
         </div>
@@ -119,7 +119,7 @@ function Home() {
             <HomeIndividualGroup key={group.id} group={group} />
           ))
         ) : (
-          <p className="ml-8 place-content-center">No groups found</p>
+          <p className="place-content-center text-center font-semibold w-80 h-60">No groups found</p>
         )}
       </article>
 

@@ -4,6 +4,7 @@
 - when project is finished, UPDATE new readme
 - make modal look visually pretty
 - change the styling on ALL buttons
+- make sure everything is responsive
 
 ---
 
@@ -19,7 +20,6 @@
 ## HOME PAGE
 
 - make the gaps between elements equal
-- make sure everything is responsive
 
 ---
 

@@ -7,7 +7,7 @@ function Layout() {
   return (
     <section className="flex h-screen">
       <Sidebar />
-      <div className="overflow-auto w-screen p-5">
+      <div className="flex-1 overflow-auto w-screen ">
         <Outlet />
       </div>
     </section>
