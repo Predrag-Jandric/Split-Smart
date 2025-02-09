@@ -40,16 +40,16 @@ function HomeIndividualGroup({ group }) {
 
       <h2 className="font-bold text-center text-secondary ">{group.name}</h2>
 
-      <div className="flex justify-between w-full mt-auto">
+      <div className="flex justify-around w-full mt-auto">
         <Link
-          className=" w-32 h-10 flex items-center shadow-custom-dark rounded-global justify-center ml-4"
+          className="btnPrimary"
           to={`/groups/${group.id}`}
         >
           Details
         </Link>
         <button
           onClick={openModal}
-          className="w-32 h-10 shadow-custom-dark rounded-global flex items-center justify-center ml-4"
+          className="btnSecondary border-red-400 hover:bg-red-400 text-black"
         >
           Remove
         </button>

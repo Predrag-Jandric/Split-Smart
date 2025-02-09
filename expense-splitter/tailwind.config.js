@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "blizzard-blue": "#F4F7FE",
+        mainBG: "#F4F7FE",
         primary: "#013BFF",
         secondary: "#2B3674",
         title: "#A3AED0",
@@ -43,6 +43,9 @@ export default {
       boxShadow: {
         "custom-light": "0 6px 10px -2px rgba(255, 255, 255, 0.15)",
         "custom-dark": "0 6px 10px -2px rgba(0, 0, 0, 0.15)",
+      },
+      padding: {
+        global: "1.7rem",
       },
       borderRadius: {
         global: "10px",

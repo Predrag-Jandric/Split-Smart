@@ -5,15 +5,16 @@
 - make modal look visually pretty
 - change the styling on ALL buttons
 - make sure everything is responsive
+- test in chrome
 
 ---
 
 ## GROUP PAGE
 
-- make the gaps between elements equal
 - make sure everything is responsive
 - add modal when removing a member
-- increase size of member element/s
+- make sure that expense cannot be higher than the budget
+- adding second group member breaks the contribution money number
 
 ---
 
@@ -24,3 +25,6 @@
 ---
 
 ## DONE
+
+- increase size of member element/s
+- make the gaps between elements equal

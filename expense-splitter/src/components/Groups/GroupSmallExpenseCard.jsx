@@ -2,6 +2,8 @@
 
 import { jumpyAnimation } from "../Utils/animations";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function GroupSmallExpenseCard({
   icon: Icon,
@@ -11,22 +13,27 @@ function GroupSmallExpenseCard({
   onClick,
   totalBudget,
 }) {
+  const { groupId } = useParams();
+  const group = useSelector((state) =>
+    state.groups.groups.find((group) => group.id === parseInt(groupId))
+  );
   return (
     <section
-      className="bg-white border p-8 rounded-global
+      className="bg-white w-full border p-global rounded-global
       flex items-start shadow-custom-dark"
     >
       <div className="flex items-start space-x-4 flex-grow">
-        <Icon className="bg-blizzard-blue rounded-full w-14 h-14 p-3 text-primary" />
+        <Icon className="bg-mainBG rounded-full w-14 h-14 p-3 text-primary" />
         <span>
           <p className="text-body font-medium text-title">{label}</p>
           <p className="text-2xl font-bold text-secondary">{value}</p>
         </span>
+        
       </div>
       {button && (
         <motion.button
           onClick={onClick}
-          className={`w-[67px] shadow-custom-dark h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary font-medium rounded-global text-base ml-auto `}
+          className={group.totalBudget !== 0 ? "btnSecondary" : "btnPrimary"}
           animate={totalBudget === 0 ? "animate" : "initial"}
           variants={jumpyAnimation}
         >

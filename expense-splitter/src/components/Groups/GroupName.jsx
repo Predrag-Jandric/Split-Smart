@@ -21,13 +21,10 @@ function GroupName({ group }) {
 
       <div className="flex flex-col">
         <span className="flex items-center gap-6">
-          <h1 className="text-header font-bold text-secondary">
-            {group.name}
-          </h1>
+          <h1 className="text-header font-bold text-secondary">{group.name}</h1>
           <button
             onClick={openModal}
-            className="w-[67px] shadow-custom-dark h-8 py-1 px-3 bg-primary hover:bg-black hover:text-white text-white
-       font-medium rounded-global text-base ml-auto "
+            className="btnSecondary"
           >
             Edit
           </button>

@@ -4,6 +4,8 @@ import Modal from "../Utils/Modal";
 import useModal from "../Utils/useModal";
 import { useEffect, useState } from "react";
 import { updateMemberContribution } from "../../features/groupsSlice";
+import { motion } from "framer-motion";
+import { jumpyAnimation } from "../Utils/animations";
 
 // chart
 const COLORS = [
@@ -122,19 +124,24 @@ function GroupChart({ groupId }) {
   return (
     <section
       className="flex flex-col items-center justify-center bg-white
-     p-6 rounded-global shadow-custom-dark"
+     p-global rounded-global shadow-custom-dark"
     >
-      <div className="w-full flex items-stretch justify-end">
-        <p className="text-subheader mr-auto font-bold text-secondary">
-          Budget Split
-        </p>
-        {hasMembers && (
-          <button
-            className="px-3 shadow-custom-dark transition rounded-global text-primary bg-blizzard-blue hover:bg-primary hover:text-white  font-medium"
+
+      <div className="flex w-full justify-between h-12">
+        <p className="text-subheader font-bold text-secondary">Budget Split</p>
+        {group.members.length > 0 && (
+          <motion.button
+            animate={
+              group.members.length > 0 
+                ? "animate"
+                : "initial"
+            }
+            variants={jumpyAnimation}
             onClick={openModal}
+            className="btnPrimary"
           >
             Edit Contributions
-          </button>
+          </motion.button>
         )}
       </div>
 
@@ -174,8 +181,7 @@ function GroupChart({ groupId }) {
               </p>
               <button
                 type="submit"
-                className="rounded-global shadow-custom-dark px-4 py-2 bg-blizzard-blue
-                 hover:bg-primary hover:text-white text-primary"
+                className="btnPrimary h-12"
                 disabled={remainingPercentage !== 0}
               >
                 Update Contributions

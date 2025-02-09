@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btnPrimary {
+    @apply h-9 border border-transparent shadow-custom-dark
+      px-4 bg-primary hover:bg-black
+      hover:text-white text-white
+       rounded-global flex items-center justify-center;
+  }
+  .btnSecondary {
+    @apply h-9 border border-primary text-black
+     bg-mainBG shadow-custom-dark px-4
+      hover:bg-primary hover:text-white 
+      rounded-global;
+  }
+}
+
 body {
-    font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }

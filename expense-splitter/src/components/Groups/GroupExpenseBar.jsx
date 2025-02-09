@@ -3,7 +3,7 @@ const ExpenseBar = ({ expense, budget }) => {
 
   return (
     <section
-      className="flex p-6 flex-col justify-between w-full  min-w-0 h-auto rounded-global
+      className="flex p-global flex-col justify-between w-full  min-w-0 h-auto rounded-global
      bg-white shadow-custom-dark overflow-hidden"
     >
       <p className="text-subheader font-bold text-secondary">

@@ -97,7 +97,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
       </div>
       <button
         type="submit"
-        className="px-4 py-2 shadow-custom-dark rounded-global bg-blizzard-blue hover:bg-primary hover:text-white text-primary"
+        className="btnPrimary h-12"
       >
         Update
       </button>

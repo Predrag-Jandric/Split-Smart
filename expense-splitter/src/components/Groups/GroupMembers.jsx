@@ -51,7 +51,7 @@ function GroupMembers() {
     const { name, value } = e.target;
     setNewMember({
       ...newMember,
-      [name]: value,
+      [name]: value.charAt(0).toUpperCase() + value.slice(1),
     });
   };
 
@@ -84,37 +84,36 @@ function GroupMembers() {
 
   return (
     <section
-      className="p-8 rounded-global shadow-custom-dark
+      className="bg-white flex flex-col  p-global rounded-global shadow-custom-dark
       w-full"
     >
-      <p className="text-subheader font-bold text-secondary">
-        Members
-      </p>
+      <div className="flex w-full justify-between h-12">
+        <p className="text-subheader font-bold text-secondary">Members</p>
+        {group.totalBudget !== 0 && group.members.length < maxMembers && (
+          <motion.button
+            animate={
+              group.members.length === 0 && group.totalBudget !== 0
+                ? "animate"
+                : "initial"
+            }
+            variants={jumpyAnimation}
+            onClick={openModal}
+            className={
+              group.members.length !== 0 ? "btnSecondary" : "btnPrimary"
+            }
+          >
+            Add
+          </motion.button>
+        )}
+      </div>
 
       {/* note to self, add bg-red-500 to line under to better checking for aligments */}
-      <article className="flex flex-wrap justify-start">
-        {group.members.length < maxMembers && (
-          <div className="rounded-global  flex items-center flex-col">
-            <motion.button
-              animate={
-                group.members.length === 0 && group.totalBudget !== 0
-                  ? "animate"
-                  : "initial"
-              }
-              variants={jumpyAnimation}
-              onClick={openModal}
-              className="w-[4rem] h-[4rem] shadow-custom-dark rounded-full bg-primary primary-dark-mode text-4xl text-white hover:bg-primary"
-            >
-              +
-            </motion.button>
-            <p className="font-bold text-base">Add</p>
-          </div>
-        )}
+      <article className="mt-5 gap-4 flex flex-wrap justify-start ">
         {group.members.map((member) => (
           <div
             key={member.id}
             // note to self, add bg-red-200 to line under to better checking for aligments
-            className="h-20 flex flex-col items-center"
+            className="relative flex flex-col items-center"
           >
             <GroupsEachMember
               member={{
@@ -125,7 +124,7 @@ function GroupMembers() {
 
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 relative bottom-24 left-6"
+              className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 absolute bottom-22 left-14"
             >
               x
             </button>
@@ -139,9 +138,7 @@ function GroupMembers() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold">
-                  Name
-                </label>
+                <label className="text-body font-semibold">Name</label>
 
                 <input
                   autoFocus
@@ -152,6 +149,7 @@ function GroupMembers() {
                   className="border p-2 w-full rounded-global shadow-custom-dark"
                   placeholder="Enter member name"
                   required
+                  maxLength="10"
                 />
               </div>
 
@@ -170,11 +168,7 @@ function GroupMembers() {
                 ))}
               </div>
 
-              <button
-                type="submit"
-                className="px-4 shadow-custom-dark py-2 rounded-global bg-blizzard-blue hover:bg-primary hover:text-white text-primary
-              "
-              >
+              <button type="submit" className="btnPrimary h-12">
                 Add Member
               </button>
             </form>

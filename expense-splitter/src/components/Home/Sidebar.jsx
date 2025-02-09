@@ -45,7 +45,7 @@ function Sidebar() {
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-dark-primary shadow-custom-dark z-10 pt-8 px-4 transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:relative md:translate-x-0 md:w-56`}
+        } transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-56`}
       >
         <div className="mb-8 flex justify-center">
           <NavLink
