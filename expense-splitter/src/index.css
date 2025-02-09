@@ -4,7 +4,7 @@
 
 @layer components {
   .btnPrimary {
-    @apply h-9 border border-transparent shadow-custom-dark
+    @apply h-9 border border-primary shadow-custom-dark
       px-4 bg-primary hover:bg-black
       hover:text-white text-white
        rounded-global flex items-center justify-center;

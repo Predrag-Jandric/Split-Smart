@@ -55,26 +55,45 @@ function Groups() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const totalBudget = parseFloat(formData.totalBudget);
+    const totalExpense = parseFloat(formData.totalExpense);
+
+    if (totalExpense > totalBudget) {
+      toast.error("Expense cannot be higher than the budget", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+      return;
+    }
+
+    if (group.totalBudget === 0) {
+      toast.success("Budget added", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+    } else {
+      toast.success("Budget updated", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+    }
+
     dispatch(
       updateGroupBudget({
         groupId: parseInt(groupId),
-        totalBudget: parseFloat(formData.totalBudget),
+        totalBudget,
       })
     );
     dispatch(
       updateGroupExpense({
         groupId: parseInt(groupId),
-        totalExpense: parseFloat(formData.totalExpense),
+        totalExpense,
       })
     );
     setFormData({
       totalBudget: "",
       totalExpense: "",
-    });
-
-    toast.success(`Budget and expense updated`, {
-      position: "top-right",
-      autoClose: 2000,
     });
 
     closeModal();
@@ -155,11 +174,8 @@ function Groups() {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btnPrimary h-12"
-              >
-                Update
+              <button type="submit" className="btnPrimary h-12">
+                {totalBudget === 0 ? "Add" : "Update"}
               </button>
             </form>
           }

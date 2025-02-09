@@ -49,32 +49,41 @@ function HomeIndividualGroup({ group }) {
         </Link>
         <button
           onClick={openModal}
-          className="btnSecondary border-red-400 hover:bg-red-400 text-black"
+          className="btnSecondary border-alert hover:bg-alert text-black"
         >
           Remove
         </button>
       </div>
 
       {isOpen && (
-        <Modal
-          handleClickOutside={handleClickOutside}
-          onClose={closeModal}
-          content={
-            <>
-              <p>Are you sure?</p>
-              <button
-                onClick={handleRemove}
-                className="px-4 py-2 rounded-global shadow-custom-dark bg-blizzard-blue hover:bg-primary
-                    hover:text-white text-primary font-medium"
-              >
-                Yes
-              </button>
-            </>
-          }
-        />
-      )}
+  <Modal
+    content={
+      <>
+        <p>Are you sure ?</p>
+        <div className="flex justify-start gap-5 mt-4">
+          <button
+            onClick={handleRemove}
+            className="btnPrimary"
+          >
+            Yes
+          </button>
+          <button
+            onClick={closeModal}
+            className="btnSecondary border-alert hover:bg-alert text-black"
+          >
+            No
+          </button>
+        </div>
+      </>
+    }
+    onClose={closeModal}
+    handleClickOutside={handleClickOutside}
+  />
+)}
     </section>
   );
 }
 
 export default HomeIndividualGroup;
+
+

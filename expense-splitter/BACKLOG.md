@@ -6,6 +6,7 @@
 - change the styling on ALL buttons
 - make sure everything is responsive
 - test in chrome
+- add border to every box element and input
 
 ---
 
@@ -20,11 +21,12 @@
 
 ## HOME PAGE
 
-- make the gaps between elements equal
+- add group naimation only if 0 groups are present
 
 ---
 
 ## DONE
 
 - increase size of member element/s
+- make the gaps between elements equal
 - make the gaps between elements equal

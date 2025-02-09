@@ -26,24 +26,30 @@ function GroupMembers() {
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
   const [newMember, setNewMember] = useState({ name: "", image: "" });
   const [selectedImage, setSelectedImage] = useState("");
+const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const [memberToRemove, setMemberToRemove] = useState(null);
 
   if (!group) {
     return <div>Group not found.</div>;
   }
 
   const handleRemoveMember = (memberId, memberName) => {
-    const confirmed = window.confirm(
-      `Are you sure you want to remove ${memberName}?`
-    );
+    setMemberToRemove({ id: memberId, name: memberName });
+    setIsRemoveModalOpen(true);
+  };
 
-    if (confirmed) {
-      dispatch(removeMember({ groupId: parseInt(groupId), memberId }));
+  const confirmRemoveMember = () => {
+    if (memberToRemove) {
+      dispatch(removeMember({ groupId: parseInt(groupId), memberId: memberToRemove.id }));
 
       // Show toast notification
-      toast.success(`${memberName} removed`, {
+      toast.success(`${memberToRemove.name} removed`, {
         position: "top-right",
         autoClose: 2000,
       });
+
+      setMemberToRemove(null);
+      setIsRemoveModalOpen(false);
     }
   };
 
@@ -132,7 +138,7 @@ function GroupMembers() {
         ))}
       </article>
 
-      {/* MODAL */}
+      {/* MODAL for adding member */}
       {isOpen && ( // Conditionally render Modal if it's open
         <Modal
           content={
@@ -175,6 +181,33 @@ function GroupMembers() {
           }
           onClose={closeModal}
           handleClickOutside={handleClickOutside}
+        />
+      )}
+
+      {/* MODAL for removing member */}
+      {isRemoveModalOpen && (
+        <Modal
+          content={
+            <>
+              <p>Are you sure you want to remove {memberToRemove?.name}?</p>
+              <div className="flex justify-start gap-5 mt-4">
+                <button
+                  onClick={confirmRemoveMember}
+                  className="btnPrimary"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => setIsRemoveModalOpen(false)}
+                  className="btnSecondary border-alert hover:bg-alert text-black"
+                >
+                  No
+                </button>
+              </div>
+            </>
+          }
+          onClose={() => setIsRemoveModalOpen(false)}
+          handleClickOutside={() => setIsRemoveModalOpen(false)}
         />
       )}
 

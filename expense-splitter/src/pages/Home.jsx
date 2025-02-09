@@ -98,12 +98,12 @@ function Home() {
         <SearchBar onSearch={handleSearch} />
       </article>
 
-      <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-10">
+      <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-7">
         <div className="bg-white w-80 h-60 shadow-custom-dark rounded-global flex items-center justify-center flex-col">
-          <motion.button
+        <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
-            animate="animate"
+            animate={filteredGroups.length === 0 ? "animate" : "initial"} // Conditionally apply animation
             onClick={openModal} // Use openModal from the custom hook
             className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white shadow-custom-dark hover:bg-primary"
           >

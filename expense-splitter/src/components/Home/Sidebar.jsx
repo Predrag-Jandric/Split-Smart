@@ -73,7 +73,7 @@ function Sidebar() {
                     onClick={closeSidebar}
                   >
                     <span>{link.icon()}</span>
-                    <span className="text-body font-medium text-title hidden md:flex">
+                    <span className="text-body font-medium text-title">
                       {link.name}
                     </span>
                   </NavLink>
@@ -127,7 +127,7 @@ function Sidebar() {
                         onClick={() => setExpanded(!expanded)}
                         className="text-sm truncate mt-2 px-8 text-primary focus:outline-none"
                       >
-                        <span className="hidden md:flex">
+                        <span className="text-primary">
                           {expanded ? "Show Less" : "Show More"}
                         </span>
                       </button>
@@ -149,7 +149,7 @@ function Sidebar() {
                 onClick={closeSidebar}
               >
                 <span>{link.icon()}</span>
-                <span className="text-body font-medium text-title hidden md:flex">
+                <span className="text-body font-medium text-title">
                   {link.name}
                 </span>
               </NavLink>
@@ -159,8 +159,8 @@ function Sidebar() {
 
         <div className="w-full py-2 cursor-pointer text-center">
           {/* Dark Mode Toggle  */}
-          <div className="mt-4 md:mt-2 flex items-center justify-center">
-            <DarkModeToggle /> {/* This is our dark mode toggle button */}
+          <div className="mt-4 flex items-center justify-center">
+            <DarkModeToggle closeSidebar={closeSidebar} /> {/* This is our dark mode toggle button */}
           </div>
         </div>
       </div>
