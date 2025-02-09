@@ -7,10 +7,10 @@ function GroupName({ group }) {
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
 
   return (
-    <section className="flex items-center space-x-10">
-      <button onClick={openModal} className="relative w-20 h-20 mb-2">
+    <section className="flex sm:items-center items-start gap-5">
+      <button onClick={openModal} className="relative size-16 sm:size-20 mb-2">
         <img
-          className="w-20 h-20 shadow-custom-dark rounded-full object-cover"
+          className="size-16 sm:size-20 shadow-custom-dark rounded-full object-cover"
           src={group.image}
           alt="group-logo"
         />
@@ -30,10 +30,10 @@ function GroupName({ group }) {
           </button>
         </span>
 
-        <p className="text-body">
+        <p className="text-body sm:w-full w-44">
           {group.description}
-          <span className="cursor-pointer" onClick={openModal}>
-            {group.description ? "" : "Add description"}
+          <span className="cursor-pointer underline text-primary" onClick={openModal}>
+            {group.description ? " Edit" : "Add description"}
           </span>
         </p>
       </div>

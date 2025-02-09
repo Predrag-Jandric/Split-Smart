@@ -104,7 +104,7 @@ function Groups() {
   const remainingBudget = totalBudget - totalExpense;
 
   return (
-    <section className="flex flex-col gap-6 m-6">
+    <section className="flex flex-col gap-5 m-6">
       <GroupName group={group} />
 
       <div className="flex gap-5 flex-col md:flex-row">
@@ -129,9 +129,9 @@ function Groups() {
       </div>
 
       {/* Flex container for ExpenseBar and GroupChart styling */}
-      <div className="flex flex-col gap-6 lg:flex-row w-full">
+      <div className="flex flex-col gap-5 lg:flex-row w-full">
         {/* Left column container */}
-        <div className="flex  gap-6 flex-col lg:w-1/2 min-w-0">
+        <div className="flex  gap-5 flex-col lg:w-1/2 min-w-0">
           <GroupMembers members={group.members} />
           <ExpenseBar expense={totalExpense} budget={totalBudget} />
         </div>
@@ -150,11 +150,12 @@ function Groups() {
                 <label className="text-body font-semibold">Budget</label>
 
                 <input
+                  autoFocus
                   type="number"
                   name="totalBudget"
                   value={formData.totalBudget}
                   onChange={handleInputChange}
-                  className="border shadow-custom-dark p-2 w-full rounded-global"
+                  className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new budget"
                   required
                 />
@@ -168,7 +169,7 @@ function Groups() {
                   name="totalExpense"
                   value={formData.totalExpense}
                   onChange={handleInputChange}
-                  className="border shadow-custom-dark p-2 w-full rounded-global"
+                  className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new expense"
                   required
                 />

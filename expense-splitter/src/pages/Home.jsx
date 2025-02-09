@@ -88,19 +88,19 @@ function Home() {
     <section className="text-xl text-secondary p-5 space-y-5">
       <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div>
-          <h1 className="text-header font-bold text-secondary">
-            Welcome to SplitSmart!
+          <h1 className="text-header leading-10 font-bold">
+            Welcome to SplitSmart !
           </h1>
-          <p className="my-5 font-normal text-secondary">
-            Tracks expenses, calculates costs, and settles debts with friends
+          <p className="my-5 font-normal">
+            Track expenses, calculates costs, and settle debts with friends
           </p>
         </div>
         <SearchBar onSearch={handleSearch} />
       </article>
 
       <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-7">
-        <div className="bg-white w-80 h-60 shadow-custom-dark rounded-global flex items-center justify-center flex-col">
-        <motion.button
+        <div className="bg-white border-global border-border w-80 h-60 shadow-custom-dark rounded-global flex items-center justify-center flex-col">
+          <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
             animate={filteredGroups.length === 0 ? "animate" : "initial"} // Conditionally apply animation
@@ -109,9 +109,7 @@ function Home() {
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold">
-            Add Group
-          </p>
+          <p className="text-2xl mt-4 font-bold">Add Group</p>
         </div>
 
         {filteredGroups.length > 0 ? (
@@ -119,7 +117,9 @@ function Home() {
             <HomeIndividualGroup key={group.id} group={group} />
           ))
         ) : (
-          <p className="place-content-center text-center font-semibold w-80 h-60">No groups found</p>
+          <p className="place-content-center text-center font-semibold w-80 h-60">
+            No groups found
+          </p>
         )}
       </article>
 
@@ -128,16 +128,14 @@ function Home() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold">
-                  Group Name
-                </label>
+                <label className="text-body font-semibold">Group Name</label>
                 <input
                   autoFocus
                   type="text"
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
-                  className="border p-2 w-full rounded-global shadow-custom-dark"
+                  className="border-global border-border p-2 w-full rounded-global shadow-custom-dark"
                   placeholder="Enter group name"
                   required
                   style={{ fontSize: "14px" }}
@@ -146,7 +144,7 @@ function Home() {
 
               <button
                 type="submit"
-                className="px-4 py-2 shadow-custom-dark bg-primary text-white rounded-global"
+                className="btnPrimary h-12"
               >
                 Add Group
               </button>

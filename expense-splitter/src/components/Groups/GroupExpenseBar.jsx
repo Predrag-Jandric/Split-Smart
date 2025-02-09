@@ -4,16 +4,16 @@ const ExpenseBar = ({ expense, budget }) => {
   return (
     <section
       className="flex p-global flex-col justify-between w-full  min-w-0 h-auto rounded-global
-     bg-white shadow-custom-dark overflow-hidden"
+     bg-white border-global border-border shadow-custom-dark overflow-hidden"
     >
       <p className="text-subheader font-bold text-secondary">
         Expense vs budget
       </p>
 
-      <div className="flex flex-col md:flex-row justify-between items-start">
-        <article className="pr-4  min-w-0">
+      <div className="flex flex-col gap-5 md:flex-row lg:flex-col justify-between items-start">
+        <article className="pr-4 w-full">
           {/* progress bar */}
-          <div className="relative w-full h-8 rounded-global bg-gray-200 mb-2 mt-4 overflow-hidden">
+          <div className="relative h-8 rounded-global bg-gray-200 mb-2 mt-4 overflow-hidden">
             <p
               className="absolute left-0 top-0 bg-primary h-full transition-all duration-500 ease-out rounded-global"
               style={{ width: `${expensePercentage}%` }}
@@ -45,7 +45,7 @@ const ExpenseBar = ({ expense, budget }) => {
         </article>
 
         {/* legend */}
-        <article className="flex flex-col items-start text-xs font-bold space-y-2 w-full md:w-44 rounded-global bg-white">
+        <article className="flex flex-col border-global border-border shadow-custom-dark items-start px-5 py-3 text-xs font-bold gap-2 w-full md:w-56 lg:w-full rounded-global">
           <div className="flex items-center">
             <span className="w-3 h-3 rounded-full bg-primary mr-2"></span>
             <span className="font-bold text-legend">Expense</span>

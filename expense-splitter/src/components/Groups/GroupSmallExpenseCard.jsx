@@ -19,16 +19,15 @@ function GroupSmallExpenseCard({
   );
   return (
     <section
-      className="bg-white w-full border p-global rounded-global
+      className="bg-white w-full border-global border-border p-global rounded-global
       flex items-start shadow-custom-dark"
     >
       <div className="flex items-start space-x-4 flex-grow">
         <Icon className="bg-mainBG rounded-full w-14 h-14 p-3 text-primary" />
         <span>
-          <p className="text-body font-medium text-title">{label}</p>
+          <p className="font-body font-medium text-title">{label}</p>
           <p className="text-2xl font-bold text-secondary">{value}</p>
         </span>
-        
       </div>
       {button && (
         <motion.button

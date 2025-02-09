@@ -26,7 +26,7 @@ function GroupMembers() {
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
   const [newMember, setNewMember] = useState({ name: "", image: "" });
   const [selectedImage, setSelectedImage] = useState("");
-const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
   const [memberToRemove, setMemberToRemove] = useState(null);
 
   if (!group) {
@@ -40,7 +40,12 @@ const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
 
   const confirmRemoveMember = () => {
     if (memberToRemove) {
-      dispatch(removeMember({ groupId: parseInt(groupId), memberId: memberToRemove.id }));
+      dispatch(
+        removeMember({
+          groupId: parseInt(groupId),
+          memberId: memberToRemove.id,
+        })
+      );
 
       // Show toast notification
       toast.success(`${memberToRemove.name} removed`, {
@@ -90,7 +95,7 @@ const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
 
   return (
     <section
-      className="bg-white flex flex-col  p-global rounded-global shadow-custom-dark
+      className="bg-white flex flex-col border-global border-border p-global rounded-global shadow-custom-dark
       w-full"
     >
       <div className="flex w-full justify-between h-12">
@@ -130,7 +135,7 @@ const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
 
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bg-highlight flex items-center justify-center rounded-full font-extrabold text-lg text-alert hover:bg-red-400 w-6 h-6 absolute bottom-22 left-14"
+              className="bg-alert flex items-center justify-center rounded-full font-extrabold text-lg text-white transition-all hover:text-black w-5 h-5 absolute bottom-22 left-14"
             >
               x
             </button>
@@ -152,7 +157,7 @@ const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
                   name="name"
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
-                  className="border p-2 w-full rounded-global shadow-custom-dark"
+                  className="border-global border-border p-2 w-full rounded-global shadow-custom-dark"
                   placeholder="Enter member name"
                   required
                   maxLength="10"
@@ -191,10 +196,7 @@ const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
             <>
               <p>Are you sure you want to remove {memberToRemove?.name}?</p>
               <div className="flex justify-start gap-5 mt-4">
-                <button
-                  onClick={confirmRemoveMember}
-                  className="btnPrimary"
-                >
+                <button onClick={confirmRemoveMember} className="btnPrimary">
                   Yes
                 </button>
                 <button

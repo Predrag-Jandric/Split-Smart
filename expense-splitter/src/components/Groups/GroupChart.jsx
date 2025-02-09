@@ -101,17 +101,6 @@ function GroupChart({ groupId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Ensure all fields are filled and total equals 100%
-    const totalContributions = Object.values(customContributions).reduce(
-      (acc, val) => acc + (parseFloat(val) || 0),
-      0
-    );
-
-    if (totalContributions !== 100) {
-      alert("Total contributions must equal 100%");
-      return;
-    }
-
     dispatch(
       updateMemberContribution({
         groupId: group.id,
@@ -124,7 +113,7 @@ function GroupChart({ groupId }) {
   return (
     <section
       className="flex flex-col items-center justify-center bg-white
-     p-global rounded-global shadow-custom-dark"
+     p-global rounded-global shadow-custom-dark border-global border-border"
     >
 
       <div className="flex w-full justify-between h-12">
@@ -181,7 +170,7 @@ function GroupChart({ groupId }) {
               </p>
               <button
                 type="submit"
-                className="btnPrimary h-12"
+                className="btnPrimary h-12 cursor-pointer"
                 disabled={remainingPercentage !== 0}
               >
                 Update Contributions
@@ -220,7 +209,7 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-3 w-full flex rounded-global shadow-custom-dark flex-wrap justify-start gap-2">
+          <article className="p-3 w-full border-global border-border flex rounded-global shadow-custom-dark flex-wrap justify-start gap-2">
             {group.members.map((member, index) => (
               <div key={index} className="flex my-2 items-center mx-2  p-1">
                 <span
