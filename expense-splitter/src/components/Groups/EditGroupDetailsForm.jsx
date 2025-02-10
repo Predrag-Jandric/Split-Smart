@@ -55,7 +55,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <label className="text-body font-semibold">Group Name</label>
+        <label className="text-body font-semibold">Name</label>
         <input
           type="text"
           value={groupName}
@@ -72,18 +72,18 @@ function EditGroupDetailsForm({ group, closeModal }) {
           value={groupDescription}
           onChange={handleDescriptionChange}
           className="input"
-          placeholder="Enter group description (max 45 characters)"
+          placeholder="(max 45 characters)"
           maxLength="45"
         />
       </div>
-      <h2 className="text-2xl font-bold">Select an Image</h2>
-      <div className="flex space-x-2 flex-wrap gap-3">
+      <h2 className="font-semibold">Select Image</h2>
+      <div className="flex flex-wrap gap-5">
         {images.map((image, index) => (
           <img
             key={index}
             src={image}
             alt={`image-${index}`}
-            className={`w-[4.3rem] dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+            className={`w-[4.3rem] transition hover:scale-110 shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
               selectedImage === image
                 ? "ring-[3px] dark:ring-darkPrimary ring-primary"
                 : ""

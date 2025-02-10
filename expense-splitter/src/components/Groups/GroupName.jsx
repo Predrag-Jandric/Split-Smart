@@ -43,6 +43,7 @@ function GroupName({ group }) {
 
       {isOpen && (
         <Modal
+        title="Edit Group Details"
           content={
             <EditGroupDetailsForm group={group} closeModal={closeModal} />
           }

@@ -48,15 +48,16 @@ function HomeIndividualGroup({ group }) {
         </Link>
         <button
           onClick={openModal}
-          className="btnSecondary w-28 dark:bg-alert/5 dark:hover:bg-alert text-lg dark:border-alert/50 hover:bg-alert
-           border-alert/50 bg-alert/5"
+          className="btnSecondary w-28 dark:bg-alert/0 dark:hover:bg-alert text-lg dark:border-alert/50 hover:bg-alert
+           border-alert/80 bg-alert/0"
         >
-          Remove
+          Delete
         </button>
       </div>
 
       {isOpen && (
         <Modal
+        title={`Delete ${group.name}`}
           content={
             <>
               <p>Are you sure ?</p>

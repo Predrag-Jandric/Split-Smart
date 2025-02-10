@@ -146,6 +146,7 @@ function Groups() {
 
       {isOpen && (
         <Modal
+          title={group.totalBudget === 0 ? "Add budget and expense" : "Edit budget and expense"}
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
@@ -158,7 +159,7 @@ function Groups() {
                   value={formData.totalBudget}
                   onChange={handleInputChange}
                   className="input"
-                  placeholder="Enter new budget"
+                  placeholder="(max 5 numbers)"
                   required
                 />
               </div>
@@ -172,7 +173,7 @@ function Groups() {
                   value={formData.totalExpense}
                   onChange={handleInputChange}
                   className="input"
-                  placeholder="Enter new expense"
+                  placeholder="(max 5 numbers)"
                   required
                 />
               </div>

@@ -145,6 +145,7 @@ function GroupMembers() {
       {/* MODAL for adding member */}
       {isOpen && ( // Conditionally render Modal if it's open
         <Modal
+        title="Add new member"
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
@@ -157,22 +158,22 @@ function GroupMembers() {
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
                   className="input"
-                  placeholder="Enter member name"
+                  placeholder="(max 13 characters)"
                   required
                   maxLength="13"
                 />
               </div>
 
-              <h2 className="text-2xl font-bold">Select an Image</h2>
-              <div className="flex space-x-2 flex-wrap gap-3">
+              <h2 className="font-semibold">Select Image</h2>
+              <div className="flex flex-wrap gap-5">
                 {imagesPeople.map((image, index) => (
                   <img
                     key={index}
                     src={image}
                     alt={`image-${index}`}
-                    className={`w-[4.3rem] shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+                    className={`w-[4.3rem] transition hover:scale-110 shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
                       selectedImage === image
-                        ? "ring-[3px] ring-primary dark:ring-darkPrimary"
+                        ? "ring-[3px] dark:ring-darkPrimary ring-primary"
                         : ""
                     }`}
                     onClick={() => handleImageSelect(image)}
@@ -193,9 +194,10 @@ function GroupMembers() {
       {/* MODAL for removing member */}
       {isRemoveModalOpen && (
         <Modal
+        title={`Remove ${memberToRemove?.name}  `}
           content={
             <>
-              <p>Are you sure you want to remove {memberToRemove?.name}?</p>
+              <p>Are you sure?</p>
               <div className="flex justify-start gap-5 mt-4">
                 <button onClick={confirmRemoveMember} className="btnPrimary">
                   Yes

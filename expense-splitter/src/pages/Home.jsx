@@ -21,8 +21,10 @@ function Home() {
   };
 
   const [filteredGroups, setFilteredGroups] = useState(groups);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query) => {
+    setSearchQuery(query);
     const lowerCaseQuery = query.toLowerCase();
     setFilteredGroups(
       groups.filter((group) =>
@@ -31,6 +33,11 @@ function Home() {
           .every((char) => group.name.toLowerCase().includes(char))
       )
     );
+  };
+
+  const clearSearch = () => {
+    setSearchQuery("");
+    setFilteredGroups(groups);
   };
 
   const { isOpen, openModal, closeModal, handleClickOutside } =
@@ -73,6 +80,7 @@ function Home() {
       autoClose: 2000,
     });
 
+    clearSearch(); // Clear the search input
     closeModal(); // Close modal after submission
   };
 
@@ -91,10 +99,14 @@ function Home() {
             Track expenses, calculates costs, and settle debts with friends
           </p>
         </div>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar
+          searchQuery={searchQuery}
+          onSearch={handleSearch}
+          clearSearch={clearSearch}
+        />
       </article>
 
-      <article className="flex w-full  justify-center sm:justify-start flex-wrap gap-8">
+      <article className="flex w-full justify-center sm:justify-start flex-wrap gap-8 mt-8">
         <div className="bg-white dark:bg-darkWhite border-global dark:border-darkBorder border-border w-80 h-60 shadow-custom-dark dark:shadow-custom-light rounded-global flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
@@ -114,25 +126,24 @@ function Home() {
           </p>
         </div>
 
-        {filteredGroups.length > 0 ? (
-          filteredGroups.map((group) => (
-            <HomeIndividualGroup key={group.id} group={group} />
-          ))
-        ) : (
-          <p className="place-content-center text-center font-semibold w-80 h-60 text-black dark:text-darkBlack">
-            No groups found
-          </p>
-        )}
+        {filteredGroups.length > 0
+          ? filteredGroups.map((group) => (
+              <HomeIndividualGroup key={group.id} group={group} />
+            ))
+          : searchQuery && (
+              <p className="place-content-center text-center font-semibold w-80 h-60 text-black dark:text-darkBlack">
+                No groups found
+              </p>
+            )}
       </article>
 
       {isOpen && ( // Use isOpen from the custom hook
         <Modal
+          title="Create new group"
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold">
-                  Enter Group Name
-                </label>
+                <label className="text-body font-semibold">Group Name</label>
                 <input
                   autoFocus
                   type="text"
@@ -140,14 +151,14 @@ function Home() {
                   value={newGroup.name}
                   onChange={handleInputChange}
                   className="input"
-                  placeholder="(Maximum 13 characters)"
+                  placeholder="(max 13 characters)"
                   required
                   maxLength="13"
                 />
               </div>
 
               <button type="submit" className="btnPrimary h-12">
-                Add Group
+                Create
               </button>
             </form>
           }

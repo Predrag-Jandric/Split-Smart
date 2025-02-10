@@ -13,7 +13,7 @@ function Sidebar() {
 
   const SIDEBAR_LINKS = [
     { id: 124534, path: "/", name: "Home", icon: MdGroups },
-    { id: 262546, path: "/groups", name: "Groups", icon: IoMdPerson },
+    { id: 262546, path: "/", name: "Groups", icon: IoMdPerson },
   ];
 
   // Fetching groups from the Redux store
@@ -50,7 +50,7 @@ function Sidebar() {
         <div className="mb-8 flex justify-center">
           <NavLink
             to="/"
-            className="flex cursor-pointer"
+            className="flex cursor-pointer bg-red-300"
             onClick={closeSidebar}
           >
             <img src={special} alt="logo" className="mr-1 flex" />
@@ -87,7 +87,7 @@ function Sidebar() {
                         key={group.id}
                         to={`/groups/${group.id}`} //Hooking from routes for each group
                         className={({ isActive }) =>
-                          `flex items-center px-8 py-2 space-x-5 text-base font-medium ${
+                          `flex items-center px-8 py-2 text-base font-medium ${
                             isActive
                               ? "text-primary dark:text-darkPrimary"
                               : "text-title dark:text-darkTitle"
@@ -96,7 +96,7 @@ function Sidebar() {
                         onClick={closeSidebar}
                       >
                         <span className="text-sm truncate hover:text-black dark:hover:text-darkBlack w-full">
-                          {group.name}
+                          - {group.name}
                         </span>
                       </NavLink>
                     ))}
