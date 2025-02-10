@@ -32,7 +32,7 @@ function Sidebar() {
       {/* Toggle button for small screens */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-20 bg-primary text-white p-2 rounded-full lg:hidden"
+        className="fixed top-4 left-4 z-20 dark:bg-darkPrimary bg-primary dark:text-darkWhite text-white p-2 rounded-full lg:hidden"
       >
         {isSidebarOpen ? (
           <IoIosArrowBack size={24} />
@@ -43,7 +43,7 @@ function Sidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-dark-primary shadow-custom-dark z-10 pt-8 px-4 transform ${
+        className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-darkWhite dark:shadow-custom-light shadow-custom-dark z-10 pt-8 px-4 transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-56`}
       >
@@ -67,13 +67,13 @@ function Sidebar() {
                     to={link.path}
                     className={({ isActive }) =>
                       `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold ${
-                        isActive ? "text-primary" : "text-title"
+                        isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
                       }`
                     }
                     onClick={closeSidebar}
                   >
                     <span>{link.icon()}</span>
-                    <span className="text-body font-medium text-title">
+                    <span className="text-body font-medium dark:text-darkTitle text-title">
                       {link.name}
                     </span>
                   </NavLink>
@@ -87,12 +87,12 @@ function Sidebar() {
                         to={`/groups/${group.id}`} //Hooking from routes for each group
                         className={({ isActive }) =>
                           `flex items-center px-8 py-2 space-x-5 text-base font-medium ${
-                            isActive ? "text-primary" : "text-title"
+                            isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
                           }`
                         }
                         onClick={closeSidebar}
                       >
-                        <span className="text-sm truncate hover:text-black w-full">
+                        <span className="text-sm truncate hover:text-black dark:hover:text-darkBlack w-full">
                           {group.name}
                         </span>
                       </NavLink>
@@ -109,12 +109,12 @@ function Sidebar() {
                             to={`/groups/${group.id}`} // Hooking from routes for each group
                             className={({ isActive }) =>
                               `flex items-center px-8 py-2 space-x-2 text-base font-medium ${
-                                isActive ? "text-primary" : "text-title"
+                                isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
                               }`
                             }
                             onClick={closeSidebar}
                           >
-                            <span className="text-sm truncate hover:text-black w-full">
+                            <span className="text-sm truncate hover:text-black dark:hover:text-darkBlack w-full">
                               {group.name}
                             </span>
                           </NavLink>
@@ -125,9 +125,9 @@ function Sidebar() {
                     {groups.length > 4 && (
                       <button
                         onClick={() => setExpanded(!expanded)}
-                        className="text-sm truncate mt-2 px-8 text-primary focus:outline-none"
+                        className="text-sm truncate mt-2 px-8 text-primary dark:text-darkPrimary focus:outline-none"
                       >
-                        <span className="text-primary">
+                        <span className="text-primary dark:text-darkPrimary">
                           {expanded ? "Show Less" : "Show More"}
                         </span>
                       </button>
@@ -143,13 +143,13 @@ function Sidebar() {
                 to={link.path}
                 className={({ isActive }) =>
                   `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold  ${
-                    isActive ? "text-primary" : "text-title"
+                    isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
                   }`
                 }
                 onClick={closeSidebar}
               >
                 <span>{link.icon()}</span>
-                <span className="text-body font-medium text-title">
+                <span className="text-body font-medium text-title dark:text-darkTitle">
                   {link.name}
                 </span>
               </NavLink>

@@ -95,7 +95,7 @@ function GroupMembers() {
 
   return (
     <section
-      className="bg-white flex flex-col border-global border-border p-global rounded-global shadow-custom-dark
+      className="bg-white dark:bg-darkWhite flex flex-col border-global border-border p-global rounded-global shadow-custom-dark dark:shadow-custom-light dark:border-darkBorder dark:text-darkBlack text-black
       w-full"
     >
       <div className="flex w-full justify-between h-12">
@@ -135,7 +135,7 @@ function GroupMembers() {
 
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bg-alert flex items-center justify-center rounded-full font-extrabold text-lg text-white transition-all hover:text-black w-5 h-5 absolute bottom-22 left-14"
+              className="bg-alert dark:bg-darkAlert flex items-center justify-center rounded-full font-extrabold text-lg dark:text-darkWhite text-white transition-all hover:text-black dark:hover:text-darkBlack w-5 h-5 absolute bottom-22 left-14"
             >
               x
             </button>
@@ -157,7 +157,7 @@ function GroupMembers() {
                   name="name"
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
-                  className="border-global border-border p-2 w-full rounded-global shadow-custom-dark"
+                  className="border-global dark:border-darkBorder border-border p-2 w-full rounded-global shadow-custom-dark dark:shadow-custom-light"
                   placeholder="Enter member name"
                   required
                   maxLength="10"
@@ -171,8 +171,8 @@ function GroupMembers() {
                     key={index}
                     src={image}
                     alt={`image-${index}`}
-                    className={`w-[4.3rem] shadow-custom-dark h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
-                      selectedImage === image ? "ring-[3px] ring-primary" : ""
+                    className={`w-[4.3rem] shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+                      selectedImage === image ? "ring-[3px] ring-primary dark:ring-darkPrimary" : ""
                     }`}
                     onClick={() => handleImageSelect(image)}
                   />
@@ -201,7 +201,7 @@ function GroupMembers() {
                 </button>
                 <button
                   onClick={() => setIsRemoveModalOpen(false)}
-                  className="btnSecondary border-alert hover:bg-alert text-black"
+                  className="btnSecondary border-alert dark:border-darkAlert dark:hover:bg-darkAlert hover:bg-alert text-black dark:text-darkBlack"
                 >
                   No
                 </button>

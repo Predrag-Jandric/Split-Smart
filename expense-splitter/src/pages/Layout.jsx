@@ -5,7 +5,7 @@ import Sidebar from "../components/Home/Sidebar";
 
 function Layout() {
   return (
-    <section className="flex h-screen bg-mainBG">
+    <section className="flex h-screen bg-mainBG dark:bg-darkmainBG">
       <Sidebar />
       <div className="flex-1 sm:p-0 p-2 overflow-auto w-screen ">
         <Outlet />

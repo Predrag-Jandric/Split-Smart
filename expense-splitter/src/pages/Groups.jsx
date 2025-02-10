@@ -155,7 +155,7 @@ function Groups() {
                   name="totalBudget"
                   value={formData.totalBudget}
                   onChange={handleInputChange}
-                  className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
+                  className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new budget"
                   required
                 />
@@ -169,7 +169,7 @@ function Groups() {
                   name="totalExpense"
                   value={formData.totalExpense}
                   onChange={handleInputChange}
-                  className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
+                  className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
                   placeholder="Enter new expense"
                   required
                 />

@@ -112,8 +112,8 @@ function GroupChart({ groupId }) {
 
   return (
     <section
-      className="flex flex-col items-center justify-center bg-white
-     p-global rounded-global shadow-custom-dark border-global border-border"
+      className="flex flex-col items-center justify-center dark:bg-darkWhite bg-white
+     p-global rounded-global shadow-custom-dark dark:shadow-custom-light border-global border-border dark:border-darkBorder text-black dark:text-darkBlack"
     >
 
       <div className="flex w-full justify-between h-12">
@@ -209,14 +209,14 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-3 w-full border-global border-border flex rounded-global shadow-custom-dark flex-wrap justify-start gap-2">
+          <article className="p-3 w-full border-global dark:border-darkBorder border-border flex rounded-global  dark:shadow-custom-light flex-wrap justify-start gap-2">
             {group.members.map((member, index) => (
               <div key={index} className="flex my-2 items-center mx-2  p-1">
                 <span
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-bold text-legend">
+                <span className="ml-2 font-bold dark:text-darkLegend text-legend">
                   {member.name}
                 </span>
                 <span className="text-sm ml-1 text-secondary">

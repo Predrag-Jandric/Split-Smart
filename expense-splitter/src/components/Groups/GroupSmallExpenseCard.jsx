@@ -19,13 +19,13 @@ function GroupSmallExpenseCard({
   );
   return (
     <section
-      className="bg-white w-full border-global border-border p-global rounded-global
-      flex items-start shadow-custom-dark"
+      className="bg-white w-full dark:bg-darkWhite text-black dark:text-darkBlack border-global border-border dark:border-darkBorder p-global rounded-global
+      flex items-start shadow-custom-dark dark:shadow-custom-light"
     >
       <div className="flex items-start space-x-4 flex-grow">
-        <Icon className="bg-mainBG rounded-full w-14 h-14 p-3 text-primary" />
+        <Icon className="bg-mainBG dark:bg-darkmainBG rounded-full w-14 h-14 p-3 text-primary dark:text-darkPrimary" />
         <span>
-          <p className="font-body font-medium text-title">{label}</p>
+          <p className="font-body font-medium dark:text-darkTitle text-title">{label}</p>
           <p className="text-2xl font-bold text-secondary">{value}</p>
         </span>
       </div>

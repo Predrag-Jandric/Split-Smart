@@ -99,17 +99,17 @@ function Home() {
       </article>
 
       <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-7">
-        <div className="bg-white border-global border-border w-80 h-60 shadow-custom-dark rounded-global flex items-center justify-center flex-col">
+        <div className="bg-white dark:bg-darkWhite border-global dark:border-darkBorder border-border w-80 h-60 shadow-custom-dark dark:shadow-custom-light rounded-global flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
             animate={filteredGroups.length === 0 ? "animate" : "initial"} // Conditionally apply animation
             onClick={openModal} // Use openModal from the custom hook
-            className="rounded-full bg-primary primary-dark-mode w-16 h-16 text-5xl text-white shadow-custom-dark hover:bg-primary"
+            className="rounded-full bg-primary dark:bg-darkPrimary w-16 h-16 text-5xl text-white dark:text-darkWhite shadow-custom-dark dark:shadow-custom-light"
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold">Add Group</p>
+          <p className="text-2xl mt-4 font-bold text-black dark:text-darkBlack">Add Group</p>
         </div>
 
         {filteredGroups.length > 0 ? (
@@ -135,17 +135,14 @@ function Home() {
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
-                  className="border-global border-border p-2 w-full rounded-global shadow-custom-dark"
+                  className="border-global dark:border-darkBorder border-border p-2 w-full rounded-global shadow-custom-dark dark:shadow-custom-light"
                   placeholder="Enter group name"
                   required
                   style={{ fontSize: "14px" }}
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btnPrimary h-12"
-              >
+              <button type="submit" className="btnPrimary h-12">
                 Add Group
               </button>
             </form>

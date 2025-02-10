@@ -9,21 +9,23 @@ export default {
     extend: {
       colors: {
         mainBG: "#F4F7FE",
-        primary: "#013BFF",
+        primary: "#3374FF",
         title: "#A3AED0",
         legend: "#767676",
         alert: "#FF3636",
         border: "#E0E0E0",
-        // white: "#F6CE3C",
-        // black: "#0EFB2E",
+        white: "white",
+        black: "#525252",
 
         //dark mode colors using 'dark:' classes in components)
-        darkmainBG: "#",
-        darkPrimary: "#",
-        darkTitle: "#",
-        darkLegend: "#",
-        darkAlert: "#",
+        darkmainBG: "#121212",
+        darkPrimary: "#70EFDE",
+        darkTitle: "#5c512f",
+        darkLegend: "#898989",
+        darkAlert: "#FF3636",
         darkBorder: "#1f1f1f",
+        darkWhite: "#303436",
+        darkBlack: "white",
       },
       /* Defining consistent global typography
       fontFamily: {

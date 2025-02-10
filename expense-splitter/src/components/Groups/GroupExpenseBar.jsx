@@ -4,7 +4,7 @@ const ExpenseBar = ({ expense, budget }) => {
   return (
     <section
       className="flex p-global flex-col justify-between w-full  min-w-0 h-auto rounded-global
-     bg-white border-global border-border shadow-custom-dark overflow-hidden"
+     bg-white dark:bg-darkWhite border-global text-black dark:text-darkBlack dark:border-darkBorder border-border shadow-custom-dark dark:shadow-custom-light overflow-hidden"
     >
       <p className="text-subheader font-bold text-secondary">
         Expense vs budget
@@ -15,12 +15,12 @@ const ExpenseBar = ({ expense, budget }) => {
           {/* progress bar */}
           <div className="relative h-8 rounded-global bg-gray-200 mb-2 mt-4 overflow-hidden">
             <p
-              className="absolute left-0 top-0 bg-primary h-full transition-all duration-500 ease-out rounded-global"
+              className="absolute left-0 top-0 dark:bg-darkPrimary bg-primary h-full transition-all duration-500 ease-out rounded-global"
               style={{ width: `${expensePercentage}%` }}
             ></p>
             {/* white tip in front of primary movable bar */}
             <p
-              className="absolute top-0 bg-white h-full transition-all duration-500 ease-out"
+              className="absolute top-0 bg-white dark:bg-darkWhite h-full transition-all duration-500 ease-out"
               style={{
                 width: "4px", // width of the white tip in front of primary bar
                 left: `calc(${expensePercentage}% - 2px)`, //the white tip moves with the progress
@@ -45,15 +45,15 @@ const ExpenseBar = ({ expense, budget }) => {
         </article>
 
         {/* legend */}
-        <article className="flex flex-col border-global border-border shadow-custom-dark items-start px-5 py-3 text-xs font-bold gap-2 w-full md:w-56 lg:w-full rounded-global">
+        <article className="flex flex-col dark:border-darkBorder border-global border-border dark:shadow-custom-light shadow-custom-dark items-start px-5 py-3 text-xs font-bold gap-2 w-full md:w-56 lg:w-full rounded-global">
           <div className="flex items-center">
-            <span className="w-3 h-3 rounded-full bg-primary mr-2"></span>
-            <span className="font-bold text-legend">Expense</span>
+            <span className="w-3 h-3 rounded-full dark:bg-darkPrimary bg-primary mr-2"></span>
+            <span className="font-bold dark:text-darkLegend text-legend">Expense</span>
           </div>
           <div className="flex items-center">
             <span className="w-3 h-3 rounded-full bg-gray-300 mr-2"></span>
 
-            <span className="text-legend font-bold">Remaining budget</span>
+            <span className="text-legend dark:text-darkLegend font-bold">Remaining budget</span>
           </div>
         </article>
       </div>

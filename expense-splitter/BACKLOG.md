@@ -1,18 +1,18 @@
 ## OVERALL
 
-- Pick and implement inverted colors of the whole theme into DARK MODE
+- polish dark theme
 - when project is finished, UPDATE new readme
 - make modal look visually pretty
-- polish all buttons
-- make sure everything is responsive
+- update modal not to say "create new" in every modal
 - test in chrome
 
 ---
 
 ## GROUP PAGE
 
-- adding second group member breaks the contribution money number
+
 - make contributions edit have a notifications if wrong input
+- update edit contributions modal so that it looks good
 
 ---
 
@@ -22,13 +22,6 @@
 
 ## DONE
 
-- increase size of member element/s
-- make the gaps between elements equal
-- make the gaps between elements equal
-- make sure that expense cannot be higher than the budget
-- add modal when removing a member
-- add group naimation only if 0 groups are present
-- change the styling on ALL buttons
-- fix expense vs budget component
-- style add desc btn
-- add border to every box element and input
+- implement inverted colors of the whole theme into DARK MODE
+- replace x in all modal close btns to actual icon
+- adding second group member breaks the contribution money number

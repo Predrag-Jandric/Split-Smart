@@ -63,7 +63,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
           type="text"
           value={groupName}
           onChange={handleInputChange}
-          className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
+          className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
           placeholder="Enter new group name (max 15 characters)"
           maxLength="15"
           required
@@ -76,7 +76,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
-          className="border-global border-border shadow-custom-dark p-2 w-full rounded-global"
+          className="border-global bg-white dark:bg-darkWhite dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
           placeholder="Enter group description (max 45 characters)"
           maxLength="45"
         />
@@ -88,8 +88,8 @@ function EditGroupDetailsForm({ group, closeModal }) {
             key={index}
             src={image}
             alt={`image-${index}`}
-            className={`w-[4.3rem] shadow-custom-dark h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
-              selectedImage === image ? "ring-[3px] ring-primary" : ""
+            className={`w-[4.3rem] dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+              selectedImage === image ? "ring-[3px] dark:ring-darkPrimary ring-primary" : ""
             }`}
             onClick={() => handleImageSelect(image)}
           />

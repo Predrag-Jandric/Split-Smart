@@ -4,15 +4,15 @@
 
 @layer components {
   .btnPrimary {
-    @apply h-9 border transition-all text-base border-primary shadow-custom-dark
-      px-4 bg-primary hover:bg-black
-      hover:text-white text-white
+    @apply h-9 border transition-all text-base dark:border-darkPrimary border-primary dark:shadow-custom-light shadow-custom-dark
+      px-4 bg-primary dark:bg-darkPrimary
+       text-white dark:text-darkWhite
        rounded-global flex items-center justify-center;
   }
   .btnSecondary {
-    @apply h-9 border transition-all text-base border-primary text-black
-     bg-mainBG shadow-custom-dark px-4
-      hover:bg-primary hover:text-white 
+    @apply h-9 border transition-all text-base border-primary dark:border-darkPrimary text-black
+     bg-mainBG dark:bg-darkmainBG shadow-custom-dark dark:shadow-custom-light px-4
+      hover:bg-primary dark:hover:bg-darkPrimary
       rounded-global;
   }
 }
