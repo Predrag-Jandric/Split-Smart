@@ -55,11 +55,8 @@ function EditGroupDetailsForm({ group, closeModal }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <label className="text-body font-semibold">
-          Group Name
-        </label>
+        <label className="text-body font-semibold">Group Name</label>
         <input
-          autoFocus
           type="text"
           value={groupName}
           onChange={handleInputChange}
@@ -70,9 +67,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
         />
       </div>
       <div>
-        <label className="text-body font-semibold ">
-          Description
-        </label>
+        <label className="text-body font-semibold ">Description</label>
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
@@ -89,16 +84,15 @@ function EditGroupDetailsForm({ group, closeModal }) {
             src={image}
             alt={`image-${index}`}
             className={`w-[4.3rem] dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
-              selectedImage === image ? "ring-[3px] dark:ring-darkPrimary ring-primary" : ""
+              selectedImage === image
+                ? "ring-[3px] dark:ring-darkPrimary ring-primary"
+                : ""
             }`}
             onClick={() => handleImageSelect(image)}
           />
         ))}
       </div>
-      <button
-        type="submit"
-        className="btnPrimary h-12"
-      >
+      <button type="submit" className="btnPrimary h-12">
         Update
       </button>
     </form>

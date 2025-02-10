@@ -4,7 +4,7 @@ import unknownPerson from "../assets/unknownPerson.jpg";
 const calculateContributions = (group) => {
   const memberCount = group.members.length;
   if (memberCount > 0) {
-    const contribution = group.totalExpense / memberCount;
+    const contribution = 100 / memberCount;
     group.members.forEach((member) => {
       member.contribution = contribution;
     });
@@ -46,8 +46,8 @@ const groupsSlice = createSlice({
         group.members = group.members.filter(
           (member) => member.id !== memberId
         );
+        calculateContributions(group);
       }
-      calculateContributions(group);
     },
     updateGroupBudget: (state, action) => {
       const { groupId, totalBudget } = action.payload;
@@ -61,6 +61,7 @@ const groupsSlice = createSlice({
       const group = state.groups.find((group) => group.id === groupId);
       if (group) {
         group.totalExpense = totalExpense;
+        calculateContributions(group);
       }
     },
     updateMemberContribution: (state, action) => {

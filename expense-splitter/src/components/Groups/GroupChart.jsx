@@ -68,13 +68,21 @@ function GroupChart({ groupId }) {
     if (hasMembers) {
       // Initialize contributions as empty fields
       const initialContributions = group.members.reduce((acc, member) => {
-        acc[member.id] = 0;
+        acc[member.id] = member.contribution || 0;
         return acc;
       }, {});
       setCustomContributions(initialContributions);
-      setRemainingPercentage(100);
+      updateRemainingPercentage(initialContributions);
     }
   }, [group.members, hasMembers]);
+
+  const updateRemainingPercentage = (contributions) => {
+    const totalContributions = Object.values(contributions).reduce(
+      (acc, val) => acc + (parseFloat(val) || 0),
+      0
+    );
+    setRemainingPercentage(Math.round((100 - totalContributions) * 100) / 100);
+  };
 
   const handleContributionChange = (memberId, newContribution) => {
     const newValue = parseFloat(newContribution);
@@ -85,14 +93,7 @@ function GroupChart({ groupId }) {
         [memberId]: newValue || 0,
       };
 
-      // Calculate remaining percentage
-      const totalContributions = Object.values(updatedContributions).reduce(
-        (acc, val) => acc + (parseFloat(val) || 0),
-        0
-      );
-      setRemainingPercentage(
-        Math.round((100 - totalContributions) * 100) / 100
-      );
+      updateRemainingPercentage(updatedContributions);
 
       return updatedContributions;
     });
@@ -115,17 +116,13 @@ function GroupChart({ groupId }) {
       className="flex flex-col items-center justify-center dark:bg-darkWhite bg-white
      p-global rounded-global shadow-custom-dark dark:shadow-custom-light border-global border-border dark:border-darkBorder text-black dark:text-darkBlack"
     >
-
       <div className="flex w-full justify-between h-12">
         <p className="text-subheader font-bold text-secondary">Budget Split</p>
         {group.members.length > 0 && (
           <motion.button
-            animate={
-              group.members.length > 0 
-                ? "animate"
-                : "initial"
-            }
+            animate={group.members.length > 0 ? "animate" : "initial"}
             variants={jumpyAnimation}
+            transition={{ duration: 0.5 }} // Add duration to the animation
             onClick={openModal}
             className="btnPrimary"
           >
@@ -144,7 +141,7 @@ function GroupChart({ groupId }) {
                   className="grid grid-cols-[152px_auto] items-center"
                 >
                   <label className="text-body">
-                    {member.name} Contribution
+                    {member.name}&apos;s Contribution
                   </label>
                   <div className="flex items-center">
                     <input
@@ -160,7 +157,7 @@ function GroupChart({ groupId }) {
                       required
                     />
                     <span className="text-body">
-                      {customContributions[member.id]} %
+                      {customContributions[member.id].toFixed(0)} %
                     </span>
                   </div>
                 </div>
