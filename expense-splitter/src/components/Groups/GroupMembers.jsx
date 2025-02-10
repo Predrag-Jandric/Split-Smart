@@ -12,6 +12,7 @@ import { imagesPeople } from "../Utils/images";
 import unknownPerson from "../../assets/unknownPerson.jpg";
 import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
+import { IoClose } from "react-icons/io5";
 
 function GroupMembers() {
   const { groupId } = useParams();
@@ -137,7 +138,7 @@ function GroupMembers() {
               onClick={() => handleRemoveMember(member.id, member.name)}
               className="bg-alert dark:bg-darkAlert flex items-center justify-center rounded-full font-extrabold text-lg dark:text-darkWhite text-white transition-all hover:text-black dark:hover:text-darkBlack w-5 h-5 absolute bottom-22 left-14"
             >
-              x
+              <IoClose className="size-4" />
             </button>
           </div>
         ))}

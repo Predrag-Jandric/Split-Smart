@@ -17,13 +17,10 @@ function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="bg-gray-200 p-2 rounded-global
-      flex items-center justify-center gap-2 w-full"
+      className="btnSecondary mb-10 flex items-center gap-2 justify-center"
     >
-      {darkMode ? "🌙" : "☀️"}
-      <span >
-        {darkMode ? "Light mode" : "Dark mode"}
-      </span>
+      {darkMode ? "☀️" : "🌙"}
+      <span>{darkMode ? "Light mode" : "Dark mode"}</span>
     </button>
   );
 }

@@ -10,18 +10,20 @@
 
 ## GROUP PAGE
 
-
 - make contributions edit have a notifications if wrong input
 - update edit contributions modal so that it looks good
+- pie chart section to align at the end
+- dark mode btn hovers
+- inputs dark/light theme
 
 ---
 
 ## HOME PAGE
 
+- fix sidebar hover and active links
+- real icon for member removing
+- change legend bg color
+
 ---
 
 ## DONE
-
-- implement inverted colors of the whole theme into DARK MODE
-- replace x in all modal close btns to actual icon
-- adding second group member breaks the contribution money number

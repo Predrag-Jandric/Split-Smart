@@ -45,7 +45,7 @@ function Sidebar() {
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white dark:bg-darkWhite dark:shadow-custom-light shadow-custom-dark z-10 pt-8 px-4 transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-56`}
+        } transition-transform duration-300 lg:relative lg:translate-x-0 lg:w-56 flex flex-col`}
       >
         <div className="mb-8 flex justify-center">
           <NavLink
@@ -56,7 +56,6 @@ function Sidebar() {
             <img src={special} alt="logo" className="mr-1 flex" />
           </NavLink>
         </div>
-
         {/* Navigation */}
         <nav className="flex-1">
           {SIDEBAR_LINKS.map((link, index) => {
@@ -67,7 +66,9 @@ function Sidebar() {
                     to={link.path}
                     className={({ isActive }) =>
                       `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold ${
-                        isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
+                        isActive
+                          ? "text-primary dark:text-darkPrimary"
+                          : "text-title dark:text-darkTitle"
                       }`
                     }
                     onClick={closeSidebar}
@@ -87,7 +88,9 @@ function Sidebar() {
                         to={`/groups/${group.id}`} //Hooking from routes for each group
                         className={({ isActive }) =>
                           `flex items-center px-8 py-2 space-x-5 text-base font-medium ${
-                            isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
+                            isActive
+                              ? "text-primary dark:text-darkPrimary"
+                              : "text-title dark:text-darkTitle"
                           }`
                         }
                         onClick={closeSidebar}
@@ -109,7 +112,9 @@ function Sidebar() {
                             to={`/groups/${group.id}`} // Hooking from routes for each group
                             className={({ isActive }) =>
                               `flex items-center px-8 py-2 space-x-2 text-base font-medium ${
-                                isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
+                                isActive
+                                  ? "text-primary dark:text-darkPrimary"
+                                  : "text-title dark:text-darkTitle"
                               }`
                             }
                             onClick={closeSidebar}
@@ -143,7 +148,9 @@ function Sidebar() {
                 to={link.path}
                 className={({ isActive }) =>
                   `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold  ${
-                    isActive ? "text-primary dark:text-darkPrimary" : "text-title dark:text-darkTitle"
+                    isActive
+                      ? "text-primary dark:text-darkPrimary"
+                      : "text-title dark:text-darkTitle"
                   }`
                 }
                 onClick={closeSidebar}
@@ -156,13 +163,9 @@ function Sidebar() {
             );
           })}
         </nav>
-
-        <div className="w-full py-2 cursor-pointer text-center">
-          {/* Dark Mode Toggle  */}
-          <div className="mt-4 flex items-center justify-center">
-            <DarkModeToggle closeSidebar={closeSidebar} /> {/* This is our dark mode toggle button */}
-          </div>
-        </div>
+     
+          <DarkModeToggle closeSidebar={closeSidebar} />
+       
       </div>
     </>
   );

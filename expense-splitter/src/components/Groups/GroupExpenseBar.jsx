@@ -10,19 +10,22 @@ const ExpenseBar = ({ expense, budget }) => {
         Expense vs budget
       </p>
 
-      <div className="flex flex-col gap-5 md:flex-row lg:flex-col justify-between items-start">
+      <div className="flex flex-col gap-7 md:flex-row lg:flex-col justify-between items-start">
         <article className="pr-4 w-full">
           {/* progress bar */}
-          <div className="relative h-8 rounded-global bg-gray-200 mb-2 mt-4 overflow-hidden">
+          <div className="relative h-8 rounded-global 
+           
+          dark:bg-darkprogressBar
+           bg-progressBar mb-2 mt-4 overflow-hidden">
             <p
               className="absolute left-0 top-0 dark:bg-darkPrimary bg-primary h-full transition-all duration-500 ease-out rounded-global"
               style={{ width: `${expensePercentage}%` }}
             ></p>
             {/* white tip in front of primary movable bar */}
             <p
-              className="absolute top-0 bg-white dark:bg-darkWhite h-full transition-all duration-500 ease-out"
+              className="absolute top-0 bg-mainBG dark:bg-darkmainBG h-full transition-all duration-500 ease-out"
               style={{
-                width: "4px", // width of the white tip in front of primary bar
+                width: "6px", // width of the white tip in front of primary bar
                 left: `calc(${expensePercentage}% - 2px)`, //the white tip moves with the progress
               }}
             ></p>
@@ -45,15 +48,15 @@ const ExpenseBar = ({ expense, budget }) => {
         </article>
 
         {/* legend */}
-        <article className="flex flex-col dark:border-darkBorder border-global border-border dark:shadow-custom-light shadow-custom-dark items-start px-5 py-3 text-xs font-bold gap-2 w-full md:w-56 lg:w-full rounded-global">
+        <article className="flex flex-col bg-legendBG dark:bg-darklegendBG dark:border-darkBorder border-global border-border dark:shadow-custom-light shadow-custom-dark items-start p-global text-xs font-bold gap-4 w-full md:w-56 lg:w-full rounded-global">
           <div className="flex items-center">
-            <span className="w-3 h-3 rounded-full dark:bg-darkPrimary bg-primary mr-2"></span>
-            <span className="font-bold dark:text-darkLegend text-legend">Expense</span>
+            <span className="size-4 rounded-full dark:bg-darkPrimary bg-primary mr-2"></span>
+            <span className="font-semibold dark:text-darkLegend text-legendSize">Expense</span>
           </div>
           <div className="flex items-center">
-            <span className="w-3 h-3 rounded-full bg-gray-300 mr-2"></span>
+            <span className="size-4 rounded-full dark:bg-darkprogressBar bg-progressBar dark mr-2"></span>
 
-            <span className="text-legend dark:text-darkLegend font-bold">Remaining budget</span>
+            <span className="text-legendSize dark:text-darkLegend font-semibold">Remaining budget</span>
           </div>
         </article>
       </div>

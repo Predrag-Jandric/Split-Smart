@@ -206,17 +206,17 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-3 w-full border-global dark:border-darkBorder border-border flex rounded-global  dark:shadow-custom-light flex-wrap justify-start gap-2">
+          <article className="p-global w-full border-global dark:border-darkBorder border-border  shadow-custom-dark bg-legendBG dark:bg-darklegendBG flex rounded-global dark:shadow-custom-light flex-wrap justify-start gap-8">
             {group.members.map((member, index) => (
-              <div key={index} className="flex my-2 items-center mx-2  p-1">
+              <div key={index} className="flex items-center">
                 <span
-                  className="w-3 h-3 rounded-full"
+                  className="size-4 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-bold dark:text-darkLegend text-legend">
+                <span className="ml-2 font-semibold text-legendSize dark:text-darkLegend ">
                   {member.name}
                 </span>
-                <span className="text-sm ml-1 text-secondary">
+                <span className="ml-1 text-legendSize">
                   {" "}
                   -{" "}
                   {(group.totalExpense * (member.contribution / 100)).toFixed(
