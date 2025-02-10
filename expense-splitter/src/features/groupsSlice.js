@@ -4,9 +4,22 @@ import unknownPerson from "../assets/unknownPerson.jpg";
 const calculateContributions = (group) => {
   const memberCount = group.members.length;
   if (memberCount > 0) {
-    const contribution = 100 / memberCount;
-    group.members.forEach((member) => {
-      member.contribution = contribution;
+    let totalContribution = 0;
+    const baseContribution = Math.floor(100 / memberCount);
+    const contributions = group.members.map(() => baseContribution);
+    totalContribution = baseContribution * memberCount;
+
+    let remaining = 100 - totalContribution;
+
+    while (remaining !== 0) {
+      const randomIndex = Math.floor(Math.random() * memberCount);
+      const adjustment = remaining > 0 ? 1 : -1;
+      contributions[randomIndex] += adjustment;
+      remaining -= adjustment;
+    }
+
+    group.members.forEach((member, index) => {
+      member.contribution = contributions[index];
     });
   }
 };

@@ -38,7 +38,7 @@ function HomeIndividualGroup({ group }) {
         {group.members.length} members
       </p>
 
-      <h2 className="text-black dark:text-darkBlack font-bold text-center text-secondary ">
+      <h2 className="text-black dark:text-darkBlack font-bold text-center">
         {group.name}
       </h2>
 

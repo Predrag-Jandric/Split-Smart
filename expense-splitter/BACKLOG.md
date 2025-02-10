@@ -3,16 +3,15 @@
 - test in chrome
 - when project is finished, UPDATE new readme
 - make ALL modals look visually pretty
+- install tailwind extensive that auto sorts classes and save each file
 
 ---
 
 ## GROUP PAGE
 
-- make contributions edit have a notifications if wrong input
 - update edit contributions modal so that it looks good
 - when confirming deletion make it so that pressing enter does the job too
-- contributions edit cannot submit because of decimals
-- conditionally render "Add members to see the chart"
+  make contributions edit have a notifications if wrong input
 
 ---
 
@@ -24,3 +23,6 @@
 ---
 
 ## DONE
+
+- conditionally render "Add members to see the chart"
+- contributions edit cannot submit because of decimals

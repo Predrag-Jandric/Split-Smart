@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { updateMemberContribution } from "../../features/groupsSlice";
 import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
+import { toast } from "react-toastify";
 
 // chart
 const COLORS = [
@@ -44,7 +45,7 @@ const renderCustomizedLabel = ({
       dominantBaseline="central"
       className="text-md font-bold text-secondary"
     >
-      {(percent * 100).toFixed(1)}%
+      {(percent * 100).toFixed(0)}%
     </text>
   );
 };
@@ -68,7 +69,7 @@ function GroupChart({ groupId }) {
     if (hasMembers) {
       // Initialize contributions as empty fields
       const initialContributions = group.members.reduce((acc, member) => {
-        acc[member.id] = member.contribution || 0;
+        acc[member.id] = Math.round(member.contribution) || 0;
         return acc;
       }, {});
       setCustomContributions(initialContributions);
@@ -78,14 +79,14 @@ function GroupChart({ groupId }) {
 
   const updateRemainingPercentage = (contributions) => {
     const totalContributions = Object.values(contributions).reduce(
-      (acc, val) => acc + (parseFloat(val) || 0),
+      (acc, val) => acc + (parseInt(val) || 0),
       0
     );
-    setRemainingPercentage(Math.round((100 - totalContributions) * 100) / 100);
+    setRemainingPercentage(Math.round(100 - totalContributions));
   };
 
   const handleContributionChange = (memberId, newContribution) => {
-    const newValue = parseFloat(newContribution);
+    const newValue = parseInt(newContribution);
 
     setCustomContributions((prevContributions) => {
       const updatedContributions = {
@@ -99,8 +100,35 @@ function GroupChart({ groupId }) {
     });
   };
 
+  const distributeRemainingPercentage = () => {
+    const memberIds = Object.keys(customContributions);
+    let remaining = remainingPercentage;
+
+    while (remaining !== 0) {
+      const randomIndex = Math.floor(Math.random() * memberIds.length);
+      const memberId = memberIds[randomIndex];
+      const adjustment = remaining > 0 ? 1 : -1;
+
+      setCustomContributions((prevContributions) => {
+        const updatedContributions = {
+          ...prevContributions,
+          [memberId]: prevContributions[memberId] + adjustment,
+        };
+
+        remaining -= adjustment;
+        updateRemainingPercentage(updatedContributions);
+
+        return updatedContributions;
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (remainingPercentage !== 0) {
+      distributeRemainingPercentage();
+    }
 
     dispatch(
       updateMemberContribution({
@@ -108,6 +136,11 @@ function GroupChart({ groupId }) {
         contributions: customContributions,
       })
     );
+    toast.success("Contributions updated!", {
+      position: "top-right",
+      autoClose: 2000,
+    });
+
     closeModal();
   };
 
@@ -132,17 +165,16 @@ function GroupChart({ groupId }) {
 
       {isOpen && (
         <Modal
+          title="Edit Contributions"
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               {group.members.map((member) => (
                 <div
                   key={member.id}
-                  className="grid grid-cols-[152px_auto] items-center"
+                  className="grid grid-cols-2 items-center gap-4"
                 >
-                  <label className="text-body">
-                    {member.name}&apos;s Contribution
-                  </label>
-                  <div className="flex items-center">
+                  <label className="text-body">{member.name}</label>
+                  <div className="flex items-center justify-end">
                     <input
                       type="range"
                       min="0"
@@ -156,13 +188,13 @@ function GroupChart({ groupId }) {
                       required
                     />
                     <span className="text-body">
-                      {customContributions[member.id].toFixed(0)} %
+                      {customContributions[member.id]} %
                     </span>
                   </div>
                 </div>
               ))}
               <p className="text-md">
-                Percentage left to divide: {Math.round(remainingPercentage)}%
+                Percentage left to divide: {remainingPercentage}%
               </p>
               <button
                 type="submit"
@@ -190,8 +222,8 @@ function GroupChart({ groupId }) {
               cy={120}
               innerRadius={35.5}
               outerRadius={120}
-              fill="#ff0"
-              paddingAngle={1}
+              fill="#000"
+              paddingAngle={0}
               dataKey="value"
               labelLine={false}
               label={renderCustomizedLabel}
@@ -205,6 +237,7 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
+          {/* legend */}
           <article className="mt-auto p-global w-full border-global dark:border-darkBorder border-border  shadow-custom-dark bg-legendBG dark:bg-darklegendBG flex rounded-global dark:shadow-custom-light flex-wrap justify-start gap-8">
             {group.members.map((member, index) => (
               <div key={index} className="flex items-center">
@@ -212,10 +245,10 @@ function GroupChart({ groupId }) {
                   className="size-4 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-semibold text-legendSize dark:text-darkLegend ">
+                <span className="ml-2 font-semibold dark:text-darkLegend text-legendSize ">
                   {member.name}
                 </span>
-                <span className="ml-1 text-legendSize">
+                <span className="ml-1 font-bold dark:text-darkLegend text-legendSize">
                   {" "}
                   -{" "}
                   {(group.totalExpense * (member.contribution / 100)).toFixed(
@@ -228,8 +261,10 @@ function GroupChart({ groupId }) {
           </article>
         </>
       ) : (
-        <p className="text-lg my-8 font-bold text-secondary">
-          Add members to see the chart
+        <p className="text-md my-16 font-semibold">
+          {group.totalBudget === 0
+            ? "Add Total budget first"
+            : "Add member to see the chart"}
         </p>
       )}
     </section>

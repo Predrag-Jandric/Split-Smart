@@ -21,7 +21,7 @@ function GroupName({ group }) {
 
       <div className="flex flex-col text-black dark:text-darkBlack">
         <span className="flex items-center gap-6">
-          <h1 className="text-header font-bold text-secondary">{group.name}</h1>
+          <h1 className="text-header font-bold">{group.name}</h1>
           <button
             onClick={openModal}
             className="btnSecondary bg-mainBG dark:bg-darkPrimary/10"

@@ -34,7 +34,7 @@ function Groups() {
 
   if (!group) {
     return (
-      <div className="text-header font-bold text-secondary">
+      <div className="text-header font-bold">
         Group not found
       </div>
     );
@@ -106,7 +106,7 @@ function Groups() {
   const remainingBudget = totalBudget - totalExpense;
 
   return (
-    <section className="flex flex-col gap-5 m-6">
+    <section className="flex flex-col gap-5">
       <GroupName group={group} />
 
       <div className="flex gap-5 flex-col md:flex-row">

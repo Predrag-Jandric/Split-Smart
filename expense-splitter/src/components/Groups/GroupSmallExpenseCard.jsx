@@ -26,7 +26,7 @@ function GroupSmallExpenseCard({
         <Icon className="bg-mainBG dark:bg-darkmainBG rounded-full w-14 h-14 p-3 text-primary dark:text-darkPrimary" />
         <span>
           <p className="font-body font-medium dark:text-darkTitle text-title">{label}</p>
-          <p className="text-2xl font-bold text-secondary">{value}</p>
+          <p className="text-2xl font-bold">{value}</p>
         </span>
       </div>
       {button && (

@@ -43,7 +43,7 @@ export default {
         header: "2.125rem",
         subheader: "1.125rem",
         body: "1rem",
-        legendSize: "0.90rem",
+        legendSize: "0.80rem",
         groupComponentHeader: "1.5rem",
       },
       // If you need custom shadows for your components:

@@ -13,7 +13,7 @@ const Modal = ({title, content, onClose, handleClickOutside }) => {
        border-global dark:border-darkBorder border-border
         p-10 rounded-global w-[90%] sm:w-[32rem] shadow-custom-dark m-5 dark:shadow-custom-light">
         <div className="flex justify-between items-center">
-        <h2 className="text-secondary text-2xl font-bold">{title}</h2>
+        <h2 className="text-2xl font-bold">{title}</h2>
 
           <button
             className="bg-alert/15 flex items-center justify-center

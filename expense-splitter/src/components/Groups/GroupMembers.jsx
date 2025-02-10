@@ -98,7 +98,7 @@ function GroupMembers() {
       w-full"
     >
       <div className="flex w-full justify-between h-12">
-        <p className="text-subheader font-bold text-secondary">Members</p>
+        <p className="text-subheader font-bold">Members <span className="ml-2 font-normal">({group.members.length})</span> </p>
         {group.totalBudget !== 0 && group.members.length < 10 && (
           <motion.button
             animate={

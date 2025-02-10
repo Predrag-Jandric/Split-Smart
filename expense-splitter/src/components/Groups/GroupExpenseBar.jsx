@@ -6,7 +6,7 @@ const ExpenseBar = ({ expense, budget }) => {
       className="flex p-global flex-col justify-between w-full  min-w-0 h-auto rounded-global
      bg-white dark:bg-darkWhite border-global text-black dark:text-darkBlack dark:border-darkBorder border-border shadow-custom-dark dark:shadow-custom-light overflow-hidden"
     >
-      <p className="text-subheader font-bold text-secondary">
+      <p className="text-subheader font-bold">
         Expense vs budget
       </p>
 
@@ -31,7 +31,7 @@ const ExpenseBar = ({ expense, budget }) => {
             ></p>
           </div>
           {/* numbers */}
-          <div className="flex justify-between text-subheader font-bold text-secondary relative">
+          <div className="flex justify-between text-subheader font-bold relative">
             <p
               style={{
                 left:
@@ -56,7 +56,7 @@ const ExpenseBar = ({ expense, budget }) => {
           <div className="flex items-center">
             <span className="size-4 rounded-full dark:bg-darkprogressBar bg-progressBar dark mr-2"></span>
 
-            <span className="text-legendSize dark:text-darkLegend font-semibold">Remaining budget</span>
+            <span className="text-legendSize font-semibold dark:text-darkLegend">Remaining budget</span>
           </div>
         </article>
       </div>

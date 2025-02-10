@@ -89,7 +89,7 @@ function Home() {
   }, [groups]);
 
   return (
-    <section className="text-xl text-secondary ">
+    <section className="text-xl  ">
       <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div className="text-black dark:text-darkBlack">
           <h1 className="text-header leading-10 font-bold">

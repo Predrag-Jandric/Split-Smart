@@ -7,7 +7,7 @@ function Layout() {
   return (
     <section className="flex h-screen bg-mainBG dark:bg-darkmainBG">
       <Sidebar />
-      <div className="flex-1 py-6 px-0 sm:py-6 sm:px-8 overflow-auto w-screen ">
+      <div className="flex-1 py-6 px-4 sm:py-6 sm:px-5 overflow-auto w-screen ">
         <Outlet />
       </div>
     </section>
