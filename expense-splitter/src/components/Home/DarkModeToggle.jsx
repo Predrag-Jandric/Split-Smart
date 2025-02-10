@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DarkModeToggle() {
+function DarkModeToggle({closeSidebar}) {
   const [darkMode, setDarkMode] = useState(() => {
     const isDarkMode = localStorage.getItem("theme") === "dark";
     document.documentElement.classList.toggle("dark", isDarkMode);
@@ -16,7 +16,7 @@ function DarkModeToggle() {
 
   return (
     <button
-      onClick={toggleDarkMode}
+    onClick={() => { toggleDarkMode(); closeSidebar(); }}
       className="btnSecondary mb-10 flex items-center gap-2 justify-center"
     >
       {darkMode ? "☀️" : "🌙"}

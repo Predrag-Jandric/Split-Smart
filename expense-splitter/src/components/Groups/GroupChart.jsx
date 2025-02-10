@@ -113,20 +113,19 @@ function GroupChart({ groupId }) {
 
   return (
     <section
-      className="flex flex-col items-center justify-center dark:bg-darkWhite bg-white
-     p-global rounded-global shadow-custom-dark dark:shadow-custom-light border-global border-border dark:border-darkBorder text-black dark:text-darkBlack"
+      className="flex flex-col items-center justify-start dark:bg-darkWhite bg-white
+     p-global rounded-global shadow-custom-dark dark:shadow-custom-light border-global border-border h-full dark:border-darkBorder text-black dark:text-darkBlack"
     >
-      <div className="flex w-full justify-between h-12">
-        <p className="text-subheader font-bold text-secondary">Budget Split</p>
+      <div className="flex w-full justify-between">
+        <p className="text-subheader font-bold text-secondary">Contributions</p>
         {group.members.length > 0 && (
           <motion.button
             animate={group.members.length > 0 ? "animate" : "initial"}
             variants={jumpyAnimation}
-            transition={{ duration: 0.5 }} // Add duration to the animation
             onClick={openModal}
             className="btnPrimary"
           >
-            Edit Contributions
+            Edit
           </motion.button>
         )}
       </div>
@@ -163,7 +162,7 @@ function GroupChart({ groupId }) {
                 </div>
               ))}
               <p className="text-md">
-                Percentage left to divide: {remainingPercentage}%
+                Percentage left to divide: {Math.round(remainingPercentage)}%
               </p>
               <button
                 type="submit"
@@ -191,7 +190,7 @@ function GroupChart({ groupId }) {
               cy={120}
               innerRadius={35.5}
               outerRadius={120}
-              fill="#8884d8"
+              fill="#ff0"
               paddingAngle={1}
               dataKey="value"
               labelLine={false}
@@ -206,7 +205,7 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-global w-full border-global dark:border-darkBorder border-border  shadow-custom-dark bg-legendBG dark:bg-darklegendBG flex rounded-global dark:shadow-custom-light flex-wrap justify-start gap-8">
+          <article className="mt-auto p-global w-full border-global dark:border-darkBorder border-border  shadow-custom-dark bg-legendBG dark:bg-darklegendBG flex rounded-global dark:shadow-custom-light flex-wrap justify-start gap-8">
             {group.members.map((member, index) => (
               <div key={index} className="flex items-center">
                 <span

@@ -36,8 +36,8 @@ const ExpenseBar = ({ expense, budget }) => {
               style={{
                 left:
                   expensePercentage > 70
-                    ? "calc(70% - 13px)" // Stop at 70% to avoid overlapping with budget figure
-                    : `calc(${expensePercentage}% - 13px)`,
+                    ? "calc(70% - 4.5rem)" // Stop at 70% to avoid overlapping with budget figure
+                    : `calc(${expensePercentage}% - 3rem)`,
               }}
               className="absolute transition-all duration-500 ease-out"
             >

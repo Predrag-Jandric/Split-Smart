@@ -29,8 +29,8 @@ function HomeIndividualGroup({ group }) {
           src={group.image}
           alt="group-logo"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black dark:bg-darkBlack bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
-          <IoEnter className="text-white text-3xl dark:text-darkWhite" />
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-75 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
+          <IoEnter className="text-white text-3xl" />
         </div>
       </Link>
 
@@ -38,7 +38,9 @@ function HomeIndividualGroup({ group }) {
         {group.members.length} members
       </p>
 
-      <h2 className="text-black dark:text-darkBlack font-bold text-center text-secondary ">{group.name}</h2>
+      <h2 className="text-black dark:text-darkBlack font-bold text-center text-secondary ">
+        {group.name}
+      </h2>
 
       <div className="flex justify-around w-full mt-auto">
         <Link className="btnPrimary text-lg w-28" to={`/groups/${group.id}`}>
@@ -46,7 +48,8 @@ function HomeIndividualGroup({ group }) {
         </Link>
         <button
           onClick={openModal}
-          className="btnSecondary w-28 text-lg border-alert hover:bg-alert dark:border-darkAlert dark:hover:bg-darkAlert text-black dark:text-darkBlack"
+          className="btnSecondary w-28 dark:bg-alert/5 dark:hover:bg-alert text-lg dark:border-alert/50 hover:bg-alert
+           border-alert/50 bg-alert/5"
         >
           Remove
         </button>

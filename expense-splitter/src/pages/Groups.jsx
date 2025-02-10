@@ -50,7 +50,9 @@ function Groups() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (value.length <= 5) {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -155,7 +157,7 @@ function Groups() {
                   name="totalBudget"
                   value={formData.totalBudget}
                   onChange={handleInputChange}
-                  className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
+                  className="input"
                   placeholder="Enter new budget"
                   required
                 />
@@ -169,7 +171,7 @@ function Groups() {
                   name="totalExpense"
                   value={formData.totalExpense}
                   onChange={handleInputChange}
-                  className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
+                  className="input"
                   placeholder="Enter new expense"
                   required
                 />

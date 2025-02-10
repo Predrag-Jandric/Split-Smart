@@ -28,7 +28,7 @@ export default {
         darklegendBG: "#434950",
         darkLegend: "#EAEAEB",
         darkAlert: "#fe413c", // same color but left here just in case
-        darkBorder: "#222428",
+        darkBorder: "#2F3237",
         darkWhite: "#383d43",
         darkBlack: "#F5F5F5",
         darkprogressBar: "#664600", // much darkened "darkPrimary"

@@ -44,13 +44,9 @@ function Home() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    let newValue = value;
-    if (newValue.length > 20) {
-      newValue = newValue.slice(0, 20);
-    }
     setNewGroup({
       ...newGroup,
-      [name]: newValue.charAt(0).toUpperCase() + newValue.slice(1),
+      [name]: value.charAt(0).toUpperCase() + value.slice(1),
     });
   };
 
@@ -85,7 +81,7 @@ function Home() {
   }, [groups]);
 
   return (
-    <section className="text-xl text-secondary p-5 space-y-5">
+    <section className="text-xl text-secondary ">
       <article className="flex flex-col m-4 lg:text-start lg:flex-row gap-4 text-center items-center justify-center">
         <div className="text-black dark:text-darkBlack">
           <h1 className="text-header leading-10 font-bold">
@@ -98,18 +94,24 @@ function Home() {
         <SearchBar onSearch={handleSearch} />
       </article>
 
-      <article className="flex w-full  justify-center lg:justify-start flex-wrap gap-7">
+      <article className="flex w-full  justify-center sm:justify-start flex-wrap gap-8">
         <div className="bg-white dark:bg-darkWhite border-global dark:border-darkBorder border-border w-80 h-60 shadow-custom-dark dark:shadow-custom-light rounded-global flex items-center justify-center flex-col">
           <motion.button
             variants={jumpyAnimation} // Apply the jumpyAnimation
             initial="initial"
             animate={filteredGroups.length === 0 ? "animate" : "initial"} // Conditionally apply animation
             onClick={openModal} // Use openModal from the custom hook
-            className=" size-16 text-5xl btnPrimary rounded-full"
+            className={`size-16 transition text-5xl rounded-full ${
+              filteredGroups.length === 0
+                ? "bg-primary dark:bg-darkPrimary dark:text-darkWhite text-white hover:bg-primaryHover dark:hover:bg-darkprimaryHover"
+                : "bg-transparent dark:bg-transparent hover:bg-primary dark:hover:bg-darkPrimary text-primary dark:text-darkPrimary hover:text-white dark:hover:text-darkWhite border-2 border-primary dark:border-darkPrimary"
+            }`}
           >
             +
           </motion.button>
-          <p className="text-2xl mt-4 font-bold text-black dark:text-darkBlack">Add Group</p>
+          <p className="text-2xl mt-4 font-bold text-black dark:text-darkBlack">
+            Add Group
+          </p>
         </div>
 
         {filteredGroups.length > 0 ? (
@@ -128,17 +130,19 @@ function Home() {
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label className="text-body font-semibold">Group Name</label>
+                <label className="text-body font-semibold">
+                  Enter Group Name
+                </label>
                 <input
                   autoFocus
                   type="text"
                   name="name"
                   value={newGroup.name}
                   onChange={handleInputChange}
-                  className="border-global dark:border-darkBorder border-border p-2 w-full rounded-global shadow-custom-dark dark:shadow-custom-light"
-                  placeholder="Enter group name"
+                  className="input"
+                  placeholder="(Maximum 13 characters)"
                   required
-                  style={{ fontSize: "14px" }}
+                  maxLength="13"
                 />
               </div>
 

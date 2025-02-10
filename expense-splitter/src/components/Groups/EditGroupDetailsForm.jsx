@@ -60,8 +60,8 @@ function EditGroupDetailsForm({ group, closeModal }) {
           type="text"
           value={groupName}
           onChange={handleInputChange}
-          className="border-global dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
-          placeholder="Enter new group name (max 15 characters)"
+          className="input"
+          placeholder="(max 15 characters)"
           maxLength="15"
           required
         />
@@ -71,7 +71,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
-          className="border-global bg-white dark:bg-darkWhite dark:border-darkBorder border-border dark:shadow-custom-light shadow-custom-dark p-2 w-full rounded-global"
+          className="input"
           placeholder="Enter group description (max 45 characters)"
           maxLength="45"
         />

@@ -14,20 +14,23 @@ function GroupName({ group }) {
           src={group.image}
           alt="group-logo"
         />
-        <div className="absolute inset-0 flex items-center justify-center dark:bg-darkBlack bg-black bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
-          <RiImageEditFill className="text-white text-3xl dark:text-darkWhite" />
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-75 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full">
+          <RiImageEditFill className="text-white text-3xl" />
         </div>
       </button>
 
       <div className="flex flex-col text-black dark:text-darkBlack">
         <span className="flex items-center gap-6">
-          <h1 className="text-header  font-bold text-secondary">{group.name}</h1>
-          <button onClick={openModal} className="btnSecondary bg-mainBG dark:bg-darkmainBG">
+          <h1 className="text-header font-bold text-secondary">{group.name}</h1>
+          <button
+            onClick={openModal}
+            className="btnSecondary bg-mainBG dark:bg-darkPrimary/10"
+          >
             Edit
           </button>
         </span>
-
-        <p className="font-body font-medium text-title dark:text-darkTitle sm:w-full w-44">
+        {/* sm:w-full w-44 */}
+        <p className="font-body font-medium text-title dark:text-darkTitle ">
           {group.description}{" "}
           <span
             className="cursor-pointer hover:no-underline underline text-primary dark:text-darkPrimary"

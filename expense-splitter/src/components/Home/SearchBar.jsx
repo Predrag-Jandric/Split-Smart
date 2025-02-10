@@ -7,7 +7,7 @@ function SearchBar({ onSearch }) {
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchQuery(value);
-    onSearch(value); // Call the parent handler to filter groups
+    onSearch(value);
   };
 
   return (
@@ -18,7 +18,7 @@ function SearchBar({ onSearch }) {
         value={searchQuery}
         onChange={handleSearch}
         placeholder="Search groups"
-        className="pl-12 pr-4 dark:bg-darkWhite bg-white py-2 border-global border-border dark:border-darkBorder  dark:shadow-custom-light rounded-global w-full focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-darkPrimary"
+        className="input pl-12 text-lg"
       />
     </div>
   );

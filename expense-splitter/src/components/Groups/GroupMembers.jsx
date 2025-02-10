@@ -18,8 +18,6 @@ function GroupMembers() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
 
-  const maxMembers = 10;
-
   const group = useSelector((state) =>
     state.groups.groups.find((group) => group.id === parseInt(groupId))
   );
@@ -101,7 +99,7 @@ function GroupMembers() {
     >
       <div className="flex w-full justify-between h-12">
         <p className="text-subheader font-bold text-secondary">Members</p>
-        {group.totalBudget !== 0 && group.members.length < maxMembers && (
+        {group.totalBudget !== 0 && group.members.length < 10 && (
           <motion.button
             animate={
               group.members.length === 0 && group.totalBudget !== 0
@@ -158,10 +156,10 @@ function GroupMembers() {
                   name="name"
                   value={newMember.name}
                   onChange={handleAddMemberInputChange}
-                  className="border-global dark:border-darkBorder border-border p-2 w-full rounded-global shadow-custom-dark dark:shadow-custom-light"
+                  className="input"
                   placeholder="Enter member name"
                   required
-                  maxLength="10"
+                  maxLength="13"
                 />
               </div>
 
@@ -173,7 +171,9 @@ function GroupMembers() {
                     src={image}
                     alt={`image-${index}`}
                     className={`w-[4.3rem] shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
-                      selectedImage === image ? "ring-[3px] ring-primary dark:ring-darkPrimary" : ""
+                      selectedImage === image
+                        ? "ring-[3px] ring-primary dark:ring-darkPrimary"
+                        : ""
                     }`}
                     onClick={() => handleImageSelect(image)}
                   />

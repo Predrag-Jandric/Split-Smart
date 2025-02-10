@@ -13,10 +13,13 @@
   .btnSecondary {
     @apply h-9 border transition-all text-base border-primary/90 dark:border-darkPrimary/90 dark:text-white
      dark:hover:text-black text-black hover:text-white
-     bg-white dark:bg-darkWhite shadow-custom-dark 
+     bg-primary/5 dark:bg-darkPrimary/5 shadow-custom-dark 
      dark:shadow-custom-light px-4
       hover:bg-primary dark:hover:bg-darkPrimary
       rounded-global;
+  }
+  .input {
+    @apply dark:bg-darkBorder text-base text-black dark:text-darkBlack border-global dark:border-darkBorder border-border p-2.5 px-4 w-full rounded-global shadow-custom-dark dark:shadow-custom-light focus:outline-none focus:ring-1 focus:ring-primary/85 dark:focus:ring-darkPrimary/85;
   }
 }
 
