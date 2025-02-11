@@ -12,14 +12,14 @@ function SearchBar({ searchQuery, onSearch, clearSearch }) {
   };
 
   return (
-    <div className="mx-auto relative w-full max-w-xs">
+    <div className="relative w-full max-w-xs">
       {searchQuery ? (
         <IoClose
-          className="dark:hover:bg-darklegendBG hover:bg-border transition absolute left-2 top-1/2 transform  -translate-y-1/2 size-8 text-primary dark:text-darkPrimary cursor-pointer"
+          className="absolute left-2 top-1/2 size-8 -translate-y-1/2 transform cursor-pointer text-primary transition hover:bg-border dark:text-darkPrimary dark:hover:bg-darklegendBG"
           onClick={handleClearSearch}
         />
       ) : (
-        <IoIosSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 size-8 text-primary dark:text-darkPrimary" />
+        <IoIosSearch className="absolute left-2 top-1/2 size-8 -translate-y-1/2 transform text-primary dark:text-darkPrimary" />
       )}
 
       <input

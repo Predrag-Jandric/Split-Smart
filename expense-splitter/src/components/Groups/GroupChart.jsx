@@ -144,6 +144,8 @@ function GroupChart({ groupId }) {
     closeModal();
   };
 
+  console.log(typeof remainingPercentage, remainingPercentage);
+
   return (
     <section
       className="flex flex-col items-center justify-start dark:bg-darkWhite bg-white
@@ -193,15 +195,19 @@ function GroupChart({ groupId }) {
                   </div>
                 </div>
               ))}
-              <p className="text-md">
-                Percentage left to divide: {remainingPercentage}%
-              </p>
+
               <button
                 type="submit"
-                className="btnPrimary h-12 cursor-pointer"
+                className={`h-12 btnPrimary w-[20rem] ${
+                  remainingPercentage !== 0
+                    ? "cursor-not-allowed dark:bg-alert font-semibold hover:bg-alert dark:border-alert dark:hover:bg-alert dark:hover:border-alert hover:border-alert bg-alert border-alert" // Disabled styles
+                    : " cursor-pointer" // Enabled styles
+                }`}
                 disabled={remainingPercentage !== 0}
               >
-                Update Contributions
+                {remainingPercentage !== 0
+                  ? `Distribute Remaining ${remainingPercentage}%`
+                  : "Update Contributions"}
               </button>
             </form>
           }
@@ -262,9 +268,7 @@ function GroupChart({ groupId }) {
         </>
       ) : (
         <p className="text-md my-16 font-semibold">
-          {group.totalBudget === 0
-            ? "Add total budget"
-            : "Add group member"}
+          {group.totalBudget === 0 ? "Add total budget" : "Add group member"}
         </p>
       )}
     </section>
