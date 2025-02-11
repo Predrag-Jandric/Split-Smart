@@ -33,7 +33,7 @@ function GroupName({ group }) {
         <p className="font-body font-medium text-title dark:text-darkTitle ">
           {group.description}{" "}
           <span
-            className="cursor-pointer hover:no-underline underline text-primary dark:text-darkPrimary"
+            className="cursor-pointer hover:underline no-underline text-primary dark:text-darkPrimary"
             onClick={openModal}
           >
             {group.description ? "Edit" : "Add description"}

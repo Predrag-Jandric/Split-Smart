@@ -26,7 +26,7 @@ const ExpenseBar = ({ expense, budget }) => {
               className="absolute top-0 bg-mainBG dark:bg-darkmainBG h-full transition-all duration-500 ease-out"
               style={{
                 width: "6px", // width of the white tip in front of primary bar
-                left: `calc(${expensePercentage}% - 2px)`, //the white tip moves with the progress
+                left: `calc(${expensePercentage}%)`, //the white tip moves with the progress
               }}
             ></p>
           </div>

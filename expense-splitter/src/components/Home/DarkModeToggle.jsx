@@ -16,8 +16,8 @@ function DarkModeToggle({closeSidebar}) {
 
   return (
     <button
-    onClick={() => { toggleDarkMode(); closeSidebar(); }}
-      className="btnSecondary mb-10 flex items-center gap-2 justify-center"
+    onClick={() => { toggleDarkMode() }}
+      className="btnSecondary mb-10 mx-8 flex items-center gap-2 justify-center"
     >
       {darkMode ? "☀️" : "🌙"}
       <span>{darkMode ? "Light mode" : "Dark mode"}</span>

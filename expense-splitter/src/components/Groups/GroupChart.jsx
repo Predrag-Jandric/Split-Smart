@@ -263,8 +263,8 @@ function GroupChart({ groupId }) {
       ) : (
         <p className="text-md my-16 font-semibold">
           {group.totalBudget === 0
-            ? "Add Total budget first"
-            : "Add member to see the chart"}
+            ? "Add total budget"
+            : "Add group member"}
         </p>
       )}
     </section>
