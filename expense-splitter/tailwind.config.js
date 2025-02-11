@@ -9,8 +9,8 @@ export default {
     extend: {
       colors: {
         mainBG: "#F4F7FE",
-        primary: "#3374FF", // primary light theme
-        primaryHover: "#004ef5", // darker -23 shades in https://coolors.co/
+        primary: "#3775FB", // primary light theme
+        primaryHover: "#2367FB", // darker -23 shades in https://coolors.co/
         title: "#94A1C7",
         legendBG: "#F9FBFF",
         legend: "#767676",
@@ -22,8 +22,8 @@ export default {
 
         // DARK THEME COLORS - use prefix "dark"
         darkmainBG: "#212529",
-        darkPrimary: "#19F0F0", // primary dark theme
-        darkprimaryHover: "#0DD3D3", // lighter 2-3 shades in https://coolors.co/
+        darkPrimary: "#FFD413", // primary dark theme
+        darkprimaryHover: "#FFE15C", // lighter 2-3 shades in https://coolors.co/
         darkTitle: "#C1C2C3",
         darklegendBG: "#434950",
         darkLegend: "#EAEAEB",
@@ -31,7 +31,7 @@ export default {
         darkBorder: "#2F3237",
         darkWhite: "#383d43",
         darkBlack: "#F5F5F5",
-        darkprogressBar: "#077373", // much darkened "darkPrimary"
+        darkprogressBar: "#665300", // much darkened "darkPrimary"
       },
       /* Defining consistent global typography
       fontFamily: {

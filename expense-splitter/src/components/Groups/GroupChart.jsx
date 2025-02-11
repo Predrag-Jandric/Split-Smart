@@ -170,13 +170,14 @@ function GroupChart({ groupId }) {
           content={
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {group.members.map((member) => (
-                // members and their contributions slider
                 <div
                   key={member.id}
-                  className="flex justify-between items-center gap-2"
+                  className="flex items-center justify-between gap-4"
                 >
-                  <label className="text-body">{member.name}</label>
-                  <div className="flex items-center justify-end">
+                  <label className="text-body font-semibold">
+                    {member.name}
+                  </label>{" "}
+                  <div className="flex w-full items-center justify-end gap-3">
                     <input
                       type="range"
                       min="0"
@@ -186,10 +187,10 @@ function GroupChart({ groupId }) {
                       onChange={(e) =>
                         handleContributionChange(member.id, e.target.value)
                       }
-                      className="mr-3 w-[10rem]"
-                      required
+                      className="w-[13rem] accent-primary transition-all dark:accent-darkPrimary"
                     />
-                    <span className="text-body">
+
+                    <span className="w-[3rem] text-right text-body font-semibold">
                       {customContributions[member.id]} %
                     </span>
                   </div>
