@@ -1,31 +1,21 @@
 import { IoClose } from "react-icons/io5";
 
-const Modal = ({title, content, onClose, handleClickOutside }) => {
+const Modal = ({ title, content, onClose, handleClickOutside }) => {
   return (
     <section
       id="modal-overlay"
-      className="!m-0 fixed z-50 text-black dark:text-darkBlack 
-      inset-0 bg-darkmainBG bg-opacity-80  
-      flex justify-center items-center"
+      className="fixed inset-0 z-50 !m-0 flex items-center justify-center bg-darkmainBG bg-opacity-80 text-black dark:text-darkBlack"
       onClick={handleClickOutside}
     >
-      <article className="bg-white dark:bg-darklegendBG
-       border-global dark:border-darkBorder border-border
-        p-10 rounded-global w-[90%] sm:w-[32rem] shadow-custom-dark m-5 dark:shadow-custom-light">
-        <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">{title}</h2>
+      <article className="m-5 w-[90%] rounded-global border-global border-border bg-white p-10 shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light sm:w-[32rem]">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold">{title}</h2>
 
           <button
-            className="bg-alert/15 flex items-center justify-center
-             dark:bg-alert/20 transition-colors shadow-custom-dark dark:shadow-custom-light rounded-full border-global
-             hover:bg-alert dark:hover:bg-darkAlert
-              hover:text-white dark:hover:text-darkWhite
-               border-border dark:border-darkBorder w-10 h-10
-                text-alert
-               dark:text-darkAlert"
+            className="flex h-10 w-10 items-center justify-center rounded-full border-global border-border bg-alert/15 text-alert shadow-custom-dark transition-colors hover:bg-alert hover:text-white dark:border-darkBorder dark:bg-alert/20 dark:text-darkAlert dark:shadow-custom-light dark:hover:bg-darkAlert dark:hover:text-darkWhite"
             onClick={onClose}
           >
-          <IoClose className="size-6" />
+            <IoClose className="size-6" />
           </button>
         </div>
         {content}

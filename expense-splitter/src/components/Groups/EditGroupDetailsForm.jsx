@@ -9,32 +9,38 @@ import { images } from "../Utils/images";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// edit group details form
 function EditGroupDetailsForm({ group, closeModal }) {
   const dispatch = useDispatch();
   const [groupName, setGroupName] = useState(group.name);
   const [selectedImage, setSelectedImage] = useState(group.image);
   const [groupDescription, setGroupDescription] = useState(group.description);
 
+  // sets initial values
   useEffect(() => {
     setGroupName(group.name);
     setSelectedImage(group.image);
     setGroupDescription(group.description);
   }, [group.name, group.image, group.description]);
 
+  // handle input change
   const handleInputChange = (e) => {
     let value = e.target.value;
     setGroupName(value.charAt(0).toUpperCase() + value.slice(1));
   };
 
+  // handle image selection
   const handleImageSelect = (image) => {
     setSelectedImage(image);
   };
 
+  // handle description change
   const handleDescriptionChange = (e) => {
     let value = e.target.value;
     setGroupDescription(value.charAt(0).toUpperCase() + value.slice(1));
   };
 
+  // update group details
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateGroupName({ groupId: group.id, newName: groupName }));
@@ -43,7 +49,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
       updateGroupDescription({
         groupId: group.id,
         newDescription: groupDescription,
-      })
+      }),
     );
     toast.success(`Group details updated`, {
       position: "top-right",
@@ -67,7 +73,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
         />
       </div>
       <div>
-        <label className="text-body font-semibold ">Description</label>
+        <label className="text-body font-semibold">Description</label>
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
@@ -83,9 +89,9 @@ function EditGroupDetailsForm({ group, closeModal }) {
             key={index}
             src={image}
             alt={`image-${index}`}
-            className={`w-[4.3rem] transition hover:scale-110 shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+            className={`!m-0 h-[4.3rem] w-[4.3rem] cursor-pointer rounded-full object-cover shadow-custom-dark transition hover:scale-110 dark:shadow-custom-light ${
               selectedImage === image
-                ? "ring-[3px] dark:ring-darkPrimary ring-primary"
+                ? "ring-[3px] ring-primary dark:ring-darkPrimary"
                 : ""
             }`}
             onClick={() => handleImageSelect(image)}

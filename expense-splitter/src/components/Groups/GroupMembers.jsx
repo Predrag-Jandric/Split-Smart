@@ -1,9 +1,7 @@
-import GroupsEachMember from "./GroupsEachMember";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addMember, removeMember } from "../../features/groupsSlice";
 import { useState } from "react";
-// modal
 import Modal from "../Utils/Modal";
 import useModal from "../Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,12 +12,14 @@ import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
 import { IoClose } from "react-icons/io5";
 
+// this component is responsible for adding and removing members of a group. based on this,
+// contributions in the GroupChart.jsx will be set.
 function GroupMembers() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
 
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === parseInt(groupId))
+    state.groups.groups.find((group) => group.id === parseInt(groupId)),
   );
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
@@ -32,21 +32,22 @@ function GroupMembers() {
     return <div>Group not found.</div>;
   }
 
+  // remove member
   const handleRemoveMember = (memberId, memberName) => {
     setMemberToRemove({ id: memberId, name: memberName });
     setIsRemoveModalOpen(true);
   };
 
+  // confirmation of member removal
   const confirmRemoveMember = () => {
     if (memberToRemove) {
       dispatch(
         removeMember({
           groupId: parseInt(groupId),
           memberId: memberToRemove.id,
-        })
+        }),
       );
 
-      // Show toast notification
       toast.success(`${memberToRemove.name} removed`, {
         position: "top-right",
         autoClose: 2000,
@@ -57,6 +58,7 @@ function GroupMembers() {
     }
   };
 
+  // add member and make its name always capitalised
   const handleAddMemberInputChange = (e) => {
     const { name, value } = e.target;
     setNewMember({
@@ -65,6 +67,7 @@ function GroupMembers() {
     });
   };
 
+  // submit data payload for new member
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -75,9 +78,9 @@ function GroupMembers() {
           name: newMember.name,
           image: selectedImage || unknownPerson,
         },
-      })
+      }),
     );
-    // Show toast notification
+
     toast.success(`${newMember.name} added`, {
       position: "top-right",
       autoClose: 2000,
@@ -93,12 +96,14 @@ function GroupMembers() {
   };
 
   return (
-    <section
-      className="bg-white dark:bg-darkWhite flex flex-col border-global border-border p-global rounded-global shadow-custom-dark dark:shadow-custom-light dark:border-darkBorder dark:text-darkBlack text-black
-      w-full"
-    >
-      <div className="flex w-full justify-between h-12">
-        <p className="text-subheader font-bold">Members <span className="ml-2 font-normal">({group.members.length})</span> </p>
+    <section className="flex w-full flex-col rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
+      <div className="flex h-12 w-full justify-between">
+        <p className="text-subheader font-bold">
+          Members{" "}
+          <span className="ml-2 font-normal">
+            ({group.members.length})
+          </span>{" "}
+        </p>
         {group.totalBudget !== 0 && group.members.length < 10 && (
           <motion.button
             animate={
@@ -117,24 +122,23 @@ function GroupMembers() {
         )}
       </div>
 
-      {/* note to self, add bg-red-500 to line under to better checking for aligments */}
-      <article className="mt-5 gap-4 flex flex-wrap justify-start ">
+      {/* small section containing each member image and name and remove btn */}
+      <article className="mt-5 flex flex-wrap justify-start gap-4">
         {group.members.map((member) => (
           <div
             key={member.id}
-            // note to self, add bg-red-200 to line under to better checking for aligments
-            className="relative flex flex-col items-center"
+            className="relative flex w-20 flex-col items-center text-center"
           >
-            <GroupsEachMember
-              member={{
-                name: member.name,
-                img: member.image,
-              }}
+            <img
+              className="h-[4rem] w-[4rem] rounded-full object-cover"
+              src={member.image}
+              alt={member.name}
             />
+            <p className="w-full pt-2">{member.name}</p>
 
             <button
               onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bg-alert dark:bg-darkAlert flex items-center justify-center rounded-full font-extrabold text-lg dark:text-darkWhite text-white transition-all hover:text-black dark:hover:text-darkBlack w-5 h-5 absolute bottom-22 left-14"
+              className="bottom-22 absolute left-14 flex h-5 w-5 items-center justify-center rounded-full bg-alert text-lg font-extrabold text-white transition-all hover:text-black dark:bg-darkAlert dark:text-darkWhite dark:hover:text-darkBlack"
             >
               <IoClose className="size-4" />
             </button>
@@ -143,9 +147,9 @@ function GroupMembers() {
       </article>
 
       {/* MODAL for adding member */}
-      {isOpen && ( // Conditionally render Modal if it's open
+      {isOpen && (
         <Modal
-        title="Add new member"
+          title="Add new member"
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
@@ -171,9 +175,9 @@ function GroupMembers() {
                     key={index}
                     src={image}
                     alt={`image-${index}`}
-                    className={`w-[4.3rem] transition hover:scale-110 shadow-custom-dark dark:shadow-custom-light h-[4.3rem] object-cover !m-0 rounded-full cursor-pointer ${
+                    className={`!m-0 h-[4.3rem] w-[4.3rem] cursor-pointer rounded-full object-cover shadow-custom-dark transition hover:scale-110 dark:shadow-custom-light ${
                       selectedImage === image
-                        ? "ring-[3px] dark:ring-darkPrimary ring-primary"
+                        ? "ring-[3px] ring-primary dark:ring-darkPrimary"
                         : ""
                     }`}
                     onClick={() => handleImageSelect(image)}
@@ -194,17 +198,17 @@ function GroupMembers() {
       {/* MODAL for removing member */}
       {isRemoveModalOpen && (
         <Modal
-        title={`Remove ${memberToRemove?.name}  `}
+          title={`Remove ${memberToRemove?.name}  `}
           content={
             <>
               <p>Are you sure?</p>
-              <div className="flex justify-start gap-5 mt-4">
+              <div className="mt-4 flex justify-start gap-5">
                 <button onClick={confirmRemoveMember} className="btnPrimary">
                   Yes
                 </button>
                 <button
                   onClick={() => setIsRemoveModalOpen(false)}
-                  className="btnSecondary border-alert dark:border-darkAlert dark:hover:bg-darkAlert hover:bg-alert text-black dark:text-darkBlack"
+                  className="btnSecondary border-alert text-black hover:bg-alert dark:border-darkAlert dark:text-darkBlack dark:hover:bg-darkAlert"
                 >
                   No
                 </button>

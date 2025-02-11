@@ -2,44 +2,37 @@ const ExpenseBar = ({ expense, budget }) => {
   const expensePercentage = (expense / budget) * 100;
 
   return (
-    <section
-      className="flex p-global flex-col justify-between w-full  min-w-0 h-auto rounded-global
-     bg-white dark:bg-darkWhite border-global text-black dark:text-darkBlack dark:border-darkBorder border-border shadow-custom-dark dark:shadow-custom-light overflow-hidden"
-    >
+    <section className="flex h-auto w-full min-w-0 flex-col justify-between overflow-hidden rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
       <p className="text-subheader font-bold">Expense vs budget</p>
 
-      <div className="flex flex-col gap-7 md:flex-row lg:flex-col justify-between items-start">
-        <article className="pr-4 w-full">
+      <div className="flex flex-col items-start justify-between gap-7 md:flex-row lg:flex-col">
+        <article className="w-full pr-4">
           {/* progress bar */}
-          <div
-            className="relative h-8 rounded-global 
-           
-          dark:bg-darkprogressBar
-           bg-progressBar mb-2 mt-4 overflow-hidden"
-          >
+          <div className="relative mb-2 mt-4 h-8 overflow-hidden rounded-global bg-progressBar dark:bg-darkprogressBar">
             <p
-              className="absolute left-0 top-0 dark:bg-darkPrimary bg-primary h-full transition-all duration-500 ease-out rounded-global"
+              className="absolute left-0 top-0 h-full rounded-global bg-primary transition-all duration-500 ease-out dark:bg-darkPrimary"
               style={{ width: `${expensePercentage}%` }}
             ></p>
-            {/* white tip in front of primary movable bar */}
+            {/* TIP dividing the budget from expense colors */}
             <p
-              className="absolute top-0 bg-mainBG dark:bg-darkmainBG h-full transition-all duration-500 ease-out"
+              className="absolute top-0 h-full bg-mainBG transition-all duration-500 ease-out dark:bg-darkmainBG"
               style={{
-                width: "6px", // width of the white tip in front of primary bar
-                left: `calc(${expensePercentage}%)`, //the white tip moves with the progress
+                width: "6px",
+                left: `calc(${expensePercentage}%)`, 
               }}
             ></p>
           </div>
-          {/* numbers */}
-          <div className="flex justify-between text-subheader font-bold relative">
+          {/* numbers under the progress bar */}
+          <div className="relative flex justify-between text-subheader font-bold">
             <p
+            // this style here ensures that the numbers do not ovelap or overflow in certain use cases when expense is too high or too low
               style={{
                 left:
                   expensePercentage < 20
-                    ? "0.5rem" // Ensure visibility for very low expenses
+                    ? "0.5rem" 
                     : expensePercentage > 70
-                    ? "calc(70% - 4.5rem)" // Stop at 70% to avoid overlapping with budget figure
-                    : `calc(${expensePercentage}% - 3rem)`,
+                      ? "calc(70% - 4.5rem)" 
+                      : `calc(${expensePercentage}% - 3rem)`,
               }}
               className="absolute transition-all duration-500 ease-out"
             >
@@ -49,16 +42,16 @@ const ExpenseBar = ({ expense, budget }) => {
           </div>
         </article>
 
-        {/* legend */}
-        <article className="flex flex-col bg-legendBG dark:bg-darklegendBG dark:border-darkBorder border-global border-border dark:shadow-custom-light shadow-custom-dark items-start p-global text-xs font-bold gap-4 w-full md:w-56 lg:w-full rounded-global">
+        {/* legend under the progress bar, telling the user what color represents what */}
+        <article className="flex w-full flex-col items-start gap-4 rounded-global border-global border-border bg-legendBG p-global text-xs font-bold shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light md:w-56 lg:w-full">
           <div className="flex items-center">
-            <span className="size-4 rounded-full dark:bg-darkPrimary bg-primary mr-2"></span>
-            <span className="font-semibold dark:text-darkLegend text-legendSize">
+            <span className="mr-2 size-4 rounded-full bg-primary dark:bg-darkPrimary"></span>
+            <span className="text-legendSize font-semibold dark:text-darkLegend">
               Expense
             </span>
           </div>
           <div className="flex items-center">
-            <span className="size-4 rounded-full dark:bg-darkprogressBar bg-progressBar dark mr-2"></span>
+            <span className="dark mr-2 size-4 rounded-full bg-progressBar dark:bg-darkprogressBar"></span>
 
             <span className="text-legendSize font-semibold dark:text-darkLegend">
               Remaining budget

@@ -4,22 +4,13 @@
 
 @layer components {
   .btnPrimary {
-    @apply h-9 border transition-all text-base dark:border-darkPrimary border-primary dark:shadow-custom-light shadow-custom-dark
-      px-4 bg-primary dark:bg-darkPrimary
-       text-white dark:text-darkWhite
-       rounded-global flex items-center justify-center
-        hover:bg-primaryHover dark:hover:bg-darkprimaryHover dark:hover:border-darkprimaryHover;
+    @apply flex h-9 items-center justify-center rounded-global border border-primary bg-primary px-4 text-base text-white shadow-custom-dark transition-all hover:bg-primaryHover dark:border-darkPrimary dark:bg-darkPrimary dark:text-darkWhite dark:shadow-custom-light dark:hover:border-darkprimaryHover dark:hover:bg-darkprimaryHover;
   }
   .btnSecondary {
-    @apply h-9 border transition-all text-base border-primary/90 dark:border-darkPrimary/90 dark:text-white
-     dark:hover:text-black text-black hover:text-white
-     bg-primary/5 dark:bg-darkPrimary/5 shadow-custom-dark 
-     dark:shadow-custom-light px-4
-      hover:bg-primary dark:hover:bg-darkPrimary
-      rounded-global;
+    @apply h-9 rounded-global border border-primary/90 bg-primary/5 px-4 text-base text-black shadow-custom-dark transition-all hover:bg-primary hover:text-white dark:border-darkPrimary/90 dark:bg-darkPrimary/5 dark:text-white dark:shadow-custom-light dark:hover:bg-darkPrimary dark:hover:text-black;
   }
   .input {
-    @apply dark:bg-darkBorder text-base text-black dark:text-darkBlack border-global dark:border-darkBorder border-border p-2.5 px-4 w-full rounded-global shadow-custom-dark dark:shadow-custom-light focus:outline-none focus:ring-1 focus:ring-primary/85 dark:focus:ring-darkPrimary/85;
+    @apply w-full rounded-global border-global border-border p-2.5 px-4 text-base text-black shadow-custom-dark focus:outline-none focus:ring-1 focus:ring-primary/85 dark:border-darkBorder dark:bg-darkBorder dark:text-darkBlack dark:shadow-custom-light dark:focus:ring-darkPrimary/85;
   }
 }
 

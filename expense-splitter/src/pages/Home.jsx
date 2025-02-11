@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getRandomImage } from "../components/Utils/images";
 
+// home page where you see all the groups and a button to create a new group
 function Home() {
   const groups = useSelector((state) => state.groups.groups);
 
@@ -23,6 +24,7 @@ function Home() {
   const [filteredGroups, setFilteredGroups] = useState(groups);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // search bar functionality
   const handleSearch = (query) => {
     setSearchQuery(query);
     const lowerCaseQuery = query.toLowerCase();
@@ -30,11 +32,12 @@ function Home() {
       groups.filter((group) =>
         lowerCaseQuery
           .split("")
-          .every((char) => group.name.toLowerCase().includes(char))
-      )
+          .every((char) => group.name.toLowerCase().includes(char)),
+      ),
     );
   };
 
+  // also search bar functionality
   const clearSearch = () => {
     setSearchQuery("");
     setFilteredGroups(groups);
@@ -57,6 +60,7 @@ function Home() {
     });
   };
 
+  // payload for creating a new group
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -68,8 +72,8 @@ function Home() {
         description: "",
         totalBudget: 0,
         totalExpense: 0,
-        members: [], // empty for now
-      })
+        members: [],
+      }),
     );
 
     setNewGroup({
@@ -80,8 +84,8 @@ function Home() {
       autoClose: 2000,
     });
 
-    clearSearch(); // Clear the search input
-    closeModal(); // Close modal after submission
+    clearSearch();
+    closeModal();
   };
 
   useEffect(() => {
@@ -89,16 +93,17 @@ function Home() {
   }, [groups]);
 
   return (
-    <section className="text-xl  ">
-      <article className="flex flex-col lg:text-start lg:flex-row gap-4 text-center items-center justify-between">
+    <section className="text-xl">
+      <article className="flex flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-start">
         <div className="text-black dark:text-darkBlack">
-          <h1 className="text-header leading-[2.8rem] font-bold">
+          <h1 className="text-header font-bold leading-[2.8rem]">
             Welcome to SplitSmart
           </h1>
           <p className="my-5 font-normal">
-          An app to help you split expenses among friends easily.
+            An app to help you split expenses among friends easily.
           </p>
         </div>
+        {/* if there are no groups, search bar is also not rendered */}
         {groups.length > 0 && (
           <SearchBar
             searchQuery={searchQuery}
@@ -108,40 +113,43 @@ function Home() {
         )}
       </article>
 
-      <article className="flex w-full justify-center sm:justify-start flex-wrap gap-8 mt-8">
+      {/* big card with a btn to create new group */}
+      <article className="mt-8 flex w-full flex-wrap justify-center gap-8 sm:justify-start">
         {groups.length < 10 && (
-          <div className="bg-white dark:bg-darkWhite border-global dark:border-darkBorder border-border w-80 h-60 shadow-custom-dark dark:shadow-custom-light rounded-global flex items-center justify-center flex-col">
+          <div className="flex h-60 w-80 flex-col items-center justify-center rounded-global border-global border-border bg-white shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:shadow-custom-light">
             <motion.button
-              variants={jumpyAnimation} // Apply the jumpyAnimation
+              variants={jumpyAnimation}
               initial="initial"
-              animate={filteredGroups.length === 0 ? "animate" : "initial"} // Conditionally apply animation
-              onClick={openModal} // Use openModal from the custom hook
-              className={`size-16 transition text-5xl rounded-full ${
+              animate={filteredGroups.length === 0 ? "animate" : "initial"}
+              onClick={openModal}
+              className={`size-16 rounded-full text-5xl transition ${
                 filteredGroups.length === 0
-                  ? "bg-primary dark:bg-darkPrimary dark:text-darkWhite text-white hover:bg-primaryHover dark:hover:bg-darkprimaryHover"
-                  : "bg-transparent dark:bg-transparent hover:bg-primary dark:hover:bg-darkPrimary text-primary dark:text-darkPrimary hover:text-white dark:hover:text-darkWhite border-2 border-primary dark:border-darkPrimary"
+                  ? "bg-primary text-white hover:bg-primaryHover dark:bg-darkPrimary dark:text-darkWhite dark:hover:bg-darkprimaryHover"
+                  : "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-white dark:border-darkPrimary dark:bg-transparent dark:text-darkPrimary dark:hover:bg-darkPrimary dark:hover:text-darkWhite"
               }`}
             >
               +
             </motion.button>
-            <p className="text-2xl mt-4 font-bold text-black dark:text-darkBlack">
+            <p className="mt-4 text-2xl font-bold text-black dark:text-darkBlack">
               Create Group
             </p>
           </div>
         )}
 
+        {/* groups cards */}
         {filteredGroups.length > 0
           ? filteredGroups.map((group) => (
               <HomeIndividualGroup key={group.id} group={group} />
             ))
           : searchQuery && (
-              <p className="place-content-center text-center font-semibold w-80 h-60 text-black dark:text-darkBlack">
+              <p className="h-60 w-80 place-content-center text-center font-semibold text-black dark:text-darkBlack">
                 No groups found
               </p>
             )}
       </article>
 
-      {isOpen && ( // Use isOpen from the custom hook
+      {/* MODAL to create a new group */}
+      {isOpen && (
         <Modal
           title="Create new group"
           content={

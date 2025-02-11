@@ -13,15 +13,17 @@ import {
 } from "react-icons/io";
 
 function Sidebar() {
-  const [expanded, setExpanded] = useState(true); // State to control expansion
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to control sidebar visibility on small screens
+  // expanded controls "Group" link in the navbar being expanded and showing the list of present groups or not
+  const [expanded, setExpanded] = useState(true);
+  // isSidebarOpen controls whether the sidebar is expanded or not on small screens
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // map for scalability in the future
   const SIDEBAR_LINKS = [
     { id: 124534, path: "/", name: "Home", icon: MdGroups },
     { id: 262546, path: null, name: "Groups", icon: IoMdPerson },
   ];
 
-  // Fetching groups from the Redux store
   const groups = useSelector((state) => state.groups.groups);
 
   const toggleSidebar = () => {
@@ -37,7 +39,7 @@ function Sidebar() {
       {/* toggle button for small screens */}
       <button
         onClick={toggleSidebar}
-        className="fixed top-4 left-4 z-20 dark:bg-darkPrimary bg-primary dark:text-darkWhite text-white p-2 rounded-full lg:hidden"
+        className="fixed left-4 top-4 z-20 rounded-full bg-primary p-2 text-white dark:bg-darkPrimary dark:text-darkWhite lg:hidden"
       >
         {isSidebarOpen ? (
           <IoIosArrowBack size={24} />
@@ -48,33 +50,31 @@ function Sidebar() {
 
       {/* sidebar */}
       <div
-        className={`fixed top-0 left-0  h-full w-64 bg-white dark:bg-darkWhite dark:shadow-custom-light shadow-custom-dark z-10 pt-2 transform border-r border-progressBar 
-          dark:border-darkmainBG ${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } transition-transform lg:relative lg:translate-x-0 lg:w-56 flex flex-col`}
+        className={`fixed left-0 top-0 z-10 h-full w-64 transform border-r border-progressBar bg-white pt-2 shadow-custom-dark dark:border-darkmainBG dark:bg-darkWhite dark:shadow-custom-light ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col transition-transform lg:relative lg:w-56 lg:translate-x-0`}
       >
         {/* logo */}
         <NavLink
           to="/"
-          className="flex py-7 justify-center cursor-pointer "
+          className="flex cursor-pointer justify-center py-7"
           onClick={closeSidebar}
         >
           <img src={special} alt="logo" className="mr-1 flex" />
         </NavLink>
 
-        {/* Navigation */}
-        <nav className="flex-1 mt-3">
+        {/* navigation links */}
+        <nav className="mt-3 flex-1">
           {SIDEBAR_LINKS.map((link, index) => {
             if (link.name === "Groups") {
               if (groups.length === 0) {
                 return null;
               }
               return (
-                // groups
+                // "Groups" second link in the sidebar
                 <div key={link.id}>
                   <div
-                    className="flex dark:hover:bg-darkmainBG/70 transition items-center px-6 py-5 space-x-5 text-lg dark:hover:bg-
-                     hover:bg-progressBar/50 text-primary dark:text-darkPrimary cursor-pointer"
+                    className="dark:hover:bg- flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
                     onClick={() => setExpanded(!expanded)}
                   >
                     <span>{link.icon()}</span>
@@ -90,17 +90,13 @@ function Sidebar() {
                       {groups.map((group) => (
                         <NavLink
                           key={group.id}
-                          to={`/groups/${group.id}`} // Hooking from routes for each group
+                          to={`/groups/${group.id}`} // path to the specific group page
                           className={({ isActive }) =>
-                            `flex dark:hover:bg-darkmainBG/70 
-                          transition items-center px-10 py-3 text-sm 
-                     hover:bg-progressBar/50 
-                      font-medium
-                      dark:text-darkBlack cursor-pointer ${
-                        isActive
-                          ? "text-primary dark:text-darkPrimary dark:bg-darkmainBG/70 bg-progressBar/50"
-                          : "text-legend"
-                      }`
+                            `flex cursor-pointer items-center px-10 py-3 text-sm font-medium transition hover:bg-progressBar/50 dark:text-darkBlack dark:hover:bg-darkmainBG/70 ${
+                              isActive
+                                ? "bg-progressBar/50 text-primary dark:bg-darkmainBG/70 dark:text-darkPrimary"
+                                : "text-legend"
+                            }`
                           }
                           onClick={closeSidebar}
                         >
@@ -114,12 +110,11 @@ function Sidebar() {
             }
 
             return (
-              // home page
+              // home page btn
               <NavLink
                 key={index}
                 to={link.path}
-                className="flex dark:hover:bg-darkmainBG/70 transition items-center px-6 py-5 space-x-5 text-lg dark:hover:bg-
-                     hover:bg-progressBar/50 text-primary dark:text-darkPrimary cursor-pointer"
+                className="dark:hover:bg- flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
                 onClick={closeSidebar}
               >
                 <span>{link.icon()}</span>

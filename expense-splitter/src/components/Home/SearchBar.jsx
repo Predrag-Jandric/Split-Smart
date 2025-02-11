@@ -1,6 +1,7 @@
 import { IoIosSearch } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 
+// just a search bar component which is on the homepage and is used to search for groups
 function SearchBar({ searchQuery, onSearch, clearSearch }) {
   const handleSearch = (e) => {
     const value = e.target.value;

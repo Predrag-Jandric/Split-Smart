@@ -1,3 +1,4 @@
+// jumpy animation used for UX to guide user what to do next
 export const jumpyAnimation = {
   initial: { y: 0 },
   animate: {

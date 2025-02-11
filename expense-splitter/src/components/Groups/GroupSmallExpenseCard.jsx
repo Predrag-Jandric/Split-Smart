@@ -1,10 +1,9 @@
-// for icons, go to this page https://react-icons.github.io/react-icons/ the search for the icon you need. package is already installed, you just need to import the icon, just like the one above, on line 1. on the webpage, when you click on the icon and open it, you will see the code you need to copy paste to import it. to use the icon, you just put it in JSX like its a normal component. follow the <MdGroups/> example below
-
 import { jumpyAnimation } from "../Utils/animations";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+// this component is a template for three small cards in the group page that you see at the top. in the first of these cards you see the total budget of the group and a btn to add/edit it.
 function GroupSmallExpenseCard({
   icon: Icon,
   label,
@@ -15,24 +14,25 @@ function GroupSmallExpenseCard({
 }) {
   const { groupId } = useParams();
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === parseInt(groupId))
+    state.groups.groups.find((group) => group.id === parseInt(groupId)),
   );
   return (
-    <section
-      className="bg-white w-full dark:bg-darkWhite text-black dark:text-darkBlack border-global border-border dark:border-darkBorder p-global rounded-global
-      flex items-start shadow-custom-dark dark:shadow-custom-light"
-    >
-      <div className="flex items-start space-x-4 flex-grow">
-        <Icon className="bg-mainBG dark:bg-darkmainBG rounded-full w-14 h-14 p-3 text-primary dark:text-darkPrimary" />
+    <section className="flex w-full items-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
+      <div className="flex flex-grow items-start space-x-4">
+        <Icon className="h-14 w-14 rounded-full bg-mainBG p-3 text-primary dark:bg-darkmainBG dark:text-darkPrimary" />
         <span>
-          <p className="font-body font-medium dark:text-darkTitle text-title">{label}</p>
+          <p className="font-body font-medium text-title dark:text-darkTitle">
+            {label}
+          </p>
           <p className="text-2xl font-bold">{value}</p>
         </span>
       </div>
       {button && (
         <motion.button
           onClick={onClick}
-          className={group.totalBudget !== 0 ? "btnSecondary ml-2" : "btnPrimary"}
+          className={
+            group.totalBudget !== 0 ? "btnSecondary ml-2" : "btnPrimary"
+          }
           animate={totalBudget === 0 ? "animate" : "initial"}
           variants={jumpyAnimation}
         >

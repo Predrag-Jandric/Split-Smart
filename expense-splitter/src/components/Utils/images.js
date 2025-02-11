@@ -1,3 +1,4 @@
+// these are all the iamges for groups and members of the groups
 import group1 from "../../assets/group1.jpg";
 import group2 from "../../assets/group2.jpg";
 import group3 from "../../assets/group3.jpg";
@@ -24,9 +25,9 @@ import person12 from "../../assets/person12.jpg";
 import person13 from "../../assets/person13.jpg";
 import person14 from "../../assets/person14.jpg";
 import person15 from "../../assets/person15.jpg";
-import ourLogo from "../../assets/ourLogo.png"
+import ourLogo from "../../assets/ourLogo.png";
 
-export const special = ourLogo
+export const special = ourLogo;
 
 export const imagesPeople = [
   person2,

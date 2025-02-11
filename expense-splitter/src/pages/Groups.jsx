@@ -23,7 +23,7 @@ function Groups() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === parseInt(groupId))
+    state.groups.groups.find((group) => group.id === parseInt(groupId)),
   );
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
@@ -33,11 +33,7 @@ function Groups() {
   });
 
   if (!group) {
-    return (
-      <div className="text-header font-bold">
-        Group not found
-      </div>
-    );
+    return <div className="text-header font-bold">Group not found</div>;
   }
 
   const handleEditClick = () => {
@@ -85,13 +81,13 @@ function Groups() {
       updateGroupBudget({
         groupId: parseInt(groupId),
         totalBudget,
-      })
+      }),
     );
     dispatch(
       updateGroupExpense({
         groupId: parseInt(groupId),
         totalExpense,
-      })
+      }),
     );
     setFormData({
       totalBudget: "",
@@ -109,7 +105,8 @@ function Groups() {
     <section className="flex flex-col gap-5">
       <GroupName group={group} />
 
-      <div className="flex gap-5 flex-col md:flex-row">
+      {/* the three small cards that you see near the top on individual group page. the first one has a btn to edit budget adn expense */}
+      <div className="flex flex-col gap-5 md:flex-row">
         <GroupSmallExpenseCard
           icon={GiMoneyStack}
           label="Total budget"
@@ -130,23 +127,27 @@ function Groups() {
         />
       </div>
 
-      {/* Flex container for ExpenseBar and GroupChart styling */}
-      <div className="flex flex-col gap-5 lg:flex-row w-full">
-        {/* Left column container */}
-        <div className="flex  gap-5 flex-col lg:w-1/2 min-w-0">
+      {/* container for GroupExpenseBar.jsx and GroupChart.jsx styling */}
+      <div className="flex w-full flex-col gap-5 lg:flex-row">
+        <div className="flex min-w-0 flex-col gap-5 lg:w-1/2">
           <GroupMembers members={group.members} />
           <ExpenseBar expense={totalExpense} budget={totalBudget} />
         </div>
-        <div className="lg:w-1/2 min-w-0">
+        <div className="min-w-0 lg:w-1/2">
           {" "}
-          {/* GroupChart will take the available width */}
+          {/* groupChart will take the available width */}
           <GroupChart groupId={groupId} />
         </div>
       </div>
 
+      {/* modal to move */}
       {isOpen && (
         <Modal
-          title={group.totalBudget === 0 ? "Add budget and expense" : "Edit budget and expense"}
+          title={
+            group.totalBudget === 0
+              ? "Add budget and expense"
+              : "Edit budget and expense"
+          }
           content={
             <form onSubmit={handleSubmit} className="space-y-3">
               <div>
@@ -165,7 +166,7 @@ function Groups() {
               </div>
 
               <div>
-                <label className="text-body font-semibold ">Expense</label>
+                <label className="text-body font-semibold">Expense</label>
 
                 <input
                   type="number"
@@ -183,8 +184,8 @@ function Groups() {
               </button>
             </form>
           }
-          onClose={closeModal} // Close modal when clicking close button or outside the modal
-          handleClickOutside={handleClickOutside} // Close modal when clicking outside
+          onClose={closeModal}
+          handleClickOutside={handleClickOutside}
         />
       )}
     </section>

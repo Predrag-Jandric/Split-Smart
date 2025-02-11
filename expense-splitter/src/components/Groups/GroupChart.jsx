@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
 import { toast } from "react-toastify";
 
-// chart
+// chart colors
 const COLORS = [
   "#63C7B2",
   "#FF9F1C",
@@ -43,7 +43,7 @@ const renderCustomizedLabel = ({
       fill="#1f1d1b"
       textAnchor="middle"
       dominantBaseline="central"
-      className="text-md font-bold text-secondary"
+      className="text-md text-secondary font-bold"
     >
       {(percent * 100).toFixed(0)}%
     </text>
@@ -54,7 +54,7 @@ function GroupChart({ groupId }) {
   const groupIdInt = parseInt(groupId);
 
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === groupIdInt)
+    state.groups.groups.find((group) => group.id === groupIdInt),
   );
 
   const hasMembers = group.members && group.members.length > 0;
@@ -65,9 +65,9 @@ function GroupChart({ groupId }) {
   const [customContributions, setCustomContributions] = useState({});
   const [remainingPercentage, setRemainingPercentage] = useState(100);
 
+  // set initial contributions when members are present
   useEffect(() => {
     if (hasMembers) {
-      // Initialize contributions as empty fields
       const initialContributions = group.members.reduce((acc, member) => {
         acc[member.id] = Math.round(member.contribution) || 0;
         return acc;
@@ -77,14 +77,16 @@ function GroupChart({ groupId }) {
     }
   }, [group.members, hasMembers]);
 
+  // update remaining percentage when custom contributions change
   const updateRemainingPercentage = (contributions) => {
     const totalContributions = Object.values(contributions).reduce(
       (acc, val) => acc + (parseInt(val) || 0),
-      0
+      0,
     );
     setRemainingPercentage(Math.round(100 - totalContributions));
   };
 
+  // handle custom contribution change
   const handleContributionChange = (memberId, newContribution) => {
     const newValue = parseInt(newContribution);
 
@@ -100,6 +102,7 @@ function GroupChart({ groupId }) {
     });
   };
 
+  // IMPORTANT FUNCTION. distribute remaining percentage randomly. this is the core logic of the component. it allows that the percentage is always 100%.
   const distributeRemainingPercentage = () => {
     const memberIds = Object.keys(customContributions);
     let remaining = remainingPercentage;
@@ -134,7 +137,7 @@ function GroupChart({ groupId }) {
       updateMemberContribution({
         groupId: group.id,
         contributions: customContributions,
-      })
+      }),
     );
     toast.success("Contributions updated!", {
       position: "top-right",
@@ -147,12 +150,9 @@ function GroupChart({ groupId }) {
   console.log(typeof remainingPercentage, remainingPercentage);
 
   return (
-    <section
-      className="flex flex-col items-center justify-start dark:bg-darkWhite bg-white
-     p-global rounded-global shadow-custom-dark dark:shadow-custom-light border-global border-border h-full dark:border-darkBorder text-black dark:text-darkBlack"
-    >
+    <section className="flex h-full flex-col items-center justify-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
       <div className="flex w-full justify-between">
-        <p className="text-subheader font-bold text-secondary">Contributions</p>
+        <p className="text-secondary text-subheader font-bold">Contributions</p>
         {group.members.length > 0 && (
           <motion.button
             animate={group.members.length > 0 ? "animate" : "initial"}
@@ -165,6 +165,7 @@ function GroupChart({ groupId }) {
         )}
       </div>
 
+      {/* modal form for editing contributions. thanks to this, contributions can be CUSTOM*/}
       {isOpen && (
         <Modal
           title="Edit Contributions"
@@ -198,10 +199,10 @@ function GroupChart({ groupId }) {
 
               <button
                 type="submit"
-                className={`h-12 btnPrimary w-[20rem] ${
+                className={`btnPrimary h-12 w-[20rem] ${
                   remainingPercentage !== 0
-                    ? "cursor-not-allowed dark:bg-alert font-semibold hover:bg-alert dark:border-alert dark:hover:bg-alert dark:hover:border-alert hover:border-alert bg-alert border-alert" // Disabled styles
-                    : " cursor-pointer" // Enabled styles
+                    ? "cursor-not-allowed border-alert bg-alert font-semibold hover:border-alert hover:bg-alert dark:border-alert dark:bg-alert dark:hover:border-alert dark:hover:bg-alert" // Disabled styles
+                    : "cursor-pointer" // Enabled styles
                 }`}
                 disabled={remainingPercentage !== 0}
               >
@@ -216,13 +217,14 @@ function GroupChart({ groupId }) {
         />
       )}
 
+      {/* if there are members, then display the chart wheel */}
       {hasMembers ? (
         <>
           <PieChart className="my-6" width={250} height={250}>
             <Pie
               data={group.members.map((member) => ({
                 name: member.name,
-                value: member.contribution > 0 ? member.contribution : 0, // Ensure minimum 1% for display
+                value: member.contribution > 0 ? member.contribution : 0,
               }))}
               cx={120}
               cy={120}
@@ -243,22 +245,22 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          {/* legend */}
-          <article className="mt-auto p-global w-full border-global dark:border-darkBorder border-border  shadow-custom-dark bg-legendBG dark:bg-darklegendBG flex rounded-global dark:shadow-custom-light flex-wrap justify-start gap-8">
+          {/* legend under the chart wheel, who paid and how much */}
+          <article className="mt-auto flex w-full flex-wrap justify-start gap-8 rounded-global border-global border-border bg-legendBG p-global shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light">
             {group.members.map((member, index) => (
               <div key={index} className="flex items-center">
                 <span
                   className="size-4 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-semibold dark:text-darkLegend text-legendSize ">
+                <span className="ml-2 text-legendSize font-semibold dark:text-darkLegend">
                   {member.name}
                 </span>
-                <span className="ml-1 font-bold dark:text-darkLegend text-legendSize">
+                <span className="ml-1 text-legendSize font-bold dark:text-darkLegend">
                   {" "}
                   -{" "}
                   {(group.totalExpense * (member.contribution / 100)).toFixed(
-                    0
+                    0,
                   )}{" "}
                   $
                 </span>

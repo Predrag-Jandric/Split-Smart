@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// components
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
@@ -12,7 +11,6 @@ function App() {
           <Route index element={<Home />} />
           <Route path="groups" element={<Groups />} />
           <Route path="groups/:groupId" element={<Groups />} />
-          {/* Remove any references to the /friends route */}
         </Route>
       </Routes>
     </BrowserRouter>
