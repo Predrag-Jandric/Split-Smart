@@ -60,17 +60,22 @@ function HomeIndividualGroup({ group }) {
       {/* modal to confirm removal of a single group */}
       {isOpen && (
         <Modal
-          title={`Delete ${group.name}`}
+          title={`Deleting ${group.name}`}
           content={
             <>
-              <p>Are you sure ?</p>
-              <div className="mt-4 flex justify-start gap-5">
-                <button onClick={handleRemove} className="btnPrimary h-12">
+              <p className="text-center mb-6 text-xl">Are you sure ?</p>
+              <div className="flex flex-col gap-6">
+                {" "}
+                <button
+                  onClick={handleRemove}
+                  className="btnPrimary h-10 w-full text-[1.05rem] font-semibold"
+                >
+                  {" "}
                   Yes
                 </button>
                 <button
                   onClick={closeModal}
-                  className="btnSecondary h-12 border-alert text-black transition-all hover:bg-alert dark:border-darkAlert dark:text-darkBlack dark:hover:bg-darkAlert"
+                  className="btnSecondary h-10 w-full border-alert text-[1.05rem] font-semibold text-black transition-all hover:bg-alert dark:border-darkAlert dark:text-darkBlack dark:hover:bg-darkAlert"
                 >
                   No
                 </button>

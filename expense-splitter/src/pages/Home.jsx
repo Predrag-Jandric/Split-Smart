@@ -153,9 +153,9 @@ function Home() {
         <Modal
           title="Create new group"
           content={
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label className="text-body font-semibold">Group Name</label>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+              <div className="flex flex-col gap-2">
+                <label className="text-body font-semibold">Group Name:</label>
                 <input
                   autoFocus
                   type="text"
@@ -169,7 +169,10 @@ function Home() {
                 />
               </div>
 
-              <button type="submit" className="btnPrimary h-12">
+              <button
+                type="submit"
+                className="btnPrimary h-10 text-[1.05rem] font-semibold"
+              >
                 Create
               </button>
             </form>

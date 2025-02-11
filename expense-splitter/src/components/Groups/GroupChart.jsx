@@ -147,8 +147,6 @@ function GroupChart({ groupId }) {
     closeModal();
   };
 
-  console.log(typeof remainingPercentage, remainingPercentage);
-
   return (
     <section className="flex h-full flex-col items-center justify-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
       <div className="flex w-full justify-between">
@@ -170,11 +168,12 @@ function GroupChart({ groupId }) {
         <Modal
           title="Edit Contributions"
           content={
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {group.members.map((member) => (
+                // members and their contributions slider
                 <div
                   key={member.id}
-                  className="grid grid-cols-2 items-center gap-4"
+                  className="flex justify-between items-center gap-2"
                 >
                   <label className="text-body">{member.name}</label>
                   <div className="flex items-center justify-end">
@@ -199,7 +198,7 @@ function GroupChart({ groupId }) {
 
               <button
                 type="submit"
-                className={`btnPrimary h-12 w-[20rem] ${
+                className={`btnPrimary h-10 text-[1.05rem] font-semibold ${
                   remainingPercentage !== 0
                     ? "cursor-not-allowed border-alert bg-alert font-semibold hover:border-alert hover:bg-alert dark:border-alert dark:bg-alert dark:hover:border-alert dark:hover:bg-alert" // Disabled styles
                     : "cursor-pointer" // Enabled styles

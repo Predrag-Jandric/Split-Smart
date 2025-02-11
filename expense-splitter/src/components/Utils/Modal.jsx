@@ -7,8 +7,8 @@ const Modal = ({ title, content, onClose, handleClickOutside }) => {
       className="fixed inset-0 z-50 !m-0 flex items-center justify-center bg-darkmainBG bg-opacity-80 text-black dark:text-darkBlack"
       onClick={handleClickOutside}
     >
-      <article className="m-5 w-[90%] rounded-global border-global border-border bg-white p-10 shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light sm:w-[32rem]">
-        <div className="flex items-center justify-between">
+      <article className="m-5 w-[90%] flex flex-col gap-10 rounded-global border-global border-border bg-white p-10 shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light sm:w-[32rem]">
+        <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">{title}</h2>
 
           <button

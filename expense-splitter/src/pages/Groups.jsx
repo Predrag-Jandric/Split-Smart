@@ -149,9 +149,9 @@ function Groups() {
               : "Edit budget and expense"
           }
           content={
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label className="text-body font-semibold">Budget</label>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-body font-semibold">Budget:</label>
 
                 <input
                   autoFocus
@@ -165,8 +165,8 @@ function Groups() {
                 />
               </div>
 
-              <div>
-                <label className="text-body font-semibold">Expense</label>
+              <div className="flex flex-col gap-2">
+                <label className="text-body font-semibold">Expense:</label>
 
                 <input
                   type="number"
@@ -179,7 +179,7 @@ function Groups() {
                 />
               </div>
 
-              <button type="submit" className="btnPrimary h-12">
+              <button type="submit" className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold">
                 {totalBudget === 0 ? "Add" : "Update"}
               </button>
             </form>

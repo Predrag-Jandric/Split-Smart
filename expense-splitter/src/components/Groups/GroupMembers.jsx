@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addMember, removeMember } from "../../features/groupsSlice";
+import { addMember } from "../../features/groupsSlice";
 import { useState } from "react";
 import Modal from "../Utils/Modal";
 import useModal from "../Utils/useModal";
@@ -10,7 +10,7 @@ import { imagesPeople } from "../Utils/images";
 import unknownPerson from "../../assets/unknownPerson.jpg";
 import { motion } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
-import { IoClose } from "react-icons/io5";
+import GroupsEachMember from "./GroupsEachMember";
 
 // this component is responsible for adding and removing members of a group. based on this,
 // contributions in the GroupChart.jsx will be set.
@@ -19,44 +19,16 @@ function GroupMembers() {
   const dispatch = useDispatch();
 
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === parseInt(groupId)),
+    state.groups.groups.find((group) => group.id === parseInt(groupId))
   );
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
   const [newMember, setNewMember] = useState({ name: "", image: "" });
   const [selectedImage, setSelectedImage] = useState("");
-  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
-  const [memberToRemove, setMemberToRemove] = useState(null);
 
   if (!group) {
     return <div>Group not found.</div>;
   }
-
-  // remove member
-  const handleRemoveMember = (memberId, memberName) => {
-    setMemberToRemove({ id: memberId, name: memberName });
-    setIsRemoveModalOpen(true);
-  };
-
-  // confirmation of member removal
-  const confirmRemoveMember = () => {
-    if (memberToRemove) {
-      dispatch(
-        removeMember({
-          groupId: parseInt(groupId),
-          memberId: memberToRemove.id,
-        }),
-      );
-
-      toast.success(`${memberToRemove.name} removed`, {
-        position: "top-right",
-        autoClose: 2000,
-      });
-
-      setMemberToRemove(null);
-      setIsRemoveModalOpen(false);
-    }
-  };
 
   // add member and make its name always capitalised
   const handleAddMemberInputChange = (e) => {
@@ -78,7 +50,7 @@ function GroupMembers() {
           name: newMember.name,
           image: selectedImage || unknownPerson,
         },
-      }),
+      })
     );
 
     toast.success(`${newMember.name} added`, {
@@ -100,9 +72,7 @@ function GroupMembers() {
       <div className="flex h-12 w-full justify-between">
         <p className="text-subheader font-bold">
           Members{" "}
-          <span className="ml-2 font-normal">
-            ({group.members.length})
-          </span>{" "}
+          <span className="ml-2 font-normal">({group.members.length})</span>{" "}
         </p>
         {group.totalBudget !== 0 && group.members.length < 10 && (
           <motion.button
@@ -123,25 +93,20 @@ function GroupMembers() {
       </div>
 
       {/* small section containing each member image and name and remove btn */}
-      <article className="mt-5 flex flex-wrap justify-start gap-4">
+      <article className="mt-5 gap-4 flex flex-wrap justify-start ">
         {group.members.map((member) => (
           <div
             key={member.id}
-            className="relative flex w-20 flex-col items-center text-center"
+            // note to self, add bg-red-200 to line under to better checking for aligments
+            className="relative flex flex-col items-center"
           >
-            <img
-              className="h-[4rem] w-[4rem] rounded-full object-cover"
-              src={member.image}
-              alt={member.name}
+            <GroupsEachMember
+              member={{
+                id: member.id,
+                name: member.name,
+                img: member.image,
+              }}
             />
-            <p className="w-full pt-2">{member.name}</p>
-
-            <button
-              onClick={() => handleRemoveMember(member.id, member.name)}
-              className="bottom-22 absolute left-14 flex h-5 w-5 items-center justify-center rounded-full bg-alert text-lg font-extrabold text-white transition-all hover:text-black dark:bg-darkAlert dark:text-darkWhite dark:hover:text-darkBlack"
-            >
-              <IoClose className="size-4" />
-            </button>
           </div>
         ))}
       </article>
@@ -151,9 +116,9 @@ function GroupMembers() {
         <Modal
           title="Add new member"
           content={
-            <form onSubmit={handleSubmit} className="space-y-3">
-              <div>
-                <label className="text-body font-semibold">Name</label>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-body font-semibold">Name:</label>
 
                 <input
                   autoFocus
@@ -168,7 +133,7 @@ function GroupMembers() {
                 />
               </div>
 
-              <h2 className="font-semibold">Select Image</h2>
+              <h2 className="font-semibold">Select Image:</h2>
               <div className="flex flex-wrap gap-5">
                 {imagesPeople.map((image, index) => (
                   <img
@@ -184,39 +149,16 @@ function GroupMembers() {
                   />
                 ))}
               </div>
-
-              <button type="submit" className="btnPrimary h-12">
-                Add Member
+              <button
+                type="submit"
+                className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold"
+              >
+                Update
               </button>
             </form>
           }
           onClose={closeModal}
           handleClickOutside={handleClickOutside}
-        />
-      )}
-
-      {/* MODAL for removing member */}
-      {isRemoveModalOpen && (
-        <Modal
-          title={`Remove ${memberToRemove?.name}  `}
-          content={
-            <>
-              <p>Are you sure?</p>
-              <div className="mt-4 flex justify-start gap-5">
-                <button onClick={confirmRemoveMember} className="btnPrimary">
-                  Yes
-                </button>
-                <button
-                  onClick={() => setIsRemoveModalOpen(false)}
-                  className="btnSecondary border-alert text-black hover:bg-alert dark:border-darkAlert dark:text-darkBlack dark:hover:bg-darkAlert"
-                >
-                  No
-                </button>
-              </div>
-            </>
-          }
-          onClose={() => setIsRemoveModalOpen(false)}
-          handleClickOutside={() => setIsRemoveModalOpen(false)}
         />
       )}
 

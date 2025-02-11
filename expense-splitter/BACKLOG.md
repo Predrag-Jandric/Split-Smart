@@ -2,11 +2,8 @@
 
 - test in chrome
 - when project is finished, UPDATE readme
-- make ALL modals look visually pretty - look up fragrantica modals
-
-NOW NOW NOW NOW NOW NOW
-
-- write all new comments in whole app
+- make ALL modals look visually pretty 
+- why do circular elements distort on smaller sizes ?
 
 ---
 

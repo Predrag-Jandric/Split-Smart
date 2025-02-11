@@ -59,9 +59,9 @@ function EditGroupDetailsForm({ group, closeModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div>
-        <label className="text-body font-semibold">Name</label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2">
+        <label className="text-body font-semibold">Name:</label>
         <input
           type="text"
           value={groupName}
@@ -72,8 +72,8 @@ function EditGroupDetailsForm({ group, closeModal }) {
           required
         />
       </div>
-      <div>
-        <label className="text-body font-semibold">Description</label>
+      <div className="flex flex-col gap-2">
+        <label className="text-body font-semibold">Description:</label>
         <textarea
           value={groupDescription}
           onChange={handleDescriptionChange}
@@ -82,7 +82,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
           maxLength="45"
         />
       </div>
-      <h2 className="font-semibold">Select Image</h2>
+      <h2 className="font-semibold">Select Image:</h2>
       <div className="flex flex-wrap gap-5">
         {images.map((image, index) => (
           <img
@@ -98,7 +98,7 @@ function EditGroupDetailsForm({ group, closeModal }) {
           />
         ))}
       </div>
-      <button type="submit" className="btnPrimary h-12">
+      <button type="submit" className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold">
         Update
       </button>
     </form>
