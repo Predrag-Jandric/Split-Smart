@@ -30,7 +30,7 @@ function HomeIndividualGroup({ group }) {
         <img
           className="h-20 w-20 rounded-full object-cover shadow-custom-dark dark:shadow-custom-light"
           src={group.image}
-          alt="group-logo"
+          alt="group image"
         />
         <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-75 opacity-0 transition-opacity duration-300 hover:opacity-100">
           <IoEnter className="text-3xl text-white" />

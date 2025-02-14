@@ -170,24 +170,32 @@ function GroupChart({ groupId }) {
           content={
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {group.members.map((member) => (
-                <div key={member.id} className="flex justify-end gap-2">
-                  <label className="mr-auto text-body font-semibold">
-                    {member.name}
-                  </label>{" "}
-                  <input
-                    type="range"
-                    min="0"
-                    max={remainingPercentage + customContributions[member.id]}
-                    step="1"
-                    value={customContributions[member.id]}
-                    onChange={(e) =>
-                      handleContributionChange(member.id, e.target.value)
-                    }
-                    className="w-[13rem] accent-primary transition-all dark:accent-darkPrimary"
-                  />
-                  <span className="w-[3rem] text-right text-body font-semibold">
-                    {customContributions[member.id]} %
-                  </span>
+                <div
+                  key={member.id}
+                  className="flex flex-col justify-end gap-2 sm:flex-row"
+                >
+                  {/* Name on top for small screens, left-aligned for larger screens */}
+                  <label className="text-body font-semibold sm:mr-auto">
+                    {member.name}:
+                  </label>
+
+                  {/* Wrapper to keep range input and percentage in the same row on all screens */}
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="range"
+                      min="0"
+                      max={remainingPercentage + customContributions[member.id]}
+                      step="1"
+                      value={customContributions[member.id]}
+                      onChange={(e) =>
+                        handleContributionChange(member.id, e.target.value)
+                      }
+                      className="w-[85%] accent-primary transition-all dark:accent-darkPrimary"
+                    />
+                    <span className="text-body font-semibold sm:w-[3rem] sm:text-right">
+                      {customContributions[member.id]} %
+                    </span>
+                  </div>
                 </div>
               ))}
 

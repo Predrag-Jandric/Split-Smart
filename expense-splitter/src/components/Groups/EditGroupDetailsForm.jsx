@@ -83,12 +83,12 @@ function EditGroupDetailsForm({ group, closeModal }) {
         />
       </div>
       <h2 className="font-semibold -mb-2">Select Image:</h2>
-      <div className="flex flex-wrap justify-center gap-[1.125rem]">
+      <div className="flex flex-wrap gap-[1.125rem]">
         {images.map((image, index) => (
           <img
             key={index}
             src={image}
-            alt={`image-${index}`}
+            alt={`group image`}
             className={`!m-0 h-[4.3rem] w-[4.3rem] cursor-pointer rounded-full object-cover shadow-custom-dark transition hover:scale-110 dark:shadow-custom-light ${
               selectedImage === image
                 ? "ring-[3px] ring-primary dark:ring-darkPrimary"

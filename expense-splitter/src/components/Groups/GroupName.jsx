@@ -10,11 +10,14 @@ function GroupName({ group }) {
   return (
     <section className="flex items-start gap-5 sm:items-center">
       {/* clickable and editable group image */}
-      <button onClick={openModal} className="relative mb-2 size-16 sm:size-20">
+      <button
+        onClick={openModal}
+        className="relative mb-2 h-16 w-16 flex-shrink-0 sm:h-20 sm:w-20"
+      >
         <img
-          className="size-16 rounded-full object-cover shadow-custom-dark dark:shadow-custom-light sm:size-20"
+          className="h-full w-full rounded-full object-cover shadow-custom-dark dark:shadow-custom-light"
           src={group.image}
-          alt="group-logo"
+          alt="group image"
         />
         <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-75 opacity-0 transition-opacity duration-300 hover:opacity-100">
           <RiImageEditFill className="text-3xl text-white" />
@@ -23,7 +26,7 @@ function GroupName({ group }) {
 
       {/* group name and description */}
       <div className="flex flex-col text-black dark:text-darkBlack">
-        <span className="flex items-center gap-6">
+        <span className="flex xs:flex-row xs:items-center flex-col items-start gap-3">
           <h1 className="text-header font-bold">{group.name}</h1>
           <button
             onClick={openModal}
@@ -32,13 +35,13 @@ function GroupName({ group }) {
             Edit
           </button>
         </span>
-        <p className="font-body font-medium text-title dark:text-darkTitle">
+        <p className="font-body mt-3 font-medium text-title dark:text-darkTitle">
           {group.description}{" "}
           <span
             className="cursor-pointer text-primary no-underline hover:underline dark:text-darkPrimary"
             onClick={openModal}
           >
-            {group.description ? "Edit" : "Add description"}
+            {group.description ? "" : "Add description"}
           </span>
         </p>
       </div>

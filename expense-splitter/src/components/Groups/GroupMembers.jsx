@@ -19,7 +19,7 @@ function GroupMembers() {
   const dispatch = useDispatch();
 
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === parseInt(groupId))
+    state.groups.groups.find((group) => group.id === parseInt(groupId)),
   );
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
@@ -50,7 +50,7 @@ function GroupMembers() {
           name: newMember.name,
           image: selectedImage || unknownPerson,
         },
-      })
+      }),
     );
 
     toast.success(`${newMember.name} added`, {
@@ -72,7 +72,9 @@ function GroupMembers() {
       <div className="flex h-12 w-full justify-between">
         <p className="text-subheader font-bold">
           Members{" "}
-          <span className="ml-2 font-normal">({group.members.length})</span>{" "}
+          <span className="ml-2 font-normal">
+            ({group.members.length})
+          </span>{" "}
         </p>
         {group.totalBudget !== 0 && group.members.length < 10 && (
           <motion.button
@@ -93,7 +95,7 @@ function GroupMembers() {
       </div>
 
       {/* small section containing each member image and name and remove btn */}
-      <article className="mt-5 gap-4 flex flex-wrap justify-start ">
+      <article className="mt-5 flex flex-wrap justify-start gap-4">
         {group.members.map((member) => (
           <div
             key={member.id}
@@ -133,13 +135,13 @@ function GroupMembers() {
                 />
               </div>
 
-              <h2 className="font-semibold -mb-2">Select Image:</h2>
-              <div className="flex flex-wrap justify-center gap-5">
+              <h2 className="-mb-2 font-semibold">Select Image:</h2>
+              <div className="flex flex-wrap gap-5">
                 {imagesPeople.map((image, index) => (
                   <img
                     key={index}
                     src={image}
-                    alt={`image-${index}`}
+                    alt={`member image`}
                     className={`!m-0 h-[4.3rem] w-[4.3rem] cursor-pointer rounded-full object-cover shadow-custom-dark transition hover:scale-110 dark:shadow-custom-light ${
                       selectedImage === image
                         ? "ring-[3px] ring-primary dark:ring-darkPrimary"

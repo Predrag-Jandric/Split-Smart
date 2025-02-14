@@ -5,19 +5,18 @@
 - deploy the app, TEST it and update live link in the readme
 - when project is finished, UPDATE readme so that its COMPLETE
 
-- why do circular elements distort on smaller sizes ?
-
 ---
 
 ## OVERALL
 
-- replace notif toasts
-- test modal on small screens
-- responsive edit contributions on small screens
+- fix vulnerabilities
 
 ---
 
 ## DONE
 
-- distribute remainging % is twitchy
-- add animations to modal opening and closing
+- updated images
+- responsive edit contributions on small screens
+- replace notif toasts
+- test modal on small screens
+- why do circular elements distort on smaller sizes ?
