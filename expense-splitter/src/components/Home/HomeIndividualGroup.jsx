@@ -64,7 +64,7 @@ function HomeIndividualGroup({ group }) {
           content={
             <>
               <p className="text-center mb-6 text-xl">Are you sure ?</p>
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
                 {" "}
                 <button
                   onClick={handleRemove}

@@ -60,6 +60,9 @@ export default {
       borderRadius: {
         global: "10px",
       },
+      screens: {
+        xs: "480px",
+      },
     },
   },
   plugins: [],

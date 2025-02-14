@@ -39,7 +39,7 @@ function Sidebar() {
       {/* toggle button for small screens */}
       <button
         onClick={toggleSidebar}
-        className="fixed left-4 top-4 z-20 rounded-full bg-primary p-2 text-white dark:bg-darkPrimary dark:text-darkWhite lg:hidden"
+        className="fixed left-1  dark:border-darkBorder border-border border top-4 z-20 rounded-full dark:hover:bg-darkprimaryHover transition hover:bg-primaryHover bg-primary p-2.5 text-white dark:bg-darkPrimary dark:text-darkWhite lg:hidden"
       >
         {isSidebarOpen ? (
           <IoIosArrowBack size={24} />

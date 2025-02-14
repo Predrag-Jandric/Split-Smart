@@ -82,8 +82,8 @@ function EditGroupDetailsForm({ group, closeModal }) {
           maxLength="45"
         />
       </div>
-      <h2 className="font-semibold">Select Image:</h2>
-      <div className="flex flex-wrap gap-5">
+      <h2 className="font-semibold -mb-2">Select Image:</h2>
+      <div className="flex flex-wrap justify-center gap-[1.125rem]">
         {images.map((image, index) => (
           <img
             key={index}

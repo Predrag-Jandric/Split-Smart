@@ -133,8 +133,8 @@ function GroupMembers() {
                 />
               </div>
 
-              <h2 className="font-semibold">Select Image:</h2>
-              <div className="flex flex-wrap gap-5">
+              <h2 className="font-semibold -mb-2">Select Image:</h2>
+              <div className="flex flex-wrap justify-center gap-5">
                 {imagesPeople.map((image, index) => (
                   <img
                     key={index}

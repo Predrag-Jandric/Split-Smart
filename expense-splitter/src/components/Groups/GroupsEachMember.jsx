@@ -64,7 +64,7 @@ function GroupsEachMember({ member }) {
           content={
             <>
               <p className="text-center mb-6 text-xl">Are you sure?</p>
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3">
                 <button
                   onClick={handleRemove}
                   className="btnPrimary h-10 w-full text-[1.05rem] font-semibold"

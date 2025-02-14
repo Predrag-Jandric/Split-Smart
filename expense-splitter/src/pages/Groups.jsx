@@ -14,7 +14,7 @@ import GroupName from "../components/Groups/GroupName";
 import GroupSmallExpenseCard from "../components/Groups/GroupSmallExpenseCard";
 // icons
 import { GiMoneyStack } from "react-icons/gi";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -116,7 +116,7 @@ function Groups() {
           totalBudget={totalBudget}
         />
         <GroupSmallExpenseCard
-          icon={MdOutlineShoppingCart}
+          icon={AiOutlineShoppingCart}
           label="Total expense"
           value={totalExpense}
         />
@@ -149,7 +149,7 @@ function Groups() {
               : "Edit budget and expense"
           }
           content={
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <label className="text-body font-semibold">Budget:</label>
 
@@ -179,7 +179,7 @@ function Groups() {
                 />
               </div>
 
-              <button type="submit" className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold">
+              <button type="submit" className="btnPrimary mt-5 h-10 text-[1.05rem] font-semibold">
                 {totalBudget === 0 ? "Add" : "Update"}
               </button>
             </form>

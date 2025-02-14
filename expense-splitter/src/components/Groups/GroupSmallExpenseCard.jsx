@@ -31,7 +31,7 @@ function GroupSmallExpenseCard({
         <motion.button
           onClick={onClick}
           className={
-            group.totalBudget !== 0 ? "btnSecondary ml-2" : "btnPrimary"
+            group.totalBudget !== 0 ? "btnSecondary ml-3" : "btnPrimary ml-3"
           }
           animate={totalBudget === 0 ? "animate" : "initial"}
           variants={jumpyAnimation}

@@ -156,7 +156,7 @@ function GroupChart({ groupId }) {
             animate={group.members.length > 0 ? "animate" : "initial"}
             variants={jumpyAnimation}
             onClick={openModal}
-            className="btnPrimary"
+            className="btnPrimary bounce"
           >
             Edit
           </motion.button>
@@ -170,45 +170,48 @@ function GroupChart({ groupId }) {
           content={
             <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {group.members.map((member) => (
-                <div
-                  key={member.id}
-                  className="flex items-center justify-between gap-4"
-                >
-                  <label className="text-body font-semibold">
+                <div key={member.id} className="flex justify-end gap-2">
+                  <label className="mr-auto text-body font-semibold">
                     {member.name}
                   </label>{" "}
-                  <div className="flex w-full items-center justify-end gap-3">
-                    <input
-                      type="range"
-                      min="0"
-                      max={remainingPercentage + customContributions[member.id]}
-                      step="1"
-                      value={customContributions[member.id]}
-                      onChange={(e) =>
-                        handleContributionChange(member.id, e.target.value)
-                      }
-                      className="w-[13rem] accent-primary transition-all dark:accent-darkPrimary"
-                    />
-
-                    <span className="w-[3rem] text-right text-body font-semibold">
-                      {customContributions[member.id]} %
-                    </span>
-                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max={remainingPercentage + customContributions[member.id]}
+                    step="1"
+                    value={customContributions[member.id]}
+                    onChange={(e) =>
+                      handleContributionChange(member.id, e.target.value)
+                    }
+                    className="w-[13rem] accent-primary transition-all dark:accent-darkPrimary"
+                  />
+                  <span className="w-[3rem] text-right text-body font-semibold">
+                    {customContributions[member.id]} %
+                  </span>
                 </div>
               ))}
 
               <button
                 type="submit"
-                className={`btnPrimary h-10 text-[1.05rem] font-semibold ${
+                className={`btnPrimary mt-5 flex h-10 text-[1.05rem] font-semibold ${
                   remainingPercentage !== 0
-                    ? "cursor-not-allowed border-alert bg-alert font-semibold hover:border-alert hover:bg-alert dark:border-alert dark:bg-alert dark:hover:border-alert dark:hover:bg-alert" // Disabled styles
-                    : "cursor-pointer" // Enabled styles
+                    ? "cursor-not-allowed border-alert bg-alert font-semibold hover:border-alert hover:bg-alert dark:border-alert dark:bg-alert dark:hover:border-alert dark:hover:bg-alert"
+                    : "cursor-pointer"
                 }`}
                 disabled={remainingPercentage !== 0}
               >
-                {remainingPercentage !== 0
-                  ? `Distribute Remaining ${remainingPercentage}%`
-                  : "Update Contributions"}
+                <div className="flex w-full items-center justify-center gap-1">
+                  {remainingPercentage !== 0 ? (
+                    <>
+                      <span>Distribute Remaining</span>
+                      <span className="inline-block w-[3rem] text-center">
+                        {remainingPercentage}%
+                      </span>
+                    </>
+                  ) : (
+                    <span>Update Contributions</span>
+                  )}
+                </div>
               </button>
             </form>
           }
