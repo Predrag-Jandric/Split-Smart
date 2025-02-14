@@ -14,7 +14,7 @@ import GroupsEachMember from "./GroupsEachMember";
 
 // this component is responsible for adding and removing members of a group. based on this,
 // contributions in the GroupChart.jsx will be set.
-function GroupMembers() {
+export default function GroupMembers() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
 
@@ -116,7 +116,7 @@ function GroupMembers() {
       {/* MODAL for adding member */}
       {isOpen && (
         <Modal
-          title="Add new member"
+          title="Create new member"
           content={
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
@@ -155,7 +155,7 @@ function GroupMembers() {
                 type="submit"
                 className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold"
               >
-                Update
+                Create
               </button>
             </form>
           }
@@ -169,4 +169,3 @@ function GroupMembers() {
   );
 }
 
-export default GroupMembers;

@@ -8,7 +8,7 @@ import Modal from "../Utils/Modal";
 import { IoEnter } from "react-icons/io5";
 
 // this component is a single group card on the homepage
-function HomeIndividualGroup({ group }) {
+export default function HomeIndividualGroup({ group }) {
   const dispatch = useDispatch();
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
@@ -90,4 +90,3 @@ function HomeIndividualGroup({ group }) {
   );
 }
 
-export default HomeIndividualGroup;

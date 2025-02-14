@@ -4,7 +4,7 @@ import EditGroupDetailsForm from "./EditGroupDetailsForm";
 import { RiImageEditFill } from "react-icons/ri";
 
 // this component contains the group name, description and image. it also allows the user to edit the group details. by opening a modal that is in "EditGroupDetailsForm.jsx".
-function GroupName({ group }) {
+export default function GroupName({ group }) {
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
 
   return (
@@ -61,4 +61,3 @@ function GroupName({ group }) {
   );
 }
 
-export default GroupName;

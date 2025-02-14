@@ -2,7 +2,7 @@ import { IoClose } from "react-icons/io5";
 import { modalAnimation } from "./animations";
 import { motion } from "framer-motion";
 
-const Modal = ({ title, content, onClose, handleClickOutside }) => {
+export default function Modal({ title, content, onClose, handleClickOutside }){
   return (
     <section
       id="modal-overlay"
@@ -29,4 +29,3 @@ const Modal = ({ title, content, onClose, handleClickOutside }) => {
   );
 };
 
-export default Modal;

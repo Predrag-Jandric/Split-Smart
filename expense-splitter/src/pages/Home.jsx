@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getRandomImage } from "../components/Utils/images";
 
 // home page where you see all the groups and a button to create a new group
-function Home() {
+export default function Home() {
   const groups = useSelector((state) => state.groups.groups);
 
   const resetNewGroupState = () => {
@@ -30,9 +30,7 @@ function Home() {
     const lowerCaseQuery = query.toLowerCase();
     setFilteredGroups(
       groups.filter((group) =>
-        lowerCaseQuery
-          .split("")
-          .every((char) => group.name.toLowerCase().includes(char)),
+        group.name.toLowerCase().startsWith(lowerCaseQuery),
       ),
     );
   };
@@ -187,4 +185,3 @@ function Home() {
   );
 }
 
-export default Home;

@@ -1,22 +1,18 @@
 ## README
 
-- make a yt video, put it online and link it in the README
-- make images and update readme with theme
-- deploy the app, TEST it and update live link in the readme
-- when project is finished, UPDATE readme so that its COMPLETE
+- deploy the app, TEST it in chrome TOO ! and update live link in the readme
 
 ---
 
 ## OVERALL
 
-- fix vulnerabilities
+- scroll to top upon route change
 
 ---
 
 ## DONE
 
-- updated images
-- responsive edit contributions on small screens
-- replace notif toasts
-- test modal on small screens
-- why do circular elements distort on smaller sizes ?
+- fix vulnerabilities
+- fix search bar being bugged
+- when project is finished, UPDATE readme so that its COMPLETE
+- group member images should have a shadow

@@ -1,16 +1,16 @@
-const ExpenseBar = ({ expense, budget }) => {
+export default function ExpenseBar({ expense, budget }) {
   const expensePercentage = (expense / budget) * 100;
 
   return (
-    <section className="flex h-auto w-full min-w-0 flex-col justify-between overflow-hidden rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
+    <section className="flex h-auto w-full min-w-0 flex-col justify-between rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
       <p className="text-subheader font-bold">Expense vs budget</p>
 
       <div className="flex flex-col items-start justify-between gap-7 md:flex-row lg:flex-col">
         <article className="w-full pr-4">
           {/* progress bar */}
-          <div className="relative mb-2 mt-4 h-8 overflow-hidden rounded-global bg-progressBar dark:bg-darkprogressBar">
+          <div className="relative mb-2 mt-4 h-8 rounded-global bg-progressBar dark:bg-darkprogressBar">
             <p
-              className="absolute left-0 top-0 h-full rounded-global bg-primary transition-all duration-500 ease-out dark:bg-darkPrimary"
+              className="absolute left-0 top-0 h-full rounded-global bg-primary/60 transition-all duration-500 ease-out dark:bg-darkPrimary/70"
               style={{ width: `${expensePercentage}%` }}
             ></p>
             {/* TIP dividing the budget from expense colors */}
@@ -18,20 +18,20 @@ const ExpenseBar = ({ expense, budget }) => {
               className="absolute top-0 h-full bg-mainBG transition-all duration-500 ease-out dark:bg-darkmainBG"
               style={{
                 width: "6px",
-                left: `calc(${expensePercentage}%)`, 
+                left: `calc(${expensePercentage}%)`,
               }}
             ></p>
           </div>
           {/* numbers under the progress bar */}
           <div className="relative flex justify-between text-subheader font-bold">
             <p
-            // this style here ensures that the numbers do not ovelap or overflow in certain use cases when expense is too high or too low
+              // this style here ensures that the numbers do not ovelap in certain use cases when expense is too high or too low
               style={{
                 left:
                   expensePercentage < 20
-                    ? "0.5rem" 
+                    ? "0.5rem"
                     : expensePercentage > 70
-                      ? "calc(70% - 4.5rem)" 
+                      ? "calc(70% - 4.5rem)"
                       : `calc(${expensePercentage}% - 3rem)`,
               }}
               className="absolute transition-all duration-500 ease-out"
@@ -61,6 +61,4 @@ const ExpenseBar = ({ expense, budget }) => {
       </div>
     </section>
   );
-};
-
-export default ExpenseBar;
+}

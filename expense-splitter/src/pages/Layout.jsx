@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Home/Sidebar";
 
-function Layout() {
+export default function Layout() {
   return (
     <section className="flex h-screen bg-mainBG dark:bg-darkmainBG">
       <Sidebar />
@@ -12,4 +12,3 @@ function Layout() {
   );
 }
 
-export default Layout;

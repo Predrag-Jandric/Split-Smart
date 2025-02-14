@@ -3,7 +3,7 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,5 +16,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

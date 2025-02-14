@@ -19,7 +19,7 @@ import { LiaMoneyBillWaveAltSolid } from "react-icons/lia";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Groups() {
+export default function Groups() {
   const { groupId } = useParams();
   const dispatch = useDispatch();
   const group = useSelector((state) =>
@@ -191,5 +191,3 @@ function Groups() {
     </section>
   );
 }
-
-export default Groups;

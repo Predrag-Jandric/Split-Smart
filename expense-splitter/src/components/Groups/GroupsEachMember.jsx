@@ -7,7 +7,7 @@ import useModal from "../Utils/useModal";
 import { toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 
-function GroupsEachMember({ member }) {
+export default function GroupsEachMember({ member }) {
   const { groupId } = useParams();
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ function GroupsEachMember({ member }) {
   return (
     <section className="flex w-20 flex-col items-center text-center">
       <img
-        className="h-[4rem] w-[4rem] rounded-full object-cover"
+        className="h-[4rem] w-[4rem] rounded-full object-cover shadow-custom-dark dark:shadow-custom-light"
         src={member.img}
         alt={member.name}
       />
@@ -63,7 +63,7 @@ function GroupsEachMember({ member }) {
           title={`Removing ${memberToRemove?.name}`}
           content={
             <>
-              <p className="text-center mb-6 text-xl">Are you sure?</p>
+              <p className="mb-6 text-center text-xl">Are you sure?</p>
               <div className="flex flex-col gap-3">
                 <button
                   onClick={handleRemove}
@@ -88,4 +88,3 @@ function GroupsEachMember({ member }) {
   );
 }
 
-export default GroupsEachMember;

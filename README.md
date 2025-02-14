@@ -1,17 +1,12 @@
 # Split Wise
 
-<!-- MAKE AND PLACE LINK -->
+# 🔗 [Live preview](https://splitwisewebsite.netlify.app/)
 
-# 🔗 [Live preview]()
+# ▶️ [Video walkthrough by dev](https://youtu.be/d6Xhf7XYMes)
 
-<!-- MAKE AND PLACE VIDEO -->
-
-# ▶️ [Video walkthrough by dev]()
-
-<!-- MAKE AND PLACE IMAGES -->
-
-![Design preview]()
-![Design preview]()
+![Design preview](./expense-splitter/src/assets/prev1.png)
+![Design preview](./expense-splitter/src/assets/prev2.png)
+![Design preview](./expense-splitter/src/assets/prev3.png)
 
 ---
 
@@ -33,7 +28,7 @@
 
 Split Wise is an application designed to simplify splitting expenses among friends, family, or colleagues. Whether you're planning a trip, organizing a group dinner, or managing shared expenses, Split Wise helps you keep track of who owes what and ensures that everyone pays their fair share.
 
-Split Wise was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more details for developers see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
+Split Wise was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
 
 ---
 
@@ -181,7 +176,7 @@ Ensure you have the following installed on your system:
 
 ## Team
 
-Voyage 51 - team 22. October 2024
+Voyage 51 - team 22. October 2024. Remade on February 2025
 
 - Tochi, Product Owner: [GitHub](https://github.com/Osira01) / [LinkedIn](https://www.linkedin.com/in/tochi-nkole-09525132/)
 

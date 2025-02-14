@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import unknownPerson from "../assets/unknownPerson.jpg";
 
 // this will calc and update automaticaly the contributions of each member in a group when added or removed. this makes sure that group members always divide the total expense equally.
-const calculateContributions = (group) => {
+function calculateContributions(group) {
   const memberCount = group.members.length;
   if (memberCount > 0) {
     let totalContribution = 0;
@@ -23,7 +23,7 @@ const calculateContributions = (group) => {
       member.contribution = contributions[index];
     });
   }
-};
+}
 
 // initial state empty, because we add/remove groups dynamically
 const initialState = {

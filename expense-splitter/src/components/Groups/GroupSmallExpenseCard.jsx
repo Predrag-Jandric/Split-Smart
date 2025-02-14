@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // this component is a template for three small cards in the group page that you see at the top. in the first of these cards you see the total budget of the group and a btn to add/edit it.
-function GroupSmallExpenseCard({
+export default function GroupSmallExpenseCard({
   icon: Icon,
   label,
   value,
@@ -44,4 +44,3 @@ function GroupSmallExpenseCard({
   );
 }
 
-export default GroupSmallExpenseCard;

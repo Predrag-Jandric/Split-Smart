@@ -50,7 +50,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-function GroupChart({ groupId }) {
+export default function GroupChart({ groupId }) {
   const groupIdInt = parseInt(groupId);
 
   const group = useSelector((state) =>
@@ -174,12 +174,11 @@ function GroupChart({ groupId }) {
                   key={member.id}
                   className="flex flex-col justify-end gap-2 sm:flex-row"
                 >
-                  {/* Name on top for small screens, left-aligned for larger screens */}
                   <label className="text-body font-semibold sm:mr-auto">
                     {member.name}:
                   </label>
 
-                  {/* Wrapper to keep range input and percentage in the same row on all screens */}
+                  {/* wrapper to keep range input and percentage in the same row on all screens */}
                   <div className="flex items-center gap-2">
                     <input
                       type="range"
@@ -273,7 +272,6 @@ function GroupChart({ groupId }) {
                   {(group.totalExpense * (member.contribution / 100)).toFixed(
                     0,
                   )}{" "}
-                  $
                 </span>
               </div>
             ))}
@@ -287,5 +285,3 @@ function GroupChart({ groupId }) {
     </section>
   );
 }
-
-export default GroupChart;

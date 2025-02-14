@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // dark mode button at the bottom of the sidebar and logic to toggle dark mode
-function DarkModeToggle({ closeSidebar }) {
+export default function DarkModeToggle({ closeSidebar }) {
   const [darkMode, setDarkMode] = useState(() => {
     const isDarkMode = localStorage.getItem("theme") === "dark";
     document.documentElement.classList.toggle("dark", isDarkMode);
@@ -30,4 +30,3 @@ function DarkModeToggle({ closeSidebar }) {
   );
 }
 
-export default DarkModeToggle;

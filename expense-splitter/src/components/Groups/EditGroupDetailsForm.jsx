@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // edit group details form
-function EditGroupDetailsForm({ group, closeModal }) {
+export default function EditGroupDetailsForm({ group, closeModal }) {
   const dispatch = useDispatch();
   const [groupName, setGroupName] = useState(group.name);
   const [selectedImage, setSelectedImage] = useState(group.image);
@@ -105,4 +105,3 @@ function EditGroupDetailsForm({ group, closeModal }) {
   );
 }
 
-export default EditGroupDetailsForm;

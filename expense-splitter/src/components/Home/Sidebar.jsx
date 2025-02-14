@@ -12,7 +12,7 @@ import {
   IoIosArrowUp,
 } from "react-icons/io";
 
-function Sidebar() {
+export default function Sidebar() {
   // expanded controls "Group" link in the navbar being expanded and showing the list of present groups or not
   const [expanded, setExpanded] = useState(true);
   // isSidebarOpen controls whether the sidebar is expanded or not on small screens
@@ -130,5 +130,3 @@ function Sidebar() {
     </>
   );
 }
-
-export default Sidebar;
