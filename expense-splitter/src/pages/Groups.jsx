@@ -179,7 +179,10 @@ export default function Groups() {
                 />
               </div>
 
-              <button type="submit" className="btnPrimary mt-5 h-10 text-[1.05rem] font-semibold">
+              <button
+                type="submit"
+                className="btnPrimary mt-5 h-10 text-[1.05rem] font-semibold"
+              >
                 {totalBudget === 0 ? "Add" : "Update"}
               </button>
             </form>

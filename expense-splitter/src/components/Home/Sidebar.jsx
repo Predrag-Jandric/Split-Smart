@@ -50,7 +50,7 @@ export default function Sidebar() {
 
       {/* sidebar */}
       <div
-        className={`fixed left-0 top-0 z-10 h-full w-64 transform border-r border-progressBar bg-white pt-2 shadow-custom-dark dark:border-darkmainBG dark:bg-darkWhite dark:shadow-custom-light ${
+        className={`fixed left-0 top-0 z-10 min-h-screen w-64 transform border-r border-progressBar bg-white pt-2 shadow-custom-dark dark:border-darkmainBG dark:bg-darkWhite dark:shadow-custom-light ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } flex flex-col transition-transform lg:relative lg:w-56 lg:translate-x-0`}
       >
@@ -64,7 +64,7 @@ export default function Sidebar() {
         </NavLink>
 
         {/* navigation links */}
-        <nav className="mt-3 flex-1">
+        <nav className="flex-1">
           {SIDEBAR_LINKS.map((link, index) => {
             if (link.name === "Groups") {
               if (groups.length === 0) {
@@ -74,7 +74,7 @@ export default function Sidebar() {
                 // "Groups" second link in the sidebar
                 <div key={link.id}>
                   <div
-                    className="dark:hover:bg- flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
+                    className="flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
                     onClick={() => setExpanded(!expanded)}
                   >
                     <span>{link.icon()}</span>

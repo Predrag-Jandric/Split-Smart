@@ -19,7 +19,7 @@ export default function GroupSmallExpenseCard({
   return (
     <section className="flex w-full items-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
       <div className="flex flex-grow items-start space-x-4">
-        <Icon className="h-14 w-14 flex-shrink-0 rounded-full bg-mainBG p-3 text-primary dark:bg-darkmainBG dark:text-darkPrimary sm:h-16 sm:w-16" />
+        <Icon className="h-14 w-14 flex-shrink-0 rounded-full bg-mainBG p-3 text-primary dark:bg-darkmainBG dark:text-darkPrimary" />
 
         <span>
           <p className="font-body font-medium text-title dark:text-darkTitle">

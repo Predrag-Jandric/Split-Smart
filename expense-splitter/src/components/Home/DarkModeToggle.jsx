@@ -22,11 +22,10 @@ export default function DarkModeToggle({ closeSidebar }) {
       onClick={() => {
         toggleDarkMode(), closeSidebar();
       }}
-      className="btnSecondary mx-8 mb-10 flex items-center justify-center gap-2"
+      className="btnSecondary mx-8 mb-20 mt-2 flex items-center justify-center gap-2"
     >
       {darkMode ? "☀️" : "🌙"}
       <span>{darkMode ? "Light mode" : "Dark mode"}</span>
     </button>
   );
 }
-

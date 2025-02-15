@@ -10,16 +10,15 @@ import { toast } from "react-toastify";
 
 // chart colors
 const COLORS = [
-  "#63C7B2",
-  "#FF9F1C",
-  "#A0E9FF",
-  "#EEAAC6",
-  "#6EA5D8",
-  "#FFD166",
-  "#D08BB9",
-  "#B6E37A",
-  "#C57B57",
-  "#e5f0d0",
+  "#FFCF8C",
+  "#8CCFFF",
+  "#E4FF8C",
+  "#8C8EFF",
+  "#DE8CFF",
+  "#8CFFE8",
+  "#FF8C8C",
+  "#8EFF8C",
+  "#FF8CC0",
 ];
 
 // props of numbers inside chart position and radius related
@@ -271,7 +270,7 @@ export default function GroupChart({ groupId }) {
                   -{" "}
                   {(group.totalExpense * (member.contribution / 100)).toFixed(
                     0,
-                  )}{" "}
+                  )}{" "}💸
                 </span>
               </div>
             ))}

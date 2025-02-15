@@ -113,7 +113,7 @@ export default function Home() {
 
       {/* big card with a btn to create new group */}
       <article className="mt-8 flex w-full flex-wrap justify-center gap-8 sm:justify-start">
-        {groups.length < 10 && (
+        {groups.length < 7 && (
           <div className="flex h-60 w-80 flex-col items-center justify-center rounded-global border-global border-border bg-white shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:shadow-custom-light">
             <motion.button
               variants={jumpyAnimation}
@@ -184,4 +184,3 @@ export default function Home() {
     </section>
   );
 }
-

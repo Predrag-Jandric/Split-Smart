@@ -12,6 +12,9 @@
   .input {
     @apply w-full rounded-global border-global border-border p-2.5 px-4 text-base text-black shadow-custom-dark focus:outline-none focus:ring-1 focus:ring-primary/85 dark:border-darkBorder dark:bg-darkBorder dark:text-darkBlack dark:shadow-custom-light dark:focus:ring-darkPrimary/85;
   }
+  body {
+    @apply bg-mainBG dark:bg-darkmainBG;
+  }
 }
 
 body {

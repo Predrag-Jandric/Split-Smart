@@ -1,6 +1,6 @@
 # Split Wise
 
-# 🔗 [Live preview](https://splitwisewebsite.netlify.app/)
+# 🔗 [Live preview](https://split-smart.netlify.app/)
 
 # ▶️ [Video walkthrough by dev](https://youtu.be/d6Xhf7XYMes)
 

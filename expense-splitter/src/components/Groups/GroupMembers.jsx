@@ -76,7 +76,7 @@ export default function GroupMembers() {
             ({group.members.length})
           </span>{" "}
         </p>
-        {group.totalBudget !== 0 && group.members.length < 10 && (
+        {group.totalBudget !== 0 && group.members.length < 9 && (
           <motion.button
             animate={
               group.members.length === 0 && group.totalBudget !== 0
@@ -168,4 +168,3 @@ export default function GroupMembers() {
     </section>
   );
 }
-
