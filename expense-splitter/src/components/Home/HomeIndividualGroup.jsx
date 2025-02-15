@@ -5,12 +5,15 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useModal from "../Utils/useModal";
 import Modal from "../Utils/Modal";
+import { IoEnter } from "react-icons/io5";
 
-function HomeIndividualGroup({ group }) {
+// this component is a single group card on the homepage
+export default function HomeIndividualGroup({ group }) {
   const dispatch = useDispatch();
 
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
 
+  // remove group from the homepage list
   const handleRemove = () => {
     dispatch(removeGroup(group.id));
     toast.success(`Group removed`, {
@@ -21,60 +24,69 @@ function HomeIndividualGroup({ group }) {
   };
 
   return (
-    <section className="p-4 bg-white dark:bg-dark-primary rounded-xl  w-custom-card h-custom-card-height flex flex-col items-center">
-      <Link to={`/groups/${group.id}`}>
+    <section className="flex h-60 w-80 flex-col items-center rounded-global border-global border-border bg-white p-4 shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:shadow-custom-light">
+      {/* group image which is actually clickable and will lead user to the page of that specific group */}
+      <Link to={`/groups/${group.id}`} className="relative mb-2 h-20 w-20">
         <img
-          className="w-20 border-red-500 border-2 h-20 mb-2 rounded-full object-cover flex justify-center"
+          className="h-20 w-20 rounded-full object-cover shadow-custom-dark dark:shadow-custom-light"
           src={group.image}
-          alt="group-logo"
+          alt="group image"
         />
+        <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-75 opacity-0 transition-opacity duration-300 hover:opacity-100">
+          <IoEnter className="text-3xl text-white" />
+        </div>
       </Link>
 
-      <p className="text-body font-medium text-title dark:text-dark-text-secondary">
+      <p className="text-body font-medium text-title dark:text-darkTitle">
         {group.members.length} members
       </p>
 
-      <h2 className="font-bold text-center text-secondary dark:text-dark-text">
+      <h2 className="text-center font-bold text-black dark:text-darkBlack">
         {group.name}
       </h2>
 
-      <div className="flex justify-between w-full mt-auto">
-        <Link
-          className="bg-blizzard-blue hover:shadow-custom-hover text-xl text-primary dark:bg-dark-primary dark:border dark:text-dark-text
-             dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-bold rounded-lg w-32 h-10 flex items-center justify-center ml-4"
-          to={`/groups/${group.id}`}
-        >
+      <div className="mt-auto flex w-full justify-around">
+        <Link className="btnPrimary w-28 text-lg" to={`/groups/${group.id}`}>
           Details
         </Link>
         <button
           onClick={openModal}
-          className="bg-blizzard-blue hover:shadow-custom-hover text-xl text-primary dark:bg-dark-primary dark:border dark:text-dark-text
-          dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary  font-bold rounded-lg w-32 h-10 mb-4 flex items-center justify-center mr-4"
+          className="btnSecondary w-28 border-alert/80 bg-alert/0 text-lg hover:bg-alert dark:border-alert/50 dark:bg-alert/0 dark:hover:bg-alert"
         >
-          Remove
+          Delete
         </button>
       </div>
 
+      {/* modal to confirm removal of a single group */}
       {isOpen && (
         <Modal
-          handleClickOutside={handleClickOutside}
-          onClose={closeModal}
+          title={`Deleting ${group.name}`}
           content={
             <>
-              <p>Are you sure?</p>
-              <button
-                onClick={handleRemove}
-                className="px-4 py-2 rounded-xl bg-blizzard-blue dark:bg-dark-primary dark:border hover:bg-primary
-                    hover:text-white text-primary dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium"
-              >
-                Yes
-              </button>
+              <p className="text-center mb-6 text-xl">Are you sure ?</p>
+              <div className="flex flex-col gap-3">
+                {" "}
+                <button
+                  onClick={handleRemove}
+                  className="btnPrimary h-10 w-full text-[1.05rem] font-semibold"
+                >
+                  {" "}
+                  Yes
+                </button>
+                <button
+                  onClick={closeModal}
+                  className="btnSecondary h-10 w-full border-alert text-[1.05rem] font-semibold text-black transition-all hover:bg-alert dark:border-darkAlert dark:text-darkBlack dark:hover:bg-darkAlert"
+                >
+                  No
+                </button>
+              </div>
             </>
           }
+          onClose={closeModal}
+          handleClickOutside={handleClickOutside}
         />
       )}
     </section>
   );
 }
 
-export default HomeIndividualGroup;

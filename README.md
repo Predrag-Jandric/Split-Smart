@@ -1,35 +1,55 @@
 # Split Wise
 
-# 🔗 [Live Preview](https://gentle-kringle-dec3a4.netlify.app/)
+# 🔗 [Live preview](https://split-smart.netlify.app/)
 
-![Design preview](/expense-splitter/src/assets/prev1.png)
-![Design preview](/expense-splitter/src/assets/prev2.png)
+# ▶️ [Video walkthrough by dev](https://youtu.be/d6Xhf7XYMes)
 
----
-
-## About Project 👋
-
-This app was developed as a part of the 6-week Chingu Voyage 51 around September 2024. The purpose of the app is to solve the problem of splitting expenses with a group of friends or any number of people. In this app, the user is supposed to be able to create groups, input expenses/budget, add/remove friends, and many more functionalities. However, due to the complexity of the app logic and time constraints, the team did not manage to fully implement all the features, therefore it remains to be revisited and completed post voyage.
+![Design preview](./expense-splitter/src/assets/prev1.png)
+![Design preview](./expense-splitter/src/assets/prev2.png)
+![Design preview](./expense-splitter/src/assets/prev3.png)
 
 ---
 
-## Features 👨‍💻
+## Table of Contents
 
-- Add/remove/edit groups
-
-- Add/remove group members
-
-- Add/update group expenses and budget
-
-- Toggle dark/light mode across the app
-
-- Be able to select different groups, from the sidebar and the homepage as well
-
-- Edit how much percent each member contributes to the expense
+- [About Project](#about-project)
+- [Features](#features)
+- [How it works](#how-it-works)
+- [Technologies & Dependencies used](#technologies--dependencies-used)
+- [Prerequisites](#prerequisites)
+- [Clone & Run locally](#clone--run-locally)
+- [Team](#team)
+- [Special Thanks](#special-thanks)
+- [Contributing](#contributing)
 
 ---
 
-## How it works ⚙️
+## About Project
+
+Split Wise is an application designed to simplify splitting expenses among friends, family, or colleagues. Whether you're planning a trip, organizing a group dinner, or managing shared expenses, Split Wise helps you keep track of who owes what and ensures that everyone pays their fair share.
+
+Split Wise was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
+
+---
+
+## Features
+
+- **Create and Manage Groups:** Create groups for different events or activities and manage them from a single dashboard.
+- **Add and Remove Members:** Add members to your groups and remove them if no longer part of a group.
+- **Track Expenses:** Keep track of all expenses within a group.
+- **Equal Contributions:** By default, the app divides expenses equally among all group members.
+- **Custom Contributions:** Adjust contributions so that some members can contribute more or less than others.
+- **Edit Group Details:** Update group names, descriptions, and images to keep everything organized.
+- **Search Functionality:** Quickly find groups using the search bar.
+
+- **Dark Mode:** Toggle between light and dark modes for a comfortable viewing experience.
+- **Responsive Design:** Enjoy a seamless experience on both desktop and mobile devices.
+- **Real-time Updates:** Changes are automatically saved in your browser's local storage.
+- **Notifications:** Receive feedback through notifications for important actions, such as adding or removing members, and updating contributions.
+
+---
+
+## How it works
 
 - Upon entering the app, the user sees a homepage and a sidebar on the left.
 
@@ -38,24 +58,24 @@ This app was developed as a part of the 6-week Chingu Voyage 51 around September
   1.  Create a new group.
   2.  Remove an existing group.
   3.  Open details of the default group always present.
-  4.  Search groups, if there are many groups.
+  4.  Search groups, if there are any groups.
 
-- Then the user can open group details by clicking a button insise a group card, for that specific group.
+- Then the user can open group details by clicking "Details" button on Homepage, to see that specific group's details.
 
 - The user is now on a dedicated group page with all the details for that group.
 
 - From there, the user can do many things, such as:
 
-  1.  Edit group's name and image.
+  1.  Edit group's name, description and image.
   2.  Edit the group's budget and total expense.
-  3.  Add or remove members to the group .
+  3.  Add or remove members to the group.
   4.  Assign different pictures to new members, if no picture is selected, a default picture will be assigned to member.
-  5.  See the contributions of the members to total expense. By default all members contribute equally.
+  5.  See the contributions of the members to total expense ratio. By default all members contribute equally.
   6.  Edit contributions so that some members can contribute more and some less.
 
 ---
 
-## Technologies & Dependencies used 📦
+## Technologies & Dependencies used
 
 - **React:** for all the logic, many React features were used: conditionals, components, useState, useEffect, functions...
 
@@ -63,7 +83,7 @@ This app was developed as a part of the 6-week Chingu Voyage 51 around September
 
 - **React Icons:** for all the icons in the app.
 
-- **React Toastify:** for all the beautiful notifications the user receives upon performing and action.
+- **Framer motion:** for animations
 
 - **React Router:** for all routing needs.
 
@@ -76,6 +96,7 @@ This app was developed as a part of the 6-week Chingu Voyage 51 around September
 **dependencies:**
 
 - "@reduxjs/toolkit": "^2.2.7",
+- "framer-motion": "^12.3.1",
 - "react": "^18.3.1",
 - "react-dom": "^18.3.1",
 - "react-icons": "^5.3.0",
@@ -97,12 +118,14 @@ This app was developed as a part of the 6-week Chingu Voyage 51 around September
 - "eslint-plugin-react-refresh": "^0.4.9",
 - "globals": "^15.9.0",
 - "postcss": "^8.4.45",
+- "prettier": "^3.5.0",
+- "prettier-plugin-tailwindcss": "^0.6.11",
 - "tailwindcss": "^3.4.10",
 - "vite": "^5.4.1"
 
 ---
 
-## Prerequisites 📚
+## Prerequisites
 
 Ensure you have the following installed on your system:
 
@@ -111,7 +134,7 @@ Ensure you have the following installed on your system:
 
 ---
 
-## Clone & Run locally 🏃‍♂️
+## Clone & Run locally
 
 1. **Clone the Repository:**
 
@@ -151,15 +174,9 @@ Ensure you have the following installed on your system:
 
 ---
 
-## Contributing 💻
+## Team
 
-Even though the Voyage is over, Feel free to fork the project, and edit it, or play around, or maybe even implement a feature.
-
----
-
-## Team 🎇
-
-Voyage 51 - team 22. September 2024
+Voyage 51 - team 22. October 2024. Remade on February 2025
 
 - Tochi, Product Owner: [GitHub](https://github.com/Osira01) / [LinkedIn](https://www.linkedin.com/in/tochi-nkole-09525132/)
 
@@ -167,19 +184,24 @@ Voyage 51 - team 22. September 2024
 
 - Mandla (Cash), Developer: [GitHub](https://github.com/Mandla-tech) / [LinkedIn](https://www.linkedin.com/in/mandla-m/)
 
-- Jordi, Developer: [GitHub](https://github.com/cluster28) / [LinkedIn](https://www.linkedin.com/in/jordi-rejas-b1319bb1/)
-
 - Farzaneh, UX/UI Designer: [GitHub](https://github.com/farzaneh-falakrou) / [LinkedIn](https://www.linkedin.com/in/farzaneh-falakrou/)
+
 - Afrah, Scrum Master: [GitHub](https://github.com/afbaf) / [LinkedIn](https://www.linkedin.com/feed/)
 
 ---
 
-### Special Thanks 🙏
+### Special Thanks
 
-We as a whole team would like to thank Chingu platform and community for this opportunity to learn, improve and collaborate. Even though we did not fulfill the MVP for our app, we have learned a great amount of things in technical and non-technical areas. Thank you Chingu !
+We as a whole team would like to thank Chingu platform and community for this opportunity to learn, improve and collaborate. Thank you Chingu !
 
 Chingu is a platform that helps developers and other people in tech related roles practice in-demand skills and accelerate their learning through collaboration and project-building.
 
 Learn more about Chingu platform at https://www.chingu.io/
+
+---
+
+## Contributing
+
+Contributions to this project are closed.
 
 ---

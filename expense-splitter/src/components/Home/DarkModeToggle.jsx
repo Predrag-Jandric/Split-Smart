@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-function DarkModeToggle() {
+// dark mode button at the bottom of the sidebar and logic to toggle dark mode
+export default function DarkModeToggle({ closeSidebar }) {
   const [darkMode, setDarkMode] = useState(() => {
     const isDarkMode = localStorage.getItem("theme") === "dark";
     document.documentElement.classList.toggle("dark", isDarkMode);
     return isDarkMode;
   });
 
+  // toggle dark mode on and off
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
     setDarkMode(newDarkMode);
@@ -14,16 +16,16 @@ function DarkModeToggle() {
     localStorage.setItem("theme", newDarkMode ? "dark" : "light");
   };
 
+  // close sidebar on dark mode toggle
   return (
     <button
-      onClick={toggleDarkMode}
-      className="bg-gray-200 dark:bg-gray-800 p-2 rounded-full text-sm dark:text-white
-      flex items-center space-x-2 w-full md:w-auto"
+      onClick={() => {
+        toggleDarkMode(), closeSidebar();
+      }}
+      className="btnSecondary mx-8 mb-20 mt-2 flex items-center justify-center gap-2"
     >
-      {darkMode ? "🌙" : "☀️"}
-      <span className="hidden md:flex ml-2">{darkMode ? "Light mode" : "Dark mode"}</span>
+      {darkMode ? "☀️" : "🌙"}
+      <span>{darkMode ? "Light mode" : "Dark mode"}</span>
     </button>
   );
 }
-
-export default DarkModeToggle;

@@ -1,25 +1,31 @@
-const Modal = ({ content, onClose, handleClickOutside }) => {
+import { IoClose } from "react-icons/io5";
+import { modalAnimation } from "./animations";
+import { motion } from "framer-motion";
+
+export default function Modal({ title, content, onClose, handleClickOutside }){
   return (
     <section
       id="modal-overlay"
-      className="!m-0 fixed z-50 inset-0 bg-black bg-opacity-20 flex justify-center items-center"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-darkmainBG bg-opacity-80 p-4 text-black dark:text-darkBlack"
       onClick={handleClickOutside}
     >
-      <article className="bg-white dark:bg-dark-primary p-10 rounded-lg w-[30rem]">
-        <div className="flex justify-between items-center">
-        <h2 className="text-secondary text-2xl mb-4 font-bold dark:text-dark-text">Create New</h2>
+      <motion.article
+        {...modalAnimation}
+        className="relative  flex max-h-[90vh] w-full max-w-lg flex-col gap-6 overflow-y-auto rounded-global border-global border-border bg-white p-6 shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light"
+      >
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">{title}</h2>
 
           <button
-            className="bg-white shadow rounded-full w-8 h-8 text-red-500"
+            className="flex h-10 w-10 items-center justify-center rounded-full border-global border-border bg-alert/15 text-alert shadow-custom-dark transition-colors hover:bg-alert hover:text-white dark:border-darkBorder dark:bg-alert/20 dark:text-darkAlert dark:shadow-custom-light dark:hover:bg-darkAlert dark:hover:text-darkWhite"
             onClick={onClose}
           >
-            x
+            <IoClose className="h-6 w-10" />
           </button>
         </div>
         {content}
-      </article>
+      </motion.article>
     </section>
   );
 };
 
-export default Modal;

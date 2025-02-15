@@ -1,31 +1,46 @@
-// for icons, go to this page https://react-icons.github.io/react-icons/ the search for the icon you need. package is already installed, you just need to import the icon, just like the one above, on line 1. on the webpage, when you click on the icon and open it, you will see the code you need to copy paste to import it. to use the icon, you just put it in JSX like its a normal component. follow the <MdGroups/> example below
+import { jumpyAnimation } from "../Utils/animations";
+import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function GroupSmallExpenseCard({ icon: Icon, label, value, button, onClick }) {
+// this component is a template for three small cards in the group page that you see at the top. in the first of these cards you see the total budget of the group and a btn to add/edit it.
+export default function GroupSmallExpenseCard({
+  icon: Icon,
+  label,
+  value,
+  button,
+  onClick,
+  totalBudget,
+}) {
+  const { groupId } = useParams();
+  const group = useSelector((state) =>
+    state.groups.groups.find((group) => group.id === parseInt(groupId)),
+  );
   return (
-    <section className="bg-white dark:bg-dark-primary border p-8 mt-8 ml-8 space-x-6  rounded-global
-      flex items-start w-custom-card">
-      <div className="flex items-start space-x-4 flex-grow">
-        <Icon className="bg-blizzard-blue dark:bg-dark-icon-bg rounded-full w-14 h-14 p-3 text-primary dark:text-primary-dark-mode" />
+    <section className="flex w-full items-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
+      <div className="flex flex-grow items-start space-x-4">
+        <Icon className="h-14 w-14 flex-shrink-0 rounded-full bg-mainBG p-3 text-primary dark:bg-darkmainBG dark:text-darkPrimary" />
+
         <span>
-          <p className="text-body font-medium text-title dark:text-dark-text-secondary">
+          <p className="font-body font-medium text-title dark:text-darkTitle">
             {label}
           </p>
-          <p className="text-2xl font-bold text-secondary dark:text-dark-text">
-            {value}
-          </p>
+          <p className="text-2xl font-bold">{value}</p>
         </span>
       </div>
       {button && (
-        <button
+        <motion.button
           onClick={onClick}
-          className="w-[67px] h-8 py-1 px-3 bg-blizzard-blue hover:bg-primary hover:text-white text-primary
-           dark:bg-dark-primary dark:border dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium rounded-lg text-base ml-auto"
+          className={
+            group.totalBudget !== 0 ? "btnSecondary ml-3" : "btnPrimary ml-3"
+          }
+          animate={totalBudget === 0 ? "animate" : "initial"}
+          variants={jumpyAnimation}
         >
           {button}
-        </button>
+        </motion.button>
       )}
     </section>
   );
 }
 
-export default GroupSmallExpenseCard;

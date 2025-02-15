@@ -1,135 +1,132 @@
 import { MdGroups } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
-import { IoWalletSharp } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { special } from "../Utils/images";
+import {
+  IoIosArrowForward,
+  IoIosArrowBack,
+  IoIosArrowDown,
+  IoIosArrowUp,
+} from "react-icons/io";
 
-function Sidebar() {
-  const [expanded, setExpanded] = useState(false); // State to control expansion
+export default function Sidebar() {
+  // expanded controls "Group" link in the navbar being expanded and showing the list of present groups or not
+  const [expanded, setExpanded] = useState(true);
+  // isSidebarOpen controls whether the sidebar is expanded or not on small screens
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // map for scalability in the future
   const SIDEBAR_LINKS = [
     { id: 124534, path: "/", name: "Home", icon: MdGroups },
-    { id: 262546, path: "/groups", name: "Groups", icon: IoMdPerson },
-    { id: 3254657, path: "/friends", name: "Friends", icon: IoWalletSharp },
+    { id: 262546, path: null, name: "Groups", icon: IoMdPerson },
   ];
 
-  // Fetching groups from the Redux store
   const groups = useSelector((state) => state.groups.groups);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
-    <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen pt-8 px-4 bg-white dark:bg-dark-primary">
-      <div className="mb-8 flex justify-center">
-        <NavLink to="/" className="flex cursor-pointer">
+    <>
+      {/* toggle button for small screens */}
+      <button
+        onClick={toggleSidebar}
+        className="fixed left-1 top-4 z-20 rounded-full border border-border bg-primary p-2.5 text-white transition hover:bg-primaryHover dark:border-darkBorder dark:bg-darkPrimary dark:text-darkWhite dark:hover:bg-darkprimaryHover lg:hidden"
+      >
+        {isSidebarOpen ? (
+          <IoIosArrowBack size={24} />
+        ) : (
+          <IoIosArrowForward size={24} />
+        )}
+      </button>
+
+      {/* sidebar */}
+      <div
+        className={`fixed left-0 top-0 z-10 min-h-screen w-64 transform border-r border-progressBar bg-white pt-2 shadow-custom-dark dark:border-darkmainBG dark:bg-darkWhite dark:shadow-custom-light ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col transition-transform lg:relative lg:w-56 lg:translate-x-0`}
+      >
+        {/* logo */}
+        <NavLink
+          to="/"
+          className="flex cursor-pointer justify-center py-7"
+          onClick={closeSidebar}
+        >
           <img src={special} alt="logo" className="mr-1 flex" />
         </NavLink>
-      </div>
 
-      {/* Navigation */}
-      <nav>
-        {SIDEBAR_LINKS.map((link, index) => {
-          if (link.name === "Groups") {
-            return (
-              <div key={link.id}>
-                <NavLink
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold dark:text-dark-text ${
-                      isActive ? "text-primary" : "text-title"
-                    }`
-                  }
-                >
-                  <span>{link.icon()}</span>
-                  <span className="text-body font-medium text-title dark:text-dark-text hidden md:flex">
-                    {link.name}
-                  </span>
-                </NavLink>
+        {/* navigation links */}
+        <nav className="flex-1">
+          {SIDEBAR_LINKS.map((link, index) => {
+            if (link.name === "Groups") {
+              if (groups.length === 0) {
+                return null;
+              }
+              return (
+                // "Groups" second link in the sidebar
+                <div key={link.id}>
+                  <div
+                    className="flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
+                    onClick={() => setExpanded(!expanded)}
+                  >
+                    <span>{link.icon()}</span>
+                    <span>{link.name}</span>
+                    <span>
+                      {expanded ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                    </span>
+                  </div>
 
-                {/* Listing the created groups directly below the "Groups" link */}
-                <div>
-                  {/*display the first 2 groups in sidebar*/}
-                  {groups.slice(0, 2).map((group) => (
-                    <NavLink
-                      key={group.id}
-                      to={`/groups/${group.id}`} //Hooking from routes for each group
-                      className={({ isActive }) =>
-                        `flex items-center px-8 py-2 space-x-5 text-base font-medium dark:text-dark-text ${
-                          isActive ? "text-primary" : "text-title"
-                        }`
-                      }
-                    >
-                      <span className="text-sm truncate hover:text-black dark:text-dark-text dark:hover:text-primary w-full">
-                        {group.name}
-                      </span>
-                    </NavLink>
-                  ))}
-
-                  {/* Expansion Logic, I set this to slice at 2 groups for now */}
-                  {expanded &&
-                    groups.slice(2).map(
-                      (
-                        group // Here we will additional groups if expanded
-                      ) => (
+                  {/* subgroups */}
+                  {expanded && (
+                    <div>
+                      {groups.map((group) => (
                         <NavLink
                           key={group.id}
-                          to={`/groups/${group.id}`} // Hooking from routes for each group
+                          to={`/groups/${group.id}`} // path to the specific group page
                           className={({ isActive }) =>
-                            `flex items-center px-8 py-2 space-x-2 text-base font-medium dark:text-dark-text ${
-                              isActive ? "text-primary" : "text-title"
+                            `flex cursor-pointer items-center px-10 py-3 text-sm font-medium transition hover:bg-progressBar/50 dark:text-darkBlack dark:hover:bg-darkmainBG/70 ${
+                              isActive
+                                ? "bg-progressBar/50 text-primary dark:bg-darkmainBG/70 dark:text-darkPrimary"
+                                : "text-legend"
                             }`
                           }
+                          onClick={closeSidebar}
                         >
-                          <span className="text-sm truncate hover:text-black dark:hover:text-primary w-full">
-                            {group.name}
-                          </span>
+                          <span className="">- {group.name}</span>
                         </NavLink>
-                      )
-                    )}
-
-                  {/* Toggle Button for more groups to be shown if more than 2*/}
-                  {groups.length > 2 && (
-                    <button
-                      onClick={() => setExpanded(!expanded)}
-                      className="text-sm truncate mt-2 px-8 text-primary focus:outline-none"
-                    >
-                      <span className="hidden md:flex">
-                        {expanded ? "Show Less" : "Show More"}
-                      </span>
-                    </button>
+                      ))}
+                    </div>
                   )}
                 </div>
-              </div>
+              );
+            }
+
+            return (
+              // home page btn
+              <NavLink
+                key={index}
+                to={link.path}
+                className="dark:hover:bg- flex cursor-pointer items-center space-x-5 px-6 py-5 text-lg text-primary transition hover:bg-progressBar/50 dark:text-darkPrimary dark:hover:bg-darkmainBG/70"
+                onClick={closeSidebar}
+              >
+                <span>{link.icon()}</span>
+                <span>{link.name}</span>
+              </NavLink>
             );
-          }
+          })}
+        </nav>
 
-          return (
-            <NavLink
-              key={index}
-              to={link.path}
-              className={({ isActive }) =>
-                `flex items-center px-4 py-5 space-x-5 text-xl font-extrabold  ${
-                  isActive ? "text-primary" : "text-title"
-                }`
-              }
-            >
-              <span>{link.icon()}</span>
-              <span className="text-body font-medium text-title dark:text-dark-text hidden md:flex">
-                {link.name}
-              </span>
-            </NavLink>
-          );
-        })}
-      </nav>
-
-      <div className="w-full absolute bottom-5 left-0 px-4 py-2 cursor-pointer text-center">
-        {/* Dark Mode Toggle  */}
-        <div className="mt-4 md:mt-2 flex items-center justify-center">
-          <DarkModeToggle /> {/* This is our dark mode toggle button */}
-        </div>
+        {/* dark mode btn */}
+        <DarkModeToggle closeSidebar={closeSidebar} />
       </div>
-    </div>
+    </>
   );
 }
-
-export default Sidebar;

@@ -1,19 +1,13 @@
 import { Outlet } from "react-router-dom";
-
-// components
 import Sidebar from "../components/Home/Sidebar";
 
-
-function Layout() {
+export default function Layout() {
   return (
-    <section className="flex bg-blizzard-blue dark:bg-dark-bg overflow-auto">
+    <section className="flex h-full bg-mainBG dark:bg-darkmainBG">
       <Sidebar />
-
-      <div className="w-full ml-16 mr-8 md:ml-56">
+      <div className="w-screen flex-1 px-4 py-10 sm:px-10">
         <Outlet />
       </div>
     </section>
   );
 }
-
-export default Layout;

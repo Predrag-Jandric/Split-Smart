@@ -1,12 +1,27 @@
+// jumpy animation used for UX to guide user what to do next
 export const jumpyAnimation = {
   initial: { y: 0 },
   animate: {
-    y: [0, -20, 0], // Jumpy effect: start at 0, move up to -20, and back to 0
+    y: [0, -22, 0],
     transition: {
-      duration: 3, // Total duration of the animation
-      repeat: Infinity, // Loop the animation infinitely
-      repeatType: "loop", // Type of repeat
-      ease: "easeInOut", // Easing function for smooth animation
+      duration: 1.2,
+      repeat: 5.15,
+      repeatType: "loop",
+      ease: "easeInOut",
     },
   },
+};
+
+export const modalAnimation = {
+  initial: { opacity: 0, scale: 0.9 }, // Starts slightly smaller and transparent
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.2, ease: "easeOut" },
+  }, // Pops in smoothly
+  exit: {
+    opacity: 0,
+    scale: 0.9,
+    transition: { duration: 0.15, ease: "easeIn" },
+  }, // Fades out when closing
 };

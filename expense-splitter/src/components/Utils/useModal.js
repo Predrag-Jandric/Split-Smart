@@ -1,26 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function useModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
-    setIsOpen(true);}
+    setIsOpen(true);
+  };
 
   const closeModal = () => {
-    setIsOpen(false);}
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const handleEscape = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeModal();
       }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
   const handleClickOutside = (event) => {
-    if (event.target.id === 'modal-overlay') {
+    if (event.target.id === "modal-overlay") {
       closeModal();
     }
   };
