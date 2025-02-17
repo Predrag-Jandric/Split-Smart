@@ -8,29 +8,30 @@ export default function GroupName({ group }) {
   const { isOpen, openModal, closeModal, handleClickOutside } = useModal();
 
   return (
-    <section className="flex items-start gap-5 sm:items-center">
+    <section className="flex sm:flex-row flex-col sm:items-start items-center gap-5 ">
       {/* clickable and editable group image */}
       <button
         onClick={openModal}
-        className="relative mb-2 h-16 w-16 flex-shrink-0 sm:h-20 sm:w-20"
+        className="relative mb-2 h-32 w-32 flex-shrink-0 sm:h-20 sm:w-20"
       >
         <img
           className="h-full w-full rounded-full object-cover shadow-custom-dark dark:shadow-custom-light"
           src={group.image}
           alt="group image"
         />
+        {/* image overlay */}
         <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black bg-opacity-75 opacity-0 transition-opacity duration-300 hover:opacity-100">
           <RiImageEditFill className="text-3xl text-white" />
         </div>
       </button>
 
       {/* group name and description */}
-      <div className="flex flex-col text-black dark:text-darkBlack">
-        <span className="flex xs:flex-row xs:items-center flex-col items-start gap-3">
+      <div className="flex flex-col text-black sm:text-start sm:items-start items-center text-center dark:text-darkBlack">
+        <span className="flex flex-col items-start gap-3 xs:flex-row xs:items-center">
           <h1 className="text-header font-bold">{group.name}</h1>
           <button
             onClick={openModal}
-            className="btnSecondary bg-mainBG dark:bg-darkPrimary/10"
+            className="btnSecondary mx-auto mb-1 bg-mainBG dark:bg-darkPrimary/10"
           >
             Edit
           </button>
@@ -60,4 +61,3 @@ export default function GroupName({ group }) {
     </section>
   );
 }
-

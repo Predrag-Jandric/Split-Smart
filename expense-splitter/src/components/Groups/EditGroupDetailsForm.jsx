@@ -78,11 +78,11 @@ export default function EditGroupDetailsForm({ group, closeModal }) {
           value={groupDescription}
           onChange={handleDescriptionChange}
           className="input"
-          placeholder="(max 45 characters)"
-          maxLength="45"
+          placeholder="(max 100 characters)"
+          maxLength="100"
         />
       </div>
-      <h2 className="font-semibold -mb-2">Select Image:</h2>
+      <h2 className="-mb-2 font-semibold">Select Image:</h2>
       <div className="flex flex-wrap gap-[1.125rem]">
         {images.map((image, index) => (
           <img
@@ -98,10 +98,12 @@ export default function EditGroupDetailsForm({ group, closeModal }) {
           />
         ))}
       </div>
-      <button type="submit" className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold">
+      <button
+        type="submit"
+        className="btnPrimary mt-6 h-10 text-[1.05rem] font-semibold"
+      >
         Update
       </button>
     </form>
   );
 }
-

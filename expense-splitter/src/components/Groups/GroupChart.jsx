@@ -188,7 +188,7 @@ export default function GroupChart({ groupId }) {
                       onChange={(e) =>
                         handleContributionChange(member.id, e.target.value)
                       }
-                      className="w-[85%] accent-primary transition-all dark:accent-darkPrimary"
+                      className="w-[75%] accent-primary transition-all dark:accent-darkPrimary"
                     />
                     <span className="text-body font-semibold sm:w-[3rem] sm:text-right">
                       {customContributions[member.id]} %

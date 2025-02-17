@@ -7,6 +7,8 @@
 ![Design preview](./expense-splitter/src/assets/prev1.png)
 ![Design preview](./expense-splitter/src/assets/prev2.png)
 ![Design preview](./expense-splitter/src/assets/prev3.png)
+![Design preview](./expense-splitter/src/assets/prev4.png)
+
 
 ---
 
