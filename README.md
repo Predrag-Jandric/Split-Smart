@@ -1,4 +1,4 @@
-# Split Wise
+# Split Smart
 
 # 🔗 [Live preview](https://split-smart.netlify.app/)
 
