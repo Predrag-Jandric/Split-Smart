@@ -28,9 +28,9 @@
 
 ## About Project
 
-Split Wise is an application designed to simplify splitting expenses among friends, family, or colleagues. Whether you're planning a trip, organizing a group dinner, or managing shared expenses, Split Wise helps you keep track of who owes what and ensures that everyone pays their fair share.
+Split Smart is an application designed to simplify splitting expenses among friends, family, or colleagues. Whether you're planning a trip, organizing a group dinner, or managing shared expenses, Split Smart helps you keep track of who owes what and ensures that everyone pays their fair share.
 
-Split Wise was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
+Split Smart was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
 
 ---
 
