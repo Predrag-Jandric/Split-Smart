@@ -58,7 +58,7 @@ export default {
         global: "1.5rem",
       },
       borderRadius: {
-        global: "10px",
+        global: "7px",
       },
       screens: {
         xs: "480px",
