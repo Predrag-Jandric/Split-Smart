@@ -4,31 +4,21 @@ import Modal from "../Utils/Modal";
 import useModal from "../Utils/useModal";
 import { useEffect, useState } from "react";
 import { updateMemberContribution } from "../../features/groupsSlice";
+import { motion } from "framer-motion";
+import { jumpyAnimation } from "../Utils/animations";
+import { toast } from "react-toastify";
 
-// chart
+// chart colors
 const COLORS = [
-  "#F8AE1B",
-  "#8D73FD",
-  "#EEAAFF",
-  "#6AD2FF",
-  "#EBAF91",
-  "#F68D2B",
-  "#F9C84D",
-  "#00B1A0",
-  "#03B56D",
-  "#6EEDFF",
-  "#D4A5A5",
-  "#F4A79D",
-  "#F8A5FF",
-  "#B8B8B8",
-  "#FDE0B8",
-  "#F35353",
-  "#D3917B",
-  "#FFF597",
-  "#D2FBA4",
-  "#FABE7A",
-  "#9FFFD8",
-  "#4318FF",
+  "#FFCF8C",
+  "#8CCFFF",
+  "#E4FF8C",
+  "#8C8EFF",
+  "#DE8CFF",
+  "#8CFFE8",
+  "#FF8C8C",
+  "#8EFF8C",
+  "#FF8CC0",
 ];
 
 // props of numbers inside chart position and radius related
@@ -52,18 +42,18 @@ const renderCustomizedLabel = ({
       fill="#1f1d1b"
       textAnchor="middle"
       dominantBaseline="central"
-      className="text-md font-bold text-secondary"
+      className="text-md text-secondary font-bold"
     >
-      {(percent * 100).toFixed(1)}%
+      {(percent * 100).toFixed(0)}%
     </text>
   );
 };
 
-function GroupChart({ groupId }) {
+export default function GroupChart({ groupId }) {
   const groupIdInt = parseInt(groupId);
 
   const group = useSelector((state) =>
-    state.groups.groups.find((group) => group.id === groupIdInt)
+    state.groups.groups.find((group) => group.id === groupIdInt),
   );
 
   const hasMembers = group.members && group.members.length > 0;
@@ -74,111 +64,160 @@ function GroupChart({ groupId }) {
   const [customContributions, setCustomContributions] = useState({});
   const [remainingPercentage, setRemainingPercentage] = useState(100);
 
+  // set initial contributions when members are present
   useEffect(() => {
     if (hasMembers) {
-      // Initialize contributions as empty fields
       const initialContributions = group.members.reduce((acc, member) => {
-        acc[member.id] = "";
+        acc[member.id] = Math.round(member.contribution) || 0;
         return acc;
       }, {});
       setCustomContributions(initialContributions);
-      setRemainingPercentage(100);
+      updateRemainingPercentage(initialContributions);
     }
   }, [group.members, hasMembers]);
 
+  // update remaining percentage when custom contributions change
+  const updateRemainingPercentage = (contributions) => {
+    const totalContributions = Object.values(contributions).reduce(
+      (acc, val) => acc + (parseInt(val) || 0),
+      0,
+    );
+    setRemainingPercentage(Math.round(100 - totalContributions));
+  };
+
+  // handle custom contribution change
   const handleContributionChange = (memberId, newContribution) => {
-    const newValue = parseFloat(newContribution);
+    const newValue = parseInt(newContribution);
 
     setCustomContributions((prevContributions) => {
       const updatedContributions = {
         ...prevContributions,
-        [memberId]: newValue || "",
+        [memberId]: newValue || 0,
       };
 
-      // Calculate remaining percentage
-      const totalContributions = Object.values(updatedContributions).reduce(
-        (acc, val) => acc + (parseFloat(val) || 0),
-        0
-      );
-      setRemainingPercentage(100 - totalContributions);
+      updateRemainingPercentage(updatedContributions);
 
       return updatedContributions;
     });
   };
 
+  // IMPORTANT FUNCTION. distribute remaining percentage randomly. this is the core logic of the component. it allows that the percentage is always 100%.
+  const distributeRemainingPercentage = () => {
+    const memberIds = Object.keys(customContributions);
+    let remaining = remainingPercentage;
+
+    while (remaining !== 0) {
+      const randomIndex = Math.floor(Math.random() * memberIds.length);
+      const memberId = memberIds[randomIndex];
+      const adjustment = remaining > 0 ? 1 : -1;
+
+      setCustomContributions((prevContributions) => {
+        const updatedContributions = {
+          ...prevContributions,
+          [memberId]: prevContributions[memberId] + adjustment,
+        };
+
+        remaining -= adjustment;
+        updateRemainingPercentage(updatedContributions);
+
+        return updatedContributions;
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Ensure all fields are filled and total equals 100%
-    const totalContributions = Object.values(customContributions).reduce(
-      (acc, val) => acc + (parseFloat(val) || 0),
-      0
-    );
-
-    if (totalContributions !== 100) {
-      alert("Total contributions must equal 100%");
-      return;
+    if (remainingPercentage !== 0) {
+      distributeRemainingPercentage();
     }
 
     dispatch(
       updateMemberContribution({
         groupId: group.id,
         contributions: customContributions,
-      })
+      }),
     );
+    toast.success("Contributions updated!", {
+      position: "top-right",
+      autoClose: 2000,
+    });
+
     closeModal();
   };
 
-
   return (
-    <section className="flex flex-col items-center justify-center w-custom-wide-chart bg-white
-    dark:bg-dark-primary p-6 ml-8 rounded-lg shadow">
-      <div className="w-full flex items-stretch justify-end">
-        <p className="text-subheader mr-auto font-bold text-secondary ml-3 dark:text-dark-text ">
-          Budget Split
-        </p>
-        {hasMembers && (
-          <button
-            className="px-3 transition rounded-md text-primary bg-blizzard-blue dark:bg-dark-primary dark:border hover:bg-primary
-            hover:text-white text-primary dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary font-medium"
+    <section className="flex h-full flex-col items-center justify-start rounded-global border-global border-border bg-white p-global text-black shadow-custom-dark dark:border-darkBorder dark:bg-darkWhite dark:text-darkBlack dark:shadow-custom-light">
+      <div className="flex w-full justify-between">
+        <p className="text-secondary text-subheader font-bold">Contributions</p>
+        {group.members.length > 0 && (
+          <motion.button
+            animate={group.members.length > 0 ? "animate" : "initial"}
+            variants={jumpyAnimation}
             onClick={openModal}
+            className="btnPrimary bounce"
           >
-            Edit Contributions
-          </button>
+            Edit
+          </motion.button>
         )}
       </div>
 
+      {/* modal form for editing contributions. thanks to this, contributions can be CUSTOM*/}
       {isOpen && (
         <Modal
+          title="Edit Contributions"
           content={
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10">
               {group.members.map((member) => (
-                <div key={member.id} className="grid grid-cols-[152px_auto] items-center"  >
-                  <label className="text-body dark:text-dark-text">{member.name} Contribution</label>
-                  <div className="flex items-center">
-                  <input
-                    type="number"
-                    value={customContributions[member.id]}
-                    onChange={(e) =>
-                      handleContributionChange(member.id, e.target.value)
-                    }
-                    className="border mr-3 p-2 w-[10rem] dark:bg-dark-input"
-                    required
-                  />
-                 <span className="text-body dark:text-dark-text"> % </span>
-                 </div>
+                <div
+                  key={member.id}
+                  className="flex flex-col justify-end gap-2 sm:flex-row"
+                >
+                  <label className="text-body font-semibold sm:mr-auto">
+                    {member.name}:
+                  </label>
+
+                  {/* wrapper to keep range input and percentage in the same row on all screens */}
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="range"
+                      min="0"
+                      max={remainingPercentage + customContributions[member.id]}
+                      step="1"
+                      value={customContributions[member.id]}
+                      onChange={(e) =>
+                        handleContributionChange(member.id, e.target.value)
+                      }
+                      className="w-[75%] accent-primary transition-all dark:accent-darkPrimary"
+                    />
+                    <span className="text-body font-semibold sm:w-[3rem] sm:text-right">
+                      {customContributions[member.id]} %
+                    </span>
+                  </div>
                 </div>
               ))}
-              <p className="text-md dark:text-dark-text">
-                Percentage left to divide: {remainingPercentage}%
-              </p>
+
               <button
                 type="submit"
-                className="rounded-xl px-4 py-2 bg-blizzard-blue dark:bg-dark-primary dark:border
-                 hover:bg-primary hover:text-white text-primary dark:text-dark-text dark:hover:bg-dark-text dark:hover:text-primary dark:hover:border-primary"
+                className={`btnPrimary mt-5 flex h-10 text-[1.05rem] font-semibold ${
+                  remainingPercentage !== 0
+                    ? "cursor-not-allowed border-alert bg-alert font-semibold hover:border-alert hover:bg-alert dark:border-alert dark:bg-alert dark:hover:border-alert dark:hover:bg-alert"
+                    : "cursor-pointer"
+                }`}
                 disabled={remainingPercentage !== 0}
               >
-                Update Contributions
+                <div className="flex w-full items-center justify-center gap-1">
+                  {remainingPercentage !== 0 ? (
+                    <>
+                      <span>Distribute Remaining</span>
+                      <span className="inline-block w-[3rem] text-center">
+                        {remainingPercentage}%
+                      </span>
+                    </>
+                  ) : (
+                    <span>Update Contributions</span>
+                  )}
+                </div>
               </button>
             </form>
           }
@@ -187,20 +226,21 @@ function GroupChart({ groupId }) {
         />
       )}
 
+      {/* if there are members, then display the chart wheel */}
       {hasMembers ? (
         <>
           <PieChart className="my-6" width={250} height={250}>
             <Pie
               data={group.members.map((member) => ({
                 name: member.name,
-                value: member.contribution || 1,
+                value: member.contribution > 0 ? member.contribution : 0,
               }))}
               cx={120}
               cy={120}
               innerRadius={35.5}
               outerRadius={120}
-              fill="#8884d8"
-              paddingAngle={1}
+              fill="#000"
+              paddingAngle={0}
               dataKey="value"
               labelLine={false}
               label={renderCustomizedLabel}
@@ -214,32 +254,33 @@ function GroupChart({ groupId }) {
             </Pie>
           </PieChart>
 
-          <article className="p-3 w-full flex rounded-lg dark:border shadow-custom flex-wrap justify-start gap-2">
+          {/* legend under the chart wheel, who paid and how much */}
+          <article className="mt-auto flex w-full flex-wrap justify-start gap-8 rounded-global border-global border-border bg-legendBG p-global shadow-custom-dark dark:border-darkBorder dark:bg-darklegendBG dark:shadow-custom-light">
             {group.members.map((member, index) => (
-              <div
-                key={index}
-                className="flex my-2 items-center mx-2  p-1"
-              >
+              <div key={index} className="flex items-center">
                 <span
-                  className="w-3 h-3 rounded-full"
+                  className="size-4 rounded-full"
                   style={{ backgroundColor: COLORS[index] }}
                 ></span>
-                <span className="ml-2 font-bold text-legend">{member.name}</span>
-                {/* <span className="text-sm ml-1 text-secondary"> - {((entry.contribution / 100) * group.totalExpense).toFixed(1)}$
-                </span> */}
-                 <span className="text-sm ml-1 text-secondary"> - {(group.totalExpense / 100) * member.contribution} $
-                 </span>
+                <span className="ml-2 text-legendSize font-semibold dark:text-darkLegend">
+                  {member.name}
+                </span>
+                <span className="ml-1 text-legendSize font-bold dark:text-darkLegend">
+                  {" "}
+                  -{" "}
+                  {(group.totalExpense * (member.contribution / 100)).toFixed(
+                    0,
+                  )}{" "}💸
+                </span>
               </div>
             ))}
           </article>
         </>
       ) : (
-        <p className="text-lg my-8 font-bold text-secondary">
-          Add members to see the chart
+        <p className="text-md my-16 font-semibold">
+          {group.totalBudget === 0 ? "Add total budget" : "Add group member"}
         </p>
       )}
     </section>
   );
 }
-
-export default GroupChart;

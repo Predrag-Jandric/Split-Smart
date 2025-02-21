@@ -1,24 +1,16 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-// components
-import Layout from "./components/Layout";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Groups from "./pages/Groups";
-import Friends from "./pages/Friends";
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="groups" element={<Groups />} />
-          <Route path="groups/:groupId" element={<Groups/>} />
-          <Route path="friends" element={<Friends />} />
-          <Route path="friends/:friendName" element={<Friends />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="groups" element={<Groups />} />
+        <Route path="groups/:groupId" element={<Groups />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;

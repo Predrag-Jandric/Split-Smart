@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btnPrimary {
+    @apply flex h-9 items-center justify-center rounded-global border border-primary bg-primary px-4 text-base text-white shadow-custom-dark transition-all hover:bg-primaryHover dark:border-darkPrimary dark:bg-darkPrimary dark:text-darkWhite dark:shadow-custom-light dark:hover:border-darkprimaryHover dark:hover:bg-darkprimaryHover;
+  }
+  .btnSecondary {
+    @apply h-9 rounded-global border border-primary/90 bg-primary/5 px-4 text-base text-black shadow-custom-dark transition-all hover:bg-primary hover:text-white dark:border-darkPrimary/90 dark:bg-darkPrimary/5 dark:text-white dark:shadow-custom-light dark:hover:bg-darkPrimary dark:hover:text-black;
+  }
+  .input {
+    @apply w-full rounded-global border-global border-border p-2.5 px-4 text-base text-black shadow-custom-dark focus:outline-none focus:ring-1 focus:ring-primary/85 dark:border-darkBorder dark:bg-darkBorder dark:text-darkBlack dark:shadow-custom-light dark:focus:ring-darkPrimary/85;
+  }
+  body {
+    @apply bg-mainBG dark:bg-darkmainBG;
+  }
+}
+
 body {
-    font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 }
