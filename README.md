@@ -4,11 +4,10 @@
 
 # ▶️ [Video walkthrough by dev](https://youtu.be/d6Xhf7XYMes)
 
-![Design preview](./expense-splitter/src/assets/prev1.png)
-![Design preview](./expense-splitter/src/assets/prev2.png)
-![Design preview](./expense-splitter/src/assets/prev3.png)
-![Design preview](./expense-splitter/src/assets/prev4.png)
-
+![Design preview](./expense-splitter/src/assets/previewimg1.png)
+![Design preview](./expense-splitter/src/assets/previewimg2.png)
+![Design preview](./expense-splitter/src/assets/previewimg3.png)
+![Design preview](./expense-splitter/src/assets/previewimg4.png)
 
 ---
 
@@ -30,7 +29,7 @@
 
 Split Smart is an application designed to simplify splitting expenses among friends, family, or colleagues. Whether you're planning a trip, organizing a group dinner, or managing shared expenses, Split Smart helps you keep track of who owes what and ensures that everyone pays their fair share.
 
-Split Smart was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_
+Split Smart was built using React + Vite. It is only a front-end app, so it doesn't have a database or a backend. For more technical details for developers, see section _Technologies & Dependencies used_. The app was built by a team of 6, during a 6 week time period, see more in the section _Team_.
 
 ---
 
