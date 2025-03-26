@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { imagesPeople } from "../Utils/images";
 import unknownPerson from "../../assets/unknownPerson.jpg";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { jumpyAnimation } from "../Utils/animations";
 import GroupsEachMember from "./GroupsEachMember";
 
@@ -96,21 +96,27 @@ export default function GroupMembers() {
 
       {/* small section containing each member image and name and remove btn */}
       <article className="mt-5 flex flex-wrap justify-start gap-4">
-        {group.members.map((member) => (
-          <div
-            key={member.id}
-            // note to self, add bg-red-200 to line under to better checking for aligments
-            className="relative flex flex-col items-center"
-          >
-            <GroupsEachMember
-              member={{
-                id: member.id,
-                name: member.name,
-                img: member.image,
-              }}
-            />
-          </div>
-        ))}
+        <AnimatePresence>
+          {group.members.map((member) => (
+            <motion.div
+              key={member.id}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              // note to self, add bg-red-200 to line under to better checking for aligments
+              className="relative flex flex-col items-center"
+            >
+              <GroupsEachMember
+                member={{
+                  id: member.id,
+                  name: member.name,
+                  img: member.image,
+                }}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </article>
 
       {/* MODAL for adding member */}

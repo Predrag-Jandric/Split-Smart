@@ -13,15 +13,15 @@ export const jumpyAnimation = {
 };
 
 export const modalAnimation = {
-  initial: { opacity: 0, scale: 0.9 }, // Starts slightly smaller and transparent
+  initial: { opacity: 0, scale: 0.9 }, // starts slightly smaller and transparent
   animate: {
     opacity: 1,
     scale: 1,
     transition: { duration: 0.2, ease: "easeOut" },
-  }, // Pops in smoothly
+  }, // pops in smoothly
   exit: {
     opacity: 0,
     scale: 0.9,
     transition: { duration: 0.15, ease: "easeIn" },
-  }, // Fades out when closing
+  }, // fades out when closing
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroup } from "../features/groupsSlice";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { jumpyAnimation } from "../components/Utils/animations";
 import HomeIndividualGroup from "../components/Home/HomeIndividualGroup";
 import SearchBar from "../components/Home/SearchBar";
@@ -10,6 +10,7 @@ import useModal from "../components/Utils/useModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getRandomImage } from "../components/Utils/images";
+import {} from "../components/Utils/animations";
 
 // home page where you see all the groups and a button to create a new group
 export default function Home() {
@@ -135,15 +136,25 @@ export default function Home() {
         )}
 
         {/* groups cards */}
-        {filteredGroups.length > 0
-          ? filteredGroups.map((group) => (
-              <HomeIndividualGroup key={group.id} group={group} />
-            ))
-          : searchQuery && (
-              <p className="h-60 w-80 place-content-center text-center font-semibold text-black dark:text-darkBlack">
-                No groups found
-              </p>
-            )}
+        <AnimatePresence>
+          {filteredGroups.length > 0
+            ? filteredGroups.map((group) => (
+                <motion.div
+                  key={group.id}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <HomeIndividualGroup key={group.id} group={group} />
+                </motion.div>
+              ))
+            : searchQuery && (
+                <p className="h-60 w-80 place-content-center text-center font-semibold text-black dark:text-darkBlack">
+                  No groups found
+                </p>
+              )}
+        </AnimatePresence>
       </article>
 
       {/* MODAL to create a new group */}
